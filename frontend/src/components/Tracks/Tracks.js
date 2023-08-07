@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearTrackErrors, fetchTracks } from '../../store/tracks';
 import TrackBox from './TrackBox';
+import MapTracks from '../Map/MapTracks';
+import MapTrack from '../Map/MapTrack';
 
 function Tracks () {
   const dispatch = useDispatch();
@@ -29,8 +31,11 @@ function Tracks () {
       </div>
 
       <div className="map">
-          <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/w_2560%2Cc_limit/GoogleMapTA.jpg"></img>
+          {/* <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/w_2560%2Cc_limit/GoogleMapTA.jpg"></img> */}
+          {/* <MapTracks tracks={tracks}/> */}
+          <MapTrack />
       </div>
+      
     </div>
     </>
   );

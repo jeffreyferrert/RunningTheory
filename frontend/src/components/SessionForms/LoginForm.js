@@ -9,7 +9,7 @@ import { login } from '../../store/session';
 function LoginForm () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const errors = useSelector(state => state.errors.session);
+  const error = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
 
@@ -19,10 +19,10 @@ function LoginForm () {
     };
   }, [dispatch]);
 
-  // const update = (field) => {
-  //   const setState = field === 'email' ? setEmail : setPassword;
-  //   return e => setState(e.currentTarget.value);
-  // }
+  const update = (field) => {
+    const setState = field === 'email' ? setEmail : setPassword;
+    return e => setState(e.currentTarget.value);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,27 +82,29 @@ function LoginForm () {
         <form onSubmit={handleSubmit} >
 
           <ul>
-            {errors.map(error => <li key={error}>{error}</li>)}
+            {/* {errors.map(error => <li key={error}>{error}</li>)} */}
           </ul>
-
+          <div className="errors">{error?.email}</div>
           <label>
             Email
             <input
               type="text"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              // onChange={(e) => setEmail(e.target.value)}
+              onChange={update('email')}
               required
             />
           </label>
 
           <span></span><br />
-
+          <div className="errors">{error?.password}</div>
           <label>
             Password
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              // onChange={(e) => setPassword(e.target.value)}
+              onChange={update('password')}
               required
             />
           </label>
