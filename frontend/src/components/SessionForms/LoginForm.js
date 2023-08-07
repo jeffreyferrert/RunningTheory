@@ -48,7 +48,13 @@ function LoginForm () {
     dispatch(login({ email: demoEmail, password: demoPassword }));
   };
 
+  const handleDemoUser = (e) => {
+    e.preventDefault();
+    dispatch(login({email: "demo-user@appacademy.io", password: "starwars"}))
+  }
+
   return (
+
     // <form className="session-form" onSubmit={handleSubmit}>
     //   <h2>Log In Form</h2>
     //   <div className="errors">{errors?.email}</div>
@@ -118,6 +124,11 @@ function LoginForm () {
         <Link to="signup" className="link"> Sign up</Link>
         
       </div>
+         <input
+      type="submit"
+      value="Demo User"
+      onSubmit={handleDemoUser}
+      disabled={!email || !password} />
     </div>
   );
 }
