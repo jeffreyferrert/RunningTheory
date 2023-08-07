@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react';
@@ -45,11 +46,6 @@ function TrackShowPage() {
 
 
 }
-
-function sortComments(state, trackId) {
-    return state.comments.filter(comment => comment.track === trackId)
-}
-
 
 
 export default TrackShowPage;
