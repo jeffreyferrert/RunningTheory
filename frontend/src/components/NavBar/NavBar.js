@@ -5,6 +5,7 @@ import { logout } from '../../store/session';
 
 function NavBar() {
   const loggedIn = useSelector(state => !!state.session.user);
+  const user = useSelector(state => state.session.user)
   const dispatch = useDispatch();
 
   const logoutUser = e => {
@@ -16,6 +17,7 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="links-nav">
+          <div>{user.username}</div>
           <Link to={'/tracks'}>All Tracks</Link>
           <Link to={'/profile'}>Profile</Link>
           <Link to={'/tracks/new'}>Create a Track</Link>

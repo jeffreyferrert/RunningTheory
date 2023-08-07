@@ -3,11 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import tracks from './tracks';
+import search from './search';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   session,
   errors,
-  tracks
+  tracks,
+  search: searchReducer
 });
 
 let enhancer;
