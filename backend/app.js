@@ -7,6 +7,7 @@ const csurf = require('csurf');
 
 require('./models/User');
 require('./models/Track');
+require("./models/Comment")
 require('./config/passport');
 
 const passport = require('passport');
