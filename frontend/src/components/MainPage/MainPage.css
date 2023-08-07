@@ -8,9 +8,10 @@
     justify-content: center;
     height: auto;
     width: auto;
-    background-color: rgb(199, 199, 199);
+    background-color: black;
+    /* background-color: rgb(199, 199, 199); */
     /* border-radius: 40px; */
-    background: linear-gradient(to bottom, rgb(183, 184, 169) 0%, white 50%, rgb(239, 239, 239) 100%);
+    /* background: linear-gradient(to bottom, rgb(183, 184, 169) 0%, white 50%, rgb(239, 239, 239) 100%); */
     overflow: hidden;
 }
 
@@ -22,7 +23,7 @@
     max-width: 100%;
     z-index: 0;
     border: solid 2px transparent;
-    border-radius: 400px;
+    /* border-radius: 400px; */
     box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
     margin-top: 40px;
 
@@ -46,7 +47,7 @@
     left: 295px;
     font-family: 'Vollkorn', sans-serif;
     font-size: 45px;
-    color: #F2A71B;
+    color: #F7BE56;
     text-shadow: 
         -1px -1px 0 #454545, 
          1px -1px 0 #878686, 

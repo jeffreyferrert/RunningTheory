@@ -45,12 +45,15 @@ function NavBar() {
 
   return (
     <>
-    <div id='navbar-main'>
-      <div id='logo-container' onClick={handleRedirect}>
-       <img id='main-logo' src='/rt-logo2.png'></img>
+    <div id='all-nav'>
+      <div id='navbar-main'>
+  
+        <div id='logo-container' onClick={handleRedirect}>
+        <img id='main-logo' src='/rt-logo4.png'></img>
+        </div>
+          {/* <h1>Running Theory</h1> */}
+        {getLinks()}
       </div>
-        {/* <h1>Running Theory</h1> */}
-      {getLinks()}
     </div>
     </>
   );
