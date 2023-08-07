@@ -16,28 +16,25 @@ function NavBar() {
   }
 
 
-  const handleRedirect = () => {
-    // e.preventDefault();
-
-    history.push("/")
-  }
-
   const getLinks = () => {
     if (loggedIn) {
       return (
+
         <div className="links-nav">
-          <div>{user.username}</div>
-          <Link to={'/tracks'}>All Tracks</Link>
-          <Link to={'/profile'}>Profile</Link>
-          <Link to={'/tracks/new'}>Create a Track</Link>
-          <button onClick={logoutUser}>Logout</button>
+          <div id='user-name-container'>
+            <div id='user-name'>{user.username}</div>
+          </div>
+          <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
+          <Link className='button-link' to={'/profile'}>Profile</Link>
+          <Link className='button-link' to={'/tracks/new'}>Create a Track</Link>
+          <button id='logout-button' className='button-link' onClick={logoutUser}>Logout</button>
         </div>
       );
     } else {
       return (
         <div className="links-auth">
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
+          <Link id='signup' className='button-link' to={'/signup'}>Signup</Link>
+          <Link className='button-link' to={'/login'}>Login</Link>
         </div>
       );
     }
@@ -47,11 +44,11 @@ function NavBar() {
     <>
     <div id='all-nav'>
       <div id='navbar-main'>
-  
-        <div id='logo-container' onClick={handleRedirect}>
-        <img id='main-logo' src='/rt-logo4.png'></img>
+    
+        <div id='logo-container' >
+        <Link to='/'>  <img id='main-logo' src='/rt-logo4.png'></img> </Link>
+      
         </div>
-          {/* <h1>Running Theory</h1> */}
         {getLinks()}
       </div>
     </div>
