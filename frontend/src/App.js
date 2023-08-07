@@ -14,6 +14,10 @@ import TrackCompose from './components/Tracks/TrackCompose';
 
 import { getCurrentUser } from './store/session';
 
+import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+import TracksIndex from './components/Tracks/TracksIndex';
+
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -25,6 +29,7 @@ function App() {
     <>
       <NavBar />
       <Switch>
+
         <AuthRoute exact path="/" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
