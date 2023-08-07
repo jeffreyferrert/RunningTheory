@@ -11,6 +11,7 @@ import SignupForm from './components/SessionForms/SignupForm';
 
 import { getCurrentUser } from './store/session';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+import TracksIndex from './components/Tracks/TracksIndex';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,6 +25,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={MainPage} />
+        <Route exact path="/tracks" component={TracksIndex} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
 
