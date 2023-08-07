@@ -11,7 +11,7 @@ function TrackShowPage() {
   const { trackId } = useParams()
   const track = useSelector(state => state.tracks.all);
   // const comments = useSelector(state => sortComments(state.comments.all, trackId)) 
-  // const comments = useSelector(state => Object.values(state.comments.all))
+  const comments = useSelector(state => Object.values(state.comments.all))
   useEffect(() => {
     dispatch(fetchTracks())
  }, [dispatch, trackId])
@@ -22,13 +22,13 @@ function TrackShowPage() {
 
  console.log(comments)
   return (
-    // <div className="hi">
-    //   <p>Track Name: {track.name}</p>
-    //   <p>Location: {track.location}</p>
-    //   <p>Length: {track.miles} miles</p>
-    //   <p>Description: {track.description}</p>
-    // </div>
     <>
+    <div className="hi">
+      <p>Track Name: {track.name}</p>
+      <p>Location: {track.location}</p>
+      <p>Length: {track.miles} miles</p>
+      <p>Description: {track.description}</p>
+    </div>
     <h2>Comments:</h2>
       <ul>
         {comments.map((comment, index) => (
@@ -38,7 +38,7 @@ function TrackShowPage() {
           </li>
         ))}
       </ul>
-      </>
+    </>
 
   );
 
