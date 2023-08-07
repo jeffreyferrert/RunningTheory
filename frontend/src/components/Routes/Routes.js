@@ -9,9 +9,7 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
             !loggedIn ? (
                 <Component {...props} />
             ) : (
-                // change it later to /routes or other name that does not generate conflict 
-                // landing page (/) != show routes page (/routes)
-                <Redirect to="/" />
+                <Redirect to="/tracks" />
             )
         )} />
     );
