@@ -13,6 +13,7 @@ import Profile from './components/Profile/Profile';
 import TrackCompose from './components/Tracks/TrackCompose';
 
 import { getCurrentUser } from './store/session';
+import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -25,11 +26,11 @@ function App() {
     <>
       <NavBar />
       <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
+        <Route exact path="/" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
 
-        <ProtectedRoute exact path="/tracks" component={Tracks} />
+        <Route exact path="/tracks" component={Tracks} />
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/tracks/new" component={TrackCompose} />
       </Switch>
