@@ -15,8 +15,11 @@ const SignUpForm = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passCheck, setpassCheck] = useState("")
+    const error = useSelector(state => state.errors.session)
     const sessionUser = useSelector(state => state.session.user)
-    const [errors, setErrors] = useState([])
+   
+
+
 
     useEffect(() => {
       return () => {
@@ -26,50 +29,45 @@ const SignUpForm = () => {
 
     if (sessionUser) return <Redirect to='/' />
 
+
+
+
+    const update = field => {
+        let setState;
+    
+        switch (field) {
+          case 'email':
+            setState = setEmail;
+            break;
+          case 'username':
+            setState = setUsername;
+            break;
+          case 'password':
+            setState = setPassword;
+            break;
+          case 'password2':
+            setState = setpassCheck;
+            break;
+          default:
+            throw Error('Unknown field in Signup Form');
+        }
+    
+        return e => setState(e.currentTarget.value);
+      }
+
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         
-
-
+     
         if (password === passCheck) {
-            setErrors([]);
-
+           
             dispatch(signup({username: username, email: email, password: password}))
-            .catch(async (res) => {
-                let data;
-                try {
-                    data = await res.clone().json();
-                } catch {
-                    data = await res.text();
-                }
-                if (data?.errors) {
-                
-                    setErrors(data.errors)
-                } else if (data) {
-                    setErrors([data])
-                } else {
-                    setErrors([res.statusText])
-                } 
-
-              
-            })
+           
         }
 
-       return setErrors(['Passwords do not match'])
     };
 
-    console.log(errors)
-
-    const getErrorField = (field) => {
-   
-        if (errors) {
-        return errors.find((error) => {
-            return error.includes(field)
-        })
-    } 
-    }
-
-   
 
     return (
 
@@ -82,44 +80,45 @@ const SignUpForm = () => {
                   <div id='sign-buttons'>
                       <label id='text-text'>Your Name
                           <input
-                              id={getErrorField("Username") ? "signup-field-errors" : 'name-text'}
+                              id={error?.username ? "signup-field-errors" : 'name-text'}
                               placeholder="First and last name"
                               type='text'
                               value={username}
-                              onChange={(e) => setUsername(e.target.value)}
+                            onChange={update('username')}
                           />
                       </label>
-                      {getErrorField("Username") ? <span id='signup-error'><i id="a-icon a-icon-alert" ></i> {getErrorField('Username')}</span> : null}
+                      {error?.username ? <span id='signup-error'><i id="a-icon a-icon-alert" ></i>{error?.username}</span> : null}
                       <br />
                       <label id='text-text'>Email
                           <input
-                              id={getErrorField("Email") ? "signup-field-errors" : 'emails-text'}
+                              id={error?.email ? "signup-field-errors" : 'emails-text'}
                               type='text'
                               value={email}
-                              onChange={(e) => setEmail(e.target.value)}
+                            onChange={update('email')}
                           />
                       </label>
-                      {getErrorField("Email") ? <span id='signup-error'><i id="a-icon a-icon-alert" ></i> {getErrorField('Email')}</span> : null}
+                      {error?.email  ? <span id='signup-error'><i id="a-icon a-icon-alert" ></i> {error?.email}</span> : null}
                       <br />
                       <label id='text-text'>Password
                           <input
-                              id={getErrorField("Password") ? "signup-field-errors" : 'pass-texts'}
+                              id={error?.password ? "signup-field-errors" : 'pass-texts'}
                               placeholder="At least 6 characters"
                               type='password'
                               value={password}
-                              onChange={(e) => setPassword(e.target.value)}
+                            onChange={update('password')}
                           />
                       </label>
-                      {getErrorField("Password") ? <span id='signup-error'><i id="a-icon a-icon-alert" ></i> {getErrorField('Password')}</span> : null}
+                      {error?.password ? <span id='signup-error'><i id="a-icon a-icon-alert" ></i> {error?.password}</span> : null}
                       <br />
                       <label id='text-text'>Re-enter password
                           <input
                               id='pass-texts'
                               type='password'
                               value={passCheck}
-                              onChange={(e) => setpassCheck(e.target.value)}
+                            onChange={update("password2")}
                           />
                       </label>
+                      {password !== passCheck ? <span id='signup-error'><i id="a-icon a-icon-alert" ></i>Password does not match</span> : null }
                   </div>
                   <br />
                   <div id='signup-button-box'>
