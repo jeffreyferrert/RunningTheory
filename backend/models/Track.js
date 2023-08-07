@@ -22,6 +22,12 @@ const trackSchema = new Schema({
     description: {
         type: String,
         required: true
+    },
+    startAddress: {
+        type: String,
+    },
+    endAddress: {
+        type: String,
     }
 }, {
     timestamps: true

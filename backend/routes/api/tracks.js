@@ -61,6 +61,8 @@ router.post('/', requireUser, validateTrackInput, async (req, res, next) => {
       location: req.body.location,
       miles: req.body.miles,
       description: req.body.description,
+      startAddress: req.body.startAddress,
+      endAddress: req.body.endAddress
     });
 
     let track = await newTrack.save();

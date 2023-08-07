@@ -3,8 +3,8 @@ const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { secretOrKey } = require('./keys');
-const mongoose = require('mongoose');
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
+const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 passport.use(new LocalStrategy({

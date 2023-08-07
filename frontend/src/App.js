@@ -16,12 +16,9 @@ import { getCurrentUser } from './store/session';
 // import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
-<<<<<<< HEAD
 // import TracksIndex from './components/Tracks/TracksIndex';
-=======
 import TracksIndex from './components/Tracks/TracksIndex';
 import TrackShowPage from './components/TrackShowPage';
->>>>>>> 5a238bd2c528f66fc241f474d5ad7ba23be23db0
 
 
 function App() {
@@ -39,10 +36,10 @@ function App() {
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
 
-        <Route exact path="/tracks" component={Tracks} />
-        <ProtectedRoute exact path={"/tracks/:trackId"} component={TrackShowPage}/>
         <ProtectedRoute exact path="/profile" component={Profile} />
         <ProtectedRoute exact path="/tracks/new" component={TrackCompose} />
+        <ProtectedRoute exact path={"/tracks/:trackId"} component={TrackShowPage}/>
+        <Route exact path="/tracks" component={Tracks} />
       </Switch>
     </>
   );
