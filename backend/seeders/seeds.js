@@ -2,11 +2,13 @@ const mongoose = require("mongoose");
 const { mongoURI: db } = require('../config/keys.js');
 const User = require('../models/User');
 const Track = require('../models/Track')
+const Comment = require('../models/Comment');
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
 const NUM_SEED_USERS = 5;
 const NUM_SEED_TRACKS = 30;
+const NUM_SEED_COMMENTS = 2;
 
 // Create users
 const users = [];
@@ -16,6 +18,12 @@ users.push(
         username: 'demo-user',
         email: 'demo-user@appacademy.io',
         hashedPassword: bcrypt.hashSync('starwars', 10)
+    }),
+
+    new User({
+        username: 'user',
+        email: "123@123.com",
+        hashedPassword: bcrypt.hashSync('password', 10)
     })
 )
 
@@ -46,6 +54,18 @@ for (let i = 0; i < NUM_SEED_TRACKS; i++) {
     )
 }
 
+//Create Comments
+const comments = []
+for (let i = 0; i < NUM_SEED_COMMENTS; i++) {
+    comments.push(
+        new Comment({
+            author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
+            track: tracks[0]._id,
+            description: faker.hacker.phrase()
+        })
+    )
+}
+
 // Connect to database
 mongoose
     .connect(db, { useNewUrlParser: true })
@@ -64,8 +84,10 @@ const insertSeeds = () => {
 
     User.collection.drop()
         .then(() => Track.collection.drop())
+        .then(() => Comment.collection.drop())
         .then(() => User.insertMany(users))
         .then(() => Track.insertMany(tracks))
+        .then(() => Comment.insertMany(comments))
         .then(() => {
             console.log("Done!");
             mongoose.disconnect();

@@ -3,10 +3,12 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Track = mongoose.model('Track');
+const Comment = mongoose.model('Comment');
 const { requireUser } = require('../../config/passport');
 const validateTrackInput = require('../../validations/tracks');
 
 router.get('/', async (req, res) => {
+  console.log('im tracks being logged')
   try {
     const tracks = await Track.find()
                               .populate("author", "_id username")
