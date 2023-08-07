@@ -1,0 +1,49 @@
+
+#all-tracks {
+    width: calc(33%);
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: #025E73;
+}
+.tracks-main-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three equal columns */
+    gap: 20px; /* Add some spacing between columns */
+    /* margin-left: 0; */
+  }
+  
+  .track {
+    width: 90%;
+    /* padding: 10px; */
+    border: 1px solid #ccc;
+    margin: 0 20px 20px 30px;
+    border-radius: 8px;
+    /* background-color: #F2A71B; */
+    /* background-color: #BFB78F; */
+    /* box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1); */
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 6px 12px;
+    cursor: pointer;
+  }
+
+  .track p {
+    font-size: 18px;
+    padding: 0 10px 0 10px;
+  }
+
+  .track span {
+    font-weight: bold;
+    font-size: 22px;
+    color: #025E73;
+  }
+
+
+ .map {
+    border: 1px solid black;
+    width: 200%;
+    height: 900px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 6px 12px;
+ }
+
+

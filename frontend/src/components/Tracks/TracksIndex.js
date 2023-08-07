@@ -1,34 +1,34 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import "./Tracks.css"
-import TracksIndexItem from "./TracksIndexItem";
+// import { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux"
+// import "./Tracks.css"
+// import TracksIndexItem from "./TracksIndexItem";
 
 
 
 
-const TracksIndex = ({searchResults}) => {
-    // const dispatch = useDispatch();
-    // const tracks = useSelector(getTracks)
+// const TracksIndex = ({searchResults}) => {
+//     // const dispatch = useDispatch();
+//     // const tracks = useSelector(getTracks)
 
 
 
 
-    useEffect(() => {
-        // dispatch(fetchTracks())
-    }, [])
+//     useEffect(() => {
+//         // dispatch(fetchTracks())
+//     }, [])
 
-    return (
-        <>
-            <div className="tracks-main-container">
-                hi
-                <TracksIndexItem>
-                </TracksIndexItem>
-                <div className="map-container">
+//     return (
+//         <>
+//             <div className="tracks-main-container">
+//                 hi
+//                 <TracksIndexItem>
+//                 </TracksIndexItem>
+//                 <div className="map-container">
 
-                </div>
-            </div>
-        </>
-    )
-}
+//                 </div>
+//             </div>
+//         </>
+//     )
+// }
 
-export default TracksIndex
+// export default TracksIndex

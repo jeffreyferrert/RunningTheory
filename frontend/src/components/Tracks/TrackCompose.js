@@ -29,6 +29,7 @@ function TrackCompose() {
 
     return (
         <>
+        
             <form className="compose-track" onSubmit={handleSubmit}>
                 <input
                     type="textarea"
@@ -66,6 +67,8 @@ function TrackCompose() {
                 <h3>Track Created</h3>
                 {newTrack ? <TrackBox track={newTrack} /> : undefined}
             </div>
+
+
         </>
     )
 }

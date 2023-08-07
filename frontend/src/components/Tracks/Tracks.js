@@ -16,10 +16,22 @@ function Tracks () {
   
   return (
     <>
-      <h2>All Tracks</h2>
+        <h2 id="all-tracks">All Tracks</h2> 
+    <div className="tracks-main-container">
+
+
+
+      <div className="trackbox"> 
+
       {tracks.map(track => (
         <TrackBox key={track._id} track={track} />
       ))}
+      </div>
+
+      <div className="map">
+
+      </div>
+    </div>
     </>
   );
 }

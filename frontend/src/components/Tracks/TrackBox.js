@@ -1,3 +1,4 @@
+import React from "react";
 import "./TrackBox.css"
 
 function TrackBox ({ track: { name, location, miles, description, author }}) {
@@ -5,10 +6,10 @@ function TrackBox ({ track: { name, location, miles, description, author }}) {
   return (
     <div className="track">
       {/* <h3>{username}</h3> */}
-      <p>Track Name: {name}</p>
-      <p>Location: {location}</p>
-      <p>Length: {miles} miles</p>
-      <p>Description: {description}</p>
+      <p><span>Track Name:</span> {name}</p>
+      <p><span>Location:</span> {location}</p>
+      <p><span>Length:</span> {miles} miles</p>
+      <p><span>Description:</span> {description}</p>
     </div>
   );
 }
