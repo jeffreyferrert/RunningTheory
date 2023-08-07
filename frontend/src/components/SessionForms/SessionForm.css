@@ -1,0 +1,211 @@
+#sign-form-contents {
+    display: flex;
+    justify-content: center;
+    font-family: 'Vollkorn', sans-serif;
+  }
+  
+  #sign-box {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    padding: 0px 15px;
+    width: 350px;
+    font-family: 'Vollkorn', sans-serif;
+    box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
+
+  }
+  
+  #redirect-sign-in {
+    display: flex;
+    font-size: 13.5px;
+    margin: 6px 2px;
+    justify-content: left;
+  }
+  
+  #logo {
+    padding-bottom: 10px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #re-spacer {
+    width: 10px;
+  }
+  
+  #form-sign-up {
+    padding: 0px 0px;
+    margin: 0px, 0px;
+    width: 300px ;
+    /* makes signup button longer*/
+  }
+  
+  #create-header {
+    font-size: 20px;
+    font-weight: normal;
+  }
+  
+  #signup-button {
+    height: 30px;
+    width: 100%;
+    background-color:  #025E73;
+    border-radius: 5px;
+    border: none;
+    margin: 0px 0px 3px;
+    padding: 5px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-family: 'Vollkorn', sans-serif;
+    color: white;
+  }
+  
+  #su-disclaimer {
+    font-size: 10px;
+    font-family: 'Vollkorn', sans-serif;
+    display: block;
+  }
+  
+  #signup-button:hover {
+    background-color: #F2A71B;
+  }
+  
+  #signup-button-box {
+    margin-top: -22px;
+    width: 320px;
+  }
+  
+  #sign-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 300px;
+  }
+  
+  #name-text,
+  #emails-text,
+  #pass-texts {
+    height: 27px;
+    width: 100%;
+    padding: 0px 7px;
+    margin: 0px 0px 4px;
+    font-size: 14px;
+  }
+  
+  #name-text,
+  #emails-text,
+  #pass-texts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  #text-text {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  #signup-error {
+    font-family: 'Vollkorn', sans-serif;
+    color: #cc0c39;
+    font-size: 13px;
+  }
+  
+  #signup-field-errors {
+    font-family: 'Vollkorn', sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    height: 27px;
+    width: 300px;
+    border: 2px solid rgb(191, 3, 3);
+    background-color: white;
+    box-shadow: 0 0 0 1px rgb(191, 3, 3) inset, 0 0 0px 2px rgb(245, 211, 211);
+    border-radius: 3px;
+    border-width: 0.5px;
+    padding: 0px 7px;
+  }
+  
+  #signup-field-errors:focus {
+    font-family: 'Vollkorn', sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    height: 27px;
+    width: 300px;
+    box-shadow: 0 0 0 1px rgb(191, 3, 3) inset, 0 0 0px 2px rgb(245, 211, 211);
+    border-width: 0.5px;
+    background-color: white;
+    border-width: 1px;
+  }
+  
+
+.login-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 24px;
+}
+
+
+
+.login-form-container {
+    padding: 20px;
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
+    margin-bottom: 30px;
+}
+
+
+.login-form-container>label {
+    font-size: 35px;
+    margin: 4px;
+    font-weight: bold;
+    color: hsla(210, 8%, 5%, 1);
+
+}
+
+label>input {
+    border: 1px solid hsla(210, 8%, 75%, 1);
+    border-radius: 3px;
+    color: hsla(210, 8%, 5%, 1);
+    font-size: 15px;
+    padding: 8px 9px;
+    width: 92%;
+}
+
+.login-btn {
+    color: white;
+    font-size: 15px;
+    /* background-color: hsla(206, 100%, 52%, 1); */
+    /* background-color: rgb(17, 62, 159);  */
+    background-color: #025E73;
+    padding: 8px;
+    align-self: center;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    /* background-color: #19191f; */
+    background-color: #F2A71B;
+    box-shadow: rgba(0, 0, 0, 0.15  ) 0px 6px 10px;
+}
+
+.redirect-su {
+    text-align: center;
+    font-size: 13px;
+}
+
