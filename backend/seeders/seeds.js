@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 const { mongoURI: db } = require('../config/keys.js');
 const User = require('../models/User');
+const Track = require('../models/Track')
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
-const NUM_SEED_USERS = 10;
+const NUM_SEED_USERS = 5;
+const NUM_SEED_TRACKS = 30;
 
 // Create users
 const users = [];
@@ -18,13 +20,28 @@ users.push(
 )
 
 for (let i = 1; i < NUM_SEED_USERS; i++) {
-    const firstName = faker.name.firstName();
-    const lastName = faker.name.lastName();
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
     users.push(
         new User({
-            username: faker.internet.userName(firstName, lastName),
-            email: faker.internet.email(firstName, lastName),
+            username: faker.internet.userName({firstName, lastName}),
+            email: faker.internet.email({firstName, lastName}),
             hashedPassword: bcrypt.hashSync(faker.internet.password(), 10)
+        })
+    )
+}
+
+// Create tracks
+const tracks = [];
+
+for (let i = 0; i < NUM_SEED_TRACKS; i++) {
+    tracks.push(
+        new Track({
+            author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id,
+            name: faker.hacker.phrase(),
+            location: faker.location.city(),
+            miles: faker.number.int({ min: 0, max: 100 }),
+            description: faker.hacker.phrase()
         })
     )
 }
@@ -46,7 +63,9 @@ const insertSeeds = () => {
     console.log("Resetting db and seeding users...");
 
     User.collection.drop()
+        .then(() => Track.collection.drop())
         .then(() => User.insertMany(users))
+        .then(() => Track.insertMany(tracks))
         .then(() => {
             console.log("Done!");
             mongoose.disconnect();
