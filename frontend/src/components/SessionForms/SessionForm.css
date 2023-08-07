@@ -5,7 +5,6 @@
   }
   
   #sign-box {
-    border: 1.5px solid rgb(136, 136, 136);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -14,6 +13,8 @@
     padding: 0px 15px;
     width: 350px;
     font-family: 'Vollkorn', sans-serif;
+    box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
+
   }
   
   #redirect-sign-in {
