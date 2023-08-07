@@ -6,9 +6,9 @@ import tracks from './tracks';
 import comments from './comments';
 
 const rootReducer = combineReducers({
-  comments,
   session,
   errors,
+  comments,
   tracks
 });
 

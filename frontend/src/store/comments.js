@@ -1,11 +1,11 @@
 import jwtFetch from './jwt';
-import { RECEIVE_USER_LOGOUT } from './session';
+import { RECEIVE_NEW_TRACK } from './tracks.js';
 
-const RECEIVE_COMMENTS = "comments/RECEIVE_COMMENTS";
-const RECEIVE_NEW_COMMENT = "comments/RECEIVE_NEW_COMMENT";
-const DELETE_COMMENT = "comments/DELETE_COMMENT"
-const RECEIVE_COMMENT_ERRORS = "comments/RECEIVE_COMMENT_ERRORS";
-const CLEAR_COMMENT_ERRORS = "comments/CLEAR_COMMENT_ERRORS";
+export const RECEIVE_COMMENTS = "comments/RECEIVE_COMMENTS";
+export const RECEIVE_NEW_COMMENT = "comments/RECEIVE_NEW_COMMENT";
+export const DELETE_COMMENT = "comments/DELETE_COMMENT"
+export const RECEIVE_COMMENT_ERRORS = "comments/RECEIVE_COMMENT_ERRORS";
+export const CLEAR_COMMENT_ERRORS = "comments/CLEAR_COMMENT_ERRORS";
 
 const receiveComments = comments => ({
     type: RECEIVE_COMMENTS,
@@ -32,6 +32,14 @@ const receiveComments = comments => ({
       errors
   });
 
+  export const getComment = (commentId) => state => {
+    if(state.comments && state.comments[commentId]) {
+        return state.comments[commentId]
+    } else {
+        return null
+    }
+  }
+
   export const fetchComments = () => async dispatch => {
     try {
       const res = await jwtFetch ('/api/comments');
@@ -47,7 +55,7 @@ const receiveComments = comments => ({
 
   export const composeComment = data => async dispatch => {
     try {
-      const res = await jwtFetch('/api/comments/', {
+      const res = await jwtFetch('/api/comments', {
         method: 'POST',
         body: JSON.stringify(data)
       });
@@ -81,7 +89,10 @@ const commentsReducer = (state = {all: {}, user: {}, track: {}}, action) => {
         case RECEIVE_COMMENTS:
             return { ...newState, all: action.comments}
         case RECEIVE_NEW_COMMENT:
-            return { ...newState, [action.comments.id]: action.comment }
+          newState[action.comment.id] = action.comment;
+          return newState;
+        case RECEIVE_NEW_TRACK:
+            newState = { ...newState, ...action.tracks}
         default:
              return state
     }

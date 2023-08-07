@@ -8,6 +8,7 @@ const { requireUser } = require('../../config/passport');
 const validateTrackInput = require('../../validations/tracks');
 
 router.get('/', async (req, res) => {
+  console.log('im tracks being logged')
   try {
     const tracks = await Track.find()
                               .populate("author", "_id username")
