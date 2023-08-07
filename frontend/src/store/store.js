@@ -3,8 +3,10 @@ import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import tracks from './tracks';
+import comments from './comments';
 
 const rootReducer = combineReducers({
+  comments,
   session,
   errors,
   tracks
