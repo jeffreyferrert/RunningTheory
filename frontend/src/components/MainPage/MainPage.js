@@ -4,7 +4,6 @@ import './MainPage.css';
 function MainPage() {
     return (
         <>
-            <p>RT LANDING PAGE</p>
 
             <div id='landing-main-container'>
 
