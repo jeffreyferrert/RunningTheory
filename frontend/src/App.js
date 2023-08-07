@@ -39,10 +39,10 @@ function App() {
         <AuthRoute exact path="/signup" component={SignupForm} />
 
 
-        <Route exact path="/tracks" component={Tracks} />
+        <ProtectedRoute exact path={"/tracks/new"} component={TrackCompose} />
         <ProtectedRoute exact path={"/tracks/:trackId"} component={TrackShowPage}/>
+        <Route exact path="/tracks" component={Tracks} />
         <ProtectedRoute exact path="/profile" component={Profile} />
-        <ProtectedRoute exact path="/tracks/new" component={TrackCompose} />
       </Switch>
     </>
   );
