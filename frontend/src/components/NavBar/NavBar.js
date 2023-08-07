@@ -3,19 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
 
-function NavBar () {
+function NavBar() {
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
-  
+
   const logoutUser = e => {
-      e.preventDefault();
-      dispatch(logout());
+    e.preventDefault();
+    dispatch(logout());
   }
 
   const getLinks = () => {
     if (loggedIn) {
       return (
         <div className="links-nav">
+          <Link to={'/tracks'}>All Tracks</Link>
+          <Link to={'/profile'}>Profile</Link>
+          <Link to={'/tracks/new'}>Create a Track</Link>
           <button onClick={logoutUser}>Logout</button>
         </div>
       );
@@ -32,7 +35,7 @@ function NavBar () {
   return (
     <>
       <h1>Running Theory</h1>
-      { getLinks() }
+      {getLinks()}
     </>
   );
 }
