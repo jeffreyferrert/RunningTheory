@@ -29,7 +29,7 @@ function Tracks () {
       </div>
 
       <div className="map">
-
+          <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/w_2560%2Cc_limit/GoogleMapTA.jpg"></img>
       </div>
     </div>
     </>
