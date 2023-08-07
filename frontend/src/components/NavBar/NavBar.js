@@ -2,14 +2,25 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function NavBar() {
   const loggedIn = useSelector(state => !!state.session.user);
+  const [input, setInput] = useState('')
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const logoutUser = e => {
     e.preventDefault();
     dispatch(logout());
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push(`/tracks?search=${input}`);
+    setInput('');
+
   }
 
   const getLinks = () => {
@@ -35,7 +46,18 @@ function NavBar() {
   return (
     <>
       <h1>Running Theory</h1>
+      {/* <br /> */}
+      <form onSubmit={handleSubmit}>
+        <input
+        type="text"
+        placeholder="Search..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)} />
+          <button type='submit' hidden/>
+
+      </form>
       {getLinks()}
+
     </>
   );
 }
