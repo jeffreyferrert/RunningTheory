@@ -6,7 +6,7 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 const MapTrack = ({ track }) => {
   const containerStyle = {
     width: '100%',
-    height: '100%',
+    height: '100vh',
   };
 
   const startAddress =  '123 Riverside Drive New York City' //track.startAddress
@@ -94,7 +94,7 @@ const MapTrack = ({ track }) => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={startLatLng}
-      zoom={13}
+      zoom={2.7}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >

@@ -6,9 +6,6 @@ import "./TrackBox.css"
 function TrackBox(props) {
   const track = props.track
 
-  const handleRedirect = () => {
-
-  }
   return (
     <Link className="link" to={`tracks/${track._id}`} >
 

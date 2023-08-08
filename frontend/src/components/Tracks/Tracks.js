@@ -23,8 +23,7 @@ function Tracks() {
   if (searchQuery) {
     tracks = tracks.filter(function (track) {
       return track.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        track.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        location.description.toLowerCase().includes(searchQuery.toLowerCase());
+        track.description.toLowerCase().includes(searchQuery.toLowerCase());
     });
   }
 
