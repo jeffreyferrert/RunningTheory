@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearTrackErrors, fetchTracks } from '../../store/tracks';
+import tracksReducer, { clearTrackErrors, fetchTracks } from '../../store/tracks';
 import { fetchComments, composeComment } from '../../store/comments';
 import "./TrackShowPage.css"
 import MapTrack from '../Map/MapTrack';
@@ -14,6 +14,8 @@ function TrackShowPage({ track }) {
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
   const comments = useSelector(state => Object.values(state.comments.all))
+  const [time, setTime] = useState(0)
+
   useEffect(() => {
     dispatch(fetchTracks())
   }, [dispatch, trackId])
@@ -27,42 +29,94 @@ function TrackShowPage({ track }) {
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
   }
+
+  function handleTimeSubmit(e) {
+    e.preventDefault()
+    setTime(0)
+  }
   return (
     <>
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
+          <h1>Track Name</h1>
+          <div className="track-container">
+            <h2>General Info</h2>
+            <span>Starting Line: </span> test
+            <br></br>
+            <span>Finish Line: </span> test
+            <br></br>
+            <span>Distance: </span> 88 miles
+            <br></br>
+            <span>Description: </span> weiruhweiruwheriuwheriuhweriuhweiurhwieurhwuierhewiurew
+          </div>
 
-          <h2>Comments:</h2>
-          <ul>
-            {comments.map((comment, index) => (
-              comment.track._id === trackId ? (
-                <li key={index}>
-                  <p>{comment.author.username}</p>
-                  <p>{comment.description}</p>
-                </li>
-              ) : null
-            ))}
-          </ul>
+          <div className="track-container">
+            <h2>Leaderboard</h2>
+            1. DEMO
+            <br></br>
+            2. DEMO
+            <br></br>
+            3. DEMO
+            <br></br>
+            4. DEMO
+            <br></br>
 
-          {showCommentForm ? (
-            <div>
-              <form onSubmit={handleSubmit}>
-                <h3>Create Comment</h3>
-                <label>Description
-                  <input
-                    type="text"
-                    value={newComment}
-                    name="newComment"
-                    onChange={(e) => { setNewComment(e.target.value) }}
-                  />
-                </label>
-                <input type="submit" value={`New Comment`} />
-              </form>
-              <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
-            </div>
-          ) : (
-            <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
-          )}
+            <form onSubmit={handleTimeSubmit}>
+  
+                <input
+                  className="time-bar"
+                  type="integer"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                />
+                <button className="track-add-time" type="submit">Add Your Time</button>
+
+
+            </form>
+            {/* <button className="track-add-time">
+              <span>Add Time</span>
+            </button> */}
+          </div>
+
+
+          <div className="track-container">
+            <h2>Comments:</h2>
+            <ul>
+              {comments.map((comment, index) => (
+                comment.track._id === trackId ? (
+                  <li key={index}>
+                    <p>{comment.author.username}</p>
+                    <p>{comment.description}</p>
+                  </li>
+                ) : null
+              ))}
+            </ul>
+
+            {showCommentForm ? (
+              <div>
+                <form onSubmit={handleSubmit}>
+                  <h3>Create Comment</h3>
+                  <label>Description
+                    <input
+                      type="text"
+                      value={newComment}
+                      name="newComment"
+                      onChange={(e) => { setNewComment(e.target.value) }}
+                    />
+                  </label>
+                  <input type="submit" value={`New Comment`} />
+                </form>
+                <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
+              </div>
+            ) : (
+              <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
+            )}
+          </div>
+          
+          <div className="track-container">
+            <h2>Other Tracks</h2>
+
+          </div>
 
         </div>
 

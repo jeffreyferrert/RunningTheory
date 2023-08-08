@@ -18,7 +18,7 @@ const MapTrack = ({ track }) => {
   const [directionsRenderer, setDirectionsRenderer] = useState(null); 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
+    // googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
     
   });
 
