@@ -24,9 +24,6 @@ function TrackShowPage({ track }) {
     dispatch(fetchComments())
   }, [dispatch, trackId])
 
-  console.log('comment')
-  console.log(comments)
-
   function handleSubmit(e) {
     e.preventDefault()
     dispatch(composeComment({ description: newComment, author: author, track: track }))
