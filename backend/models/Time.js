@@ -10,8 +10,16 @@ const timeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Track'
     },
-    description: {
-        type: String,
+    hours: {
+        type: Number,
+        required: true
+    },
+    minutes: {
+        type: Number,
+        required: true
+    },
+    seconds: {
+        type: Number,
         required: true
     }
 }, {

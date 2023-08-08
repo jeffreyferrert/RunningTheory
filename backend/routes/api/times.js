@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     const times = await Time.find()
                               .populate("author", "_id username")
                               .populate("track", "_id name")
-                              .sort({ createdAt: -1 });
+                              .sort({ hours: 1, minutes: 1, seconds: 1 });
     return res.json(times);
   }
   catch(err) {
