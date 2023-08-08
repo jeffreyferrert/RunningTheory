@@ -17,7 +17,7 @@ const receiveComments = comments => ({
     comment
   });
 
-  const deleteComment = commentId => ({
+  const removeComment = commentId => ({
     type: DELETE_COMMENT,
     commentId
   }); 
@@ -70,9 +70,6 @@ const receiveComments = comments => ({
   };
 
   export const editComment = (commentId, data) => async dispatch => {
-    console.log("im editing comment")
-    console.log(commentId)
-    console.log(data)
     try {
       const res = await jwtFetch(`/api/comments/${commentId}`, {
         method: 'PATCH',
@@ -87,6 +84,16 @@ const receiveComments = comments => ({
       }
     }
   };
+  
+  export const deleteComment = (commentId) => async (dispatch) => {
+    console.log("delete comment")
+    const res = await jwtFetch(`/api/comments/${commentId}`, {
+        method: 'DELETE'
+    });
+    if (res.ok) {
+        dispatch(removeComment(commentId));
+    }
+};
 
   const nullErrors = null;
 
