@@ -20,11 +20,13 @@ function NavBar() {
     dispatch(logout());
   }
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     history.push(`/tracks?search=${input}`);
     setInput('');
   }
+
 
   const main = () => {
     if (location.pathname !== '/') {
