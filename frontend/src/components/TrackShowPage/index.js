@@ -14,7 +14,9 @@ function TrackShowPage({ track }) {
   const author = useSelector(state => state.session.user);
   console.log(author)
   const [newComment, setNewComment] = useState('')
+  const [editComment, setEditComment] = useState("")
   const [showCommentForm, setShowCommentForm] = useState(false)
+  const [editCommentForm, setEditCommentForm] = useState(false)
   // const comments = useSelector(state => sortComments(state.comments.all, trackId)) 
   const comments = useSelector(state => Object.values(state.comments.all))
   useEffect(() => {
@@ -45,8 +47,24 @@ function TrackShowPage({ track }) {
             <li key={index}>
               <p>{comment.author.username}</p>
               <p>{comment.description}</p>
-              {comment.author._id === author._id && (
-                <button>Edit Comment</button>
+              {comment.author._id === author._id && !editCommentForm && (
+                <button onClick={() => {
+                  setEditCommentForm(true)
+                  setEditComment(comment.description)
+                }}>Edit Comment</button>
+              )}
+              {comment.author._id === author._id && editCommentForm && (
+                <form>
+                  <label>Edit Comment
+                    <input
+                      type="text"
+                      value={editComment}
+                      name="newComment"
+                      onChange={(e) => { setEditComment(e.target.value) }}
+                    />
+                  </label>
+                <input type="submit" value={`Edit Comment`} />
+                </form>
               )}
             </li>
           ) : null
