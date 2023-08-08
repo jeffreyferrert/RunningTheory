@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState, useCallback } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
@@ -7,18 +9,13 @@ const MapTrack = ({ track }) => {
     height: '100%',
   };
 
-  const startLatLng = {
-    lat: 40.778877,
-    lng: -73.9873968
-  };
+  const startAddress =  '123 Riverside Drive New York City' //track.startAddress
+  const endAddress = '11 W 53rd St, New York, NY 10019';  //track.endAddress
 
-  const endLatLng = {
-    lat: 40.7715661,
-    lng: -73.9671101,
-  };
-
+  const [startLatLng, setStartLatLng] = useState(null);
+  const [endLatLng, setEndLatLng] = useState(null);
   const [map, setMap] = useState(null);
-  const [directionsRenderer, setDirectionsRenderer] = useState(null); // Store DirectionsRenderer instance
+  const [directionsRenderer, setDirectionsRenderer] = useState(null); 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
@@ -34,6 +31,32 @@ const MapTrack = ({ track }) => {
 
   useEffect(() => {
     if (isLoaded) {
+      const geocoder = new window.google.maps.Geocoder();
+      const geocodeAddress = (address) => {
+        return new Promise((resolve, reject) => {
+          geocoder.geocode({ address }, (results, status) => {
+            if (status === window.google.maps.GeocoderStatus.OK) {
+              resolve(results[0].geometry.location);
+            } else {
+              reject(new Error('Geocode was not successful for the following reason: ' + status));
+            }
+          });
+        });
+      };
+
+      Promise.all([geocodeAddress(startAddress), geocodeAddress(endAddress)])
+        .then(([startLocation, endLocation]) => {
+          setStartLatLng(startLocation);
+          setEndLatLng(endLocation);
+        })
+        .catch((error) => {
+          console.error('Error geocoding addresses:', error);
+        });
+    }
+  }, [isLoaded]);
+
+  useEffect(() => {
+    if (isLoaded && startLatLng && endLatLng) {
       const DirectionsService = new window.google.maps.DirectionsService();
 
       DirectionsService.route(
@@ -48,11 +71,11 @@ const MapTrack = ({ track }) => {
               directionsRenderer.setDirections(result);
             } else {
               const newDirectionsRenderer = new window.google.maps.DirectionsRenderer({
-                directions: result,   
+                directions: result,
                 polylineOptions: {
-                  strokeColor: '#FF0000', 
-                  strokeOpacity: 0.8,      
-                  strokeWeight: 4,        
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 0.8,
+                  strokeWeight: 4,
                 },
               });
               newDirectionsRenderer.setMap(map);
@@ -64,7 +87,7 @@ const MapTrack = ({ track }) => {
         }
       );
     }
-  }, [isLoaded, map, directionsRenderer]);
+  }, [isLoaded, map, directionsRenderer, startLatLng, endLatLng]);
 
   return isLoaded ? (
     <GoogleMap
@@ -74,8 +97,8 @@ const MapTrack = ({ track }) => {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      {/* <Marker position={startLatLng} />
-      <Marker position={endLatLng} /> */}
+      <Marker position={startLatLng} />
+      <Marker position={endLatLng} />
     </GoogleMap>
   ) : (
     <></>

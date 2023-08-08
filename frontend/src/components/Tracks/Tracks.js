@@ -2,12 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearTrackErrors, fetchTracks } from '../../store/tracks';
 import TrackBox from './TrackBox';
-<<<<<<< HEAD
 import MapTracks from '../Map/MapTracks';
-import MapTrack from '../Map/MapTrack';
-=======
+// import MapTrack from '../Map/MapTrack';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
->>>>>>> 5a238bd2c528f66fc241f474d5ad7ba23be23db0
+
 
 function Tracks() {
   const dispatch = useDispatch();
@@ -22,6 +20,7 @@ function Tracks() {
 
   if (tracks.length === 0) return <div>There are no Tracks</div>;
 
+  console.log(tracks)
 
   if (searchQuery) {
     tracks = tracks.filter(function (track) {
@@ -47,8 +46,9 @@ function Tracks() {
 
       <div className="map">
           {/* <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/w_2560%2Cc_limit/GoogleMapTA.jpg"></img> */}
-          {/* <MapTracks tracks={tracks}/> */}
-          <MapTrack />
+          <MapTracks tracks={tracks}/>
+          
+          {/* <MapTrack /> */}
       </div>
       
     </div>
