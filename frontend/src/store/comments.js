@@ -69,9 +69,12 @@ const receiveComments = comments => ({
     }
   };
 
-  export const editComment = data => async dispatch => {
+  export const editComment = (commentId, data) => async dispatch => {
+    console.log("im editing comment")
+    console.log(commentId)
+    console.log(data)
     try {
-      const res = await jwtFetch('/api/comments', {
+      const res = await jwtFetch(`/api/comments/${commentId}`, {
         method: 'PATCH',
         body: JSON.stringify(data)
       });

@@ -6,28 +6,24 @@ import { clearTrackErrors, fetchTracks } from '../../store/tracks';
 import { fetchComments, composeComment } from '../../store/comments';
 import "./TrackShowPage.css"
 import MapTrack from '../Map/MapTrack';
+import Comment from './Comment';
 
-function TrackShowPage({ track }) {
+function TrackShowPage() {
   const dispatch = useDispatch();
   const { trackId } = useParams()
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
-  const [editComment, setEditComment] = useState("")
   const [showCommentForm, setShowCommentForm] = useState(false)
-
-  const [editCommentForm, setEditCommentForm] = useState(false)
+  const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
 
   const comments = useSelector(state => Object.values(state.comments.all))
   useEffect(() => {
     dispatch(fetchTracks())
-  }, [dispatch, trackId])
-
-  useEffect(() => {
     dispatch(fetchComments())
   }, [dispatch, trackId])
 
   function handleSubmit(e) {
-    e.preventDefault()
+    // e.preventDefault()
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
   }
@@ -40,37 +36,13 @@ function TrackShowPage({ track }) {
             <h2>Comments:</h2>
       <ul>
         {comments.map((comment, index) => (
-          comment.track._id === trackId ? (
-            <li key={index}>
-              <p>{comment.author.username}</p>
-              <p>{comment.description}</p>
-              {comment.author._id === author._id && !editCommentForm && (
-                <button onClick={() => {
-                  setEditCommentForm(true)
-                  setEditComment(comment.description)
-                }}>Edit Comment</button>
-              )}
-              {comment.author._id === author._id && editCommentForm && (
-                <form onSubmit={handleSubmit}>
-                  <label>Edit Comment
-                    <input
-                      type="text"
-                      value={editComment}
-                      name="editComment"
-                      onChange={(e) => { setEditComment(e.target.value) }}
-                    />
-                  </label>
-                <input type="submit" value={`Edit Comment`} />
-                </form>
-              )}
-            </li>
-          ) : null
+          <Comment key={index} comment={comment} author={author} track={track} />
         ))}
       </ul>
 
           {showCommentForm ? (
             <div>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={(e) => handleSubmit(e)}>
                 <h3>Create Comment</h3>
                 <label>Description
                   <input
