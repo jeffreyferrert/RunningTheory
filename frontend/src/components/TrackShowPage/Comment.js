@@ -19,9 +19,10 @@ export default function Comment({ comment, author, track }) {
 
     const handleSubmit = (e, type) => {
         // e.preventDefault()
-        if(type == "edit"){
+        if(type === "edit"){
             dispatch(editComment(comment._id, { description: editTheComment, author: author, track: track }))
         } else {
+            console.log('im here')
             dispatch(deleteComment(comment._id))
         }
     }
@@ -37,7 +38,9 @@ export default function Comment({ comment, author, track }) {
                             setEditCommentForm(true)
                             setEditTheComment(comment.description)
                         }}>Edit Comment</button>
-                        <button onSubmit={(e) => handleSubmit(e, "delete")}>Remove Comment</button>
+                        <form onSubmit={(e) => handleSubmit(e, "delete")}>
+                            <input type="submit" value={`Remove Comment`} />
+                        </form>
                     </>
                 )}
                 {comment.author._id === author._id && editCommentForm && (

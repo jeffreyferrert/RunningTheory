@@ -86,6 +86,7 @@ const receiveComments = comments => ({
   };
   
   export const deleteComment = (commentId) => async (dispatch) => {
+    console.log("delete comment")
     const res = await jwtFetch(`/api/comments/${commentId}`, {
         method: 'DELETE'
     });
