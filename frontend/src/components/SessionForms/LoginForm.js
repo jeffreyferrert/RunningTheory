@@ -118,19 +118,22 @@ function LoginForm () {
           <button type="submit" className="login-btn">Log In</button>
 
         </form>
-        <button onClick={demoUser} className="login-btn">Demo User</button>
+        <button onClick={handleDemoUser} className="login-btn">Demo User</button>
     </div>
 
-      <div className="redirect-su">
-        Don’t have an account?
-        <Link to="signup" className="link"> Sign up</Link>
-        
-      </div>
-         <input
+        <div className="redirect-su">
+          Don’t have an account?
+          <Link to="signup" className="link"> Sign up</Link>
+          
+        </div>
+        <div className="hi">
+              hi
+        </div>
+         {/* <input
       type="submit"
       value="Demo User"
       onSubmit={handleDemoUser}
-      disabled={!email || !password} />
+      disabled={!email || !password} /> */}
     </div>
   );
 }
