@@ -156,7 +156,7 @@ import { useHistory } from 'react-router-dom';
 
 const MapTracks = ({ tracks }) => {
   const history = useHistory();
-  const [map, setMap] = useState(null);
+  const [map, setMap] = useState(null); 
   const [selectedTrack, setSelectedTrack] = useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -167,7 +167,7 @@ const MapTracks = ({ tracks }) => {
     width: '100%',
     height: '100vh',
   };
-
+ 
   const center = {
     lat: 40.7873414,
     lng: -73.9516308,

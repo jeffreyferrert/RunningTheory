@@ -14,12 +14,8 @@ import TrackCompose from './components/Tracks/TrackCompose';
 import TrackShowPage from './components/TrackShowPage';
 
 import { getCurrentUser } from './store/session';
-// import { Route } from 'react-router-dom/cjs/react-router-dom.min';
-
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
-// import TracksIndex from './components/Tracks/TracksIndex';
 import TracksIndex from './components/Tracks/TracksIndex';
-import TrackShowPage from './components/TrackShowPage';
 
 
 function App() {
@@ -31,7 +27,6 @@ function App() {
 
   return loaded && (
     <>
-   
       <NavBar />
       <Switch>
         <Route exact path="/" component={MainPage} />
@@ -43,9 +38,7 @@ function App() {
         <ProtectedRoute exact path="/tracks/new" component={TrackCompose} />
         <ProtectedRoute exact path="/tracks/:trackId" component={TrackShowPage}/>
         <ProtectedRoute exact path="/profile" component={Profile} />
-        <Route exact path="/tracks" component={Tracks} />
       </Switch>
-
     </>
   );
 }
