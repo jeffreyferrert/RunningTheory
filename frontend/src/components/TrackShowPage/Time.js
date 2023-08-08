@@ -2,6 +2,7 @@ import React from "react"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import { useParams } from "react-router-dom/cjs/react-router-dom"
+import { deleteTime } from "../../store/times"
 
 export default function Time({ time }) {
     const dispatch = useDispatch()

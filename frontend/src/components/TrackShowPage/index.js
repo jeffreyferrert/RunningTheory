@@ -36,8 +36,14 @@ function TrackShowPage() {
   }
 
   function handleTimeSubmit(e) {
-    e.preventDefault()
-    dispatch(composeTime({}))
+    let arrTime = time.split(":")
+    if(arrTime.length === 3){
+      dispatch(composeTime({hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track}))
+    } else if (arrTime.length === 2){
+      dispatch(composeTime({hours: 0, minutes: arrTime[0], seconds: arrTime[1], author: author, track: track}))
+    } else {
+      dispatch(composeTime({hours: 0, minutes: 0, seconds: arrTime[0], author: author, track: track}))
+    }
   }
   return (
     <>
@@ -71,7 +77,7 @@ function TrackShowPage() {
 
               <input
                 className="time-bar"
-                type="integer"
+                type="string"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
               />
