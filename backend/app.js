@@ -7,6 +7,7 @@ const csurf = require('csurf');
 
 require('./models/User');
 require('./models/Track');
+require(`./models/Comment`)
 require('./config/passport');
 
 const passport = require('passport');
@@ -39,8 +40,10 @@ app.use(
 const usersRouter = require('./routes/api/users');
 const tracksRouter = require('./routes/api/tracks');
 const csrfRouter = require('./routes/api/csrf');
+const commentsRouter = require('./routes/api/comments');
 app.use('/api/users', usersRouter);
 app.use('/api/tracks', tracksRouter);
+app.use('/api/comments', commentsRouter)
 app.use('/api/csrf', csrfRouter);
 
 if (isProduction) {

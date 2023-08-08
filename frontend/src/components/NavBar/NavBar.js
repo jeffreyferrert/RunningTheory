@@ -2,11 +2,14 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 
 function NavBar() {
   const loggedIn = useSelector(state => !!state.session.user);
   const user = useSelector(state => state.session.user)
+  const [input, setInput] = useState('')
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -15,6 +18,11 @@ function NavBar() {
     dispatch(logout());
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push(`/tracks?search=${input}`);
+    setInput('');
+  }
 
   const getLinks = () => {
     if (loggedIn) {
@@ -42,14 +50,32 @@ function NavBar() {
 
   return (
     <>
+  
     <div id='all-nav'>
-      <div id='navbar-main'>
-    
-        <div id='logo-container' >
+    <div id='navbar-main'>
+      
+     <div id='logo-container' >
         <Link to='/'>  <img id='main-logo' src='/rt-logo4.png'></img> </Link>
       
         </div>
-        {getLinks()}
+    
+      <div id='logo-container' >
+        <Link to='/'>  <img id='main-logo' src='/rt-logo4.png'></img> </Link>
+      
+        </div>
+
+        <form onSubmit={handleSubmit}>
+        <input
+        type="text"
+        placeholder="Search..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)} />
+          <button type='submit' hidden/>
+      </form>
+
+      {getLinks()}
+
+
       </div>
     </div>
     </>
