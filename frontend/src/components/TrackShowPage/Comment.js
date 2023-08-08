@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux"
-import { composeComment, editComment } from "../../store/comments"
+import { composeComment, editComment, deleteComment } from "../../store/comments"
 import { useState } from "react"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 
@@ -17,9 +17,13 @@ export default function Comment({ comment, author, track }) {
 
     const [editCommentForm, setEditCommentForm] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e, type) => {
         // e.preventDefault()
-        dispatch(editComment(comment._id, { description: editTheComment, author: author, track: track }))
+        if(type == "edit"){
+            dispatch(editComment(comment._id, { description: editTheComment, author: author, track: track }))
+        } else {
+            dispatch(deleteComment(comment._id))
+        }
     }
 
     return (
@@ -28,13 +32,16 @@ export default function Comment({ comment, author, track }) {
                 <p>{comment.author.username}</p>
                 <p>{comment.description}</p>
                 {comment.author._id === author._id && !editCommentForm && (
-                    <button onClick={() => {
-                        setEditCommentForm(true)
-                        setEditTheComment(comment.description)
-                    }}>Edit Comment</button>
+                    <>
+                        <button onClick={() => {
+                            setEditCommentForm(true)
+                            setEditTheComment(comment.description)
+                        }}>Edit Comment</button>
+                        <button onSubmit={(e) => handleSubmit(e, "delete")}>Remove Comment</button>
+                    </>
                 )}
                 {comment.author._id === author._id && editCommentForm && (
-                    <form onSubmit={(e) => handleSubmit(e)}>
+                    <form onSubmit={(e) => handleSubmit(e, "edit")}>
                         <label>Edit Comment
                             <input
                                 type="text"
