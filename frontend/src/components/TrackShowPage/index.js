@@ -11,7 +11,6 @@ function TrackShowPage({ track }) {
   const dispatch = useDispatch();
   const { trackId } = useParams()
   const author = useSelector(state => state.session.user);
-  console.log(author)
   const [newComment, setNewComment] = useState('')
   const [editComment, setEditComment] = useState("")
   const [showCommentForm, setShowCommentForm] = useState(false)
@@ -52,12 +51,12 @@ function TrackShowPage({ track }) {
                 }}>Edit Comment</button>
               )}
               {comment.author._id === author._id && editCommentForm && (
-                <form>
+                <form onSubmit={handleSubmit}>
                   <label>Edit Comment
                     <input
                       type="text"
                       value={editComment}
-                      name="newComment"
+                      name="editComment"
                       onChange={(e) => { setEditComment(e.target.value) }}
                     />
                   </label>

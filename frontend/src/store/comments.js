@@ -69,6 +69,22 @@ const receiveComments = comments => ({
     }
   };
 
+  export const editComment = data => async dispatch => {
+    try {
+      const res = await jwtFetch('/api/comments', {
+        method: 'PATCH',
+        body: JSON.stringify(data)
+      });
+      const comment = await res.json();
+      dispatch(receiveNewComment(comment));
+    } catch(err) {
+      const resBody = await err.json();
+      if (resBody.statusCode === 400) {
+        return dispatch(receiveErrors(resBody.errors));
+      }
+    }
+  };
+
   const nullErrors = null;
 
 export const commentErrorsReducer = (state = nullErrors, action) => {

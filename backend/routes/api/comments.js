@@ -52,7 +52,7 @@ router.get('/:commentId', (req, res) => {
     });
   });
 
-router.patch('/:commentId', validateCommentInput, async (req, res, next) => {
+router.patch('/', async (req, res, next) => {
   if(!req.user) return res.json(null)
   try {
     const newComment = new Comment({
