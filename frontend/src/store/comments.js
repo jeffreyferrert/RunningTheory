@@ -83,7 +83,7 @@ export const commentErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
-const commentsReducer = (state = {all: {}, user: {}, track: {}}, action) => {
+const commentsReducer = (state = {all: {}}, action) => {
     let newState = state
     switch(action.type) {
         case RECEIVE_COMMENTS:
