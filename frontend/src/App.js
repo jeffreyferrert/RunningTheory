@@ -15,7 +15,10 @@ import TrackShowPage from './components/TrackShowPage';
 
 import { getCurrentUser } from './store/session';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+
 import TracksIndex from './components/Tracks/TracksIndex';
+
+
 
 
 function App() {

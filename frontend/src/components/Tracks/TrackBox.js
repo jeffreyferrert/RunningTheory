@@ -10,6 +10,7 @@ function TrackBox(props) {
 
   }
   return (
+
     <Link className="link" to={`tracks/${track._id}`} >
 
       <div className="main-container-box">
