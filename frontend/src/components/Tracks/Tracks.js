@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearTrackErrors, fetchTracks } from '../../store/tracks';
 import TrackBox from './TrackBox';
 import MapTracks from '../Map/MapTracks';
-// import MapTrack from '../Map/MapTrack';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
+import MapTrack from '../Map/MapTrack';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import "./Tracks.css"
 
 function Tracks() {
   const dispatch = useDispatch();
@@ -25,16 +26,21 @@ function Tracks() {
   if (searchQuery) {
     tracks = tracks.filter(function (track) {
       return track.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-             track.description.toLowerCase().includes(searchQuery.toLowerCase())||
-             location.description.toLowerCase().includes(searchQuery.toLowerCase());
+        track.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        location.description.toLowerCase().includes(searchQuery.toLowerCase());
     });
   }
 
   return (
     <>
-        <h2 id="all-tracks">All Tracks</h2> 
-    <div className="tracks-main-container">
+      <div className="tracks-main-container">
+        <div className="trackbox">
+          {/* <h2 id="all-tracks">All Tracks</h2> */}
 
+          {tracks.map(track => (
+            <TrackBox key={track._id} track={track} />
+          ))}
+        </div>
 
 
       <div className="trackbox"> 
@@ -49,9 +55,8 @@ function Tracks() {
           <MapTracks tracks={tracks}/>
           
           {/* <MapTrack /> */}
+
       </div>
-      
-    </div>
     </>
   );
 }

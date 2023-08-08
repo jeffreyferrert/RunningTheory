@@ -1,89 +1,103 @@
+/* #all-tracks {
+  width: calc(33%);
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  color: #011F26;
 
-#all-tracks {
-    width: calc(33%);
-    text-align: center;
-    font-weight: bold;
-    font-size: 40px;
-    /* color: #025E73; */
-    color: #011F26;
+} */
 
-}
-.tracks-main-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates three equal columns */
-    gap: 20px; /* Add some spacing between columns */
-    /* margin-left: 0; */
-    /* background-color: rgb(237, 237, 237); */
-    /* background-color: #A5A692; */
-    background: linear-gradient(to bottom, rgb(183, 184, 169) 50%, rgb(183, 184, 169) 50%, rgb(165, 166, 147) 100%);
-    /* height: 1000px;
-    overflow-x: hidden;
-    overflow-y: auto; */
-  }
-  
-  .track {
-    width: 90%;
-    /* padding: 10px; */
-    border: 1px solid #ccc;
-    margin: 0 20px 20px 30px;
-    border-radius: 8px;
-    /* background-color: #F2A71B; */
-    /* background-color: #BFB78F; */
-    background-color: white;
-    /* box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1); */
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 12px;
-    cursor: pointer;
-    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
-  }
+/* .tracks-main-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  background: linear-gradient(to bottom, rgb(183, 184, 169) 50%, rgb(183, 184, 169) 50%, rgb(165, 166, 147) 100%);
+} */
 
-  .track:hover {
-    /* transform: scale(1.05); */
-    /* background-color: rgb(213, 213, 213); */
-    /* background-color: #A5A692; */
-    /* background-color: #BFB78F; */
-    /* box-shadow: rgba(0, 0, 0, 0.22) 0px 6px 12px; */
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    animation-name: example;
-    animation-duration: 0.25s;
-    border-left: 8px solid #F2A718;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+/* .track {
+  width: 90%;
+  border: 1px solid #ccc;
+  margin: 0 20px 20px 30px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 12px;
+  cursor: pointer;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+} */
 
-  }
-  .track p {
-    font-size: 18px;
-    padding: 0 10px 0 10px;
-  }
+/* .track:hover {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  animation-name: example;
+  animation-duration: 0.25s;
+  border-left: 8px solid #F2A718;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
-  .track span {
-    font-weight: bold;
-    font-size: 22px;
-    color: #025E73;
-  }
-.track > h3 {
+} */
+
+/* .track p {
+  font-size: 18px;
+  padding: 0 10px 0 10px;
+} */
+
+/* .track span {
+  font-weight: bold;
+  font-size: 22px;
+  color: #025E73;
+} */
+
+/* .track>h3 {
   font-weight: bold;
   font-size: 22px;
   font-family: ‘Vollkorn’, sans-serif;
   padding: 0 10px 0 10px;
   color: #011F26;
+} */
+
+.main-container-box {}
+
+.up-section {
+  border: 1px solid black;
+  border-radius: 4px 4px 0 0 ;
+  margin: 0 10px;
+  padding: 0 10px;
+
 }
 
- .map {
-    /* border: 1px solid black; */
-    width: 200%;
-    height: 900px;
-    border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.22) 0px 6px 12px;
- }
+.up-section h4 {
+  margin: 10px 0;
+  padding: 0;
+}
 
- .map img {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
- }
+.up-section p {
+  margin: 0;
+  padding: 0 0 10px 0;
+}
 
- .trackbox {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 1400px;
- }
+.low-section {
+  border: 1px solid black;
+  border-top:  solid transparent;
+  border-radius: 0 0 4px 4px;
+  background-color: #f1f1f1;
+  margin: 0 10px 10px 10px;
+}
+
+.low-section ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.low-section li {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+
+}
+
+.low-section li span {
+  font-weight: normal;
+  font-size: 14px;
+}

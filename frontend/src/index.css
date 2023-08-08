@@ -6,3 +6,10 @@ form > .errors {
     display: flex;
     align-items: center;
   }
+
+  body {
+
+    margin: 0px;
+    padding: 0px;
+
+  }
