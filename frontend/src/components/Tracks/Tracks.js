@@ -4,8 +4,9 @@ import { clearTrackErrors, fetchTracks } from '../../store/tracks';
 import TrackBox from './TrackBox';
 import MapTracks from '../Map/MapTracks';
 
+
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import "./Tracks.css"
+
 
 function Tracks() {
   const dispatch = useDispatch();
@@ -23,8 +24,7 @@ function Tracks() {
   if (searchQuery) {
     tracks = tracks.filter(function (track) {
       return track.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        track.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        location.description.toLowerCase().includes(searchQuery.toLowerCase());
+        track.description.toLowerCase().includes(searchQuery.toLowerCase());
     });
   }
 
@@ -38,9 +38,23 @@ function Tracks() {
             <TrackBox key={track._id} track={track} />
           ))}
         </div>
-        <div className="map">
-          <MapTracks tracks={tracks} />
-        </div>
+
+
+      <div className="trackbox"> 
+
+      {tracks.map(track => (
+        <TrackBox key={track._id} track={track} />
+      ))}
+      </div>
+
+      <div className="map">
+          {/* <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/w_2560%2Cc_limit/GoogleMapTA.jpg"></img> */}
+          <MapTracks tracks={tracks}/>
+          
+          {/* <MapTrack /> */}
+      </div>
+
+
       </div>
     </>
   );

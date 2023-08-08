@@ -15,9 +15,9 @@ import TrackShowPage from './components/TrackShowPage';
 
 import { getCurrentUser } from './store/session';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+
 import TracksIndex from './components/Tracks/TracksIndex';
 import TestsPage from './components/TestsPage';
-
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,8 +33,6 @@ function App() {
         <Route exact path="/" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
-
-
         <Route exact path="/tracks" component={Tracks} />
         <ProtectedRoute exact path="/tracks/new" component={TrackCompose} />
         <ProtectedRoute exact path="/tracks/:trackId" component={TrackShowPage}/>
