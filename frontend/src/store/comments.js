@@ -69,6 +69,25 @@ const receiveComments = comments => ({
     }
   };
 
+  export const editComment = (commentId, data) => async dispatch => {
+    console.log("im editing comment")
+    console.log(commentId)
+    console.log(data)
+    try {
+      const res = await jwtFetch(`/api/comments/${commentId}`, {
+        method: 'PATCH',
+        body: JSON.stringify(data)
+      });
+      const comment = await res.json();
+      dispatch(receiveNewComment(comment));
+    } catch(err) {
+      const resBody = await err.json();
+      if (resBody.statusCode === 400) {
+        return dispatch(receiveErrors(resBody.errors));
+      }
+    }
+  };
+
   const nullErrors = null;
 
 export const commentErrorsReducer = (state = nullErrors, action) => {
