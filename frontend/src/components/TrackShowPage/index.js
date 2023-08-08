@@ -17,7 +17,7 @@ function TrackShowPage() {
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
   const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
-  debugger
+  
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all))
   console.log(times)
