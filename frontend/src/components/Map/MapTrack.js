@@ -19,6 +19,7 @@ const MapTrack = ({ track }) => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
+    
   });
 
   const onLoad = useCallback(function callback(map) {
