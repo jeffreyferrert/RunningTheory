@@ -30,19 +30,19 @@ function NavBar() {
 
         <div className="links-nav">
           <div id='user-name-container'>
-            <div id='user-name'>{user.username}</div>
+    
           </div>
           <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
-          <Link className='button-link' to={'/profile'}>Profile</Link>
+          <Link className='button-link' to={'/profile'}>{user.username}</Link>
           <Link className='button-link' to={'/tracks/new'}>Create a Track</Link>
-          <button id='logout-button' className='button-link' onClick={logoutUser}>Logout</button>
+          <button id='logout-button'  onClick={logoutUser}>Logout</button>
         </div>
       );
     } else {
       return (
         <div className="links-auth">
           <Link id='signup' className='button-link' to={'/signup'}>Signup</Link>
-          <Link className='button-link' to={'/login'}>Login</Link>
+          <Link id='login' className='button-link' to={'/login'}>Login</Link>
         </div>
       );
     }

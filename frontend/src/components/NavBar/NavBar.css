@@ -10,7 +10,6 @@
     flex-direction: row;
     justify-content: space-between;
     position: relative;
-    /* gap: 10px; */
     top: 0px;
     right: -7px;
     background: linear-gradient(to bottom,  rgb(91, 105, 123) 20%, rgb(81, 94, 110) 90%, rgb(68, 82, 99));
@@ -65,32 +64,107 @@
 }
 
 .links-nav .button-link,
-.links-auth .button-link {
-  display: inline-block;
-  padding: 10px 20px; 
-  border-right: 1px solid #ccc; 
-  /* background-color: rgb(81, 110, 154); */
-  box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05), 0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
-    /* box-shadow: black; */
-  background: linear-gradient(to bottom,  rgb(91, 105, 123) 20%, rgb(81, 94, 110) 90%, rgb(68, 82, 99));  color: #F2A71B; 
-  text-decoration: none; 
-  cursor: pointer; 
-  border-radius: 20px;
-  color: #ccc;
+.links-auth .button-link,
+#signup,
+#login,
+#logout-button {
+    display: inline-block;
+    text-decoration: none;
+  --border: 0px;    
+  --slant: 0.0em;   
+  --color: rgb(197, 197, 197);
+    margin-top: 15px;
+  padding: 0.4em 1.2em;
+  border: solid 2px rgb(215, 215, 215);
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--color);
+  background: 
+  linear-gradient(to bottom left, var(--color) 50%, #0000 50.1%) top right,
+  linear-gradient(to top right, var(--color) 50%, #0000 50.1%) bottom left,
+  linear-gradient(to top left, var(--color) 50%, #0000 50.1%) bottom right,
+  linear-gradient(to bottom right, var(--color) 50%, #0000 50.1%) top left;
+  background-size: calc(var(--slant) + 1.3*var(--border)) calc(var(--slant) + 1.3*var(--border));
+  background-repeat: no-repeat;
+  box-shadow:
+    0 0 0 200px inset var(--s,#0000),
+    0 0 0 var(--border) inset var(--color);
+  clip-path: polygon
+  (
+    0 0, 
+    calc(100% - var(--slant)) 0, 
+    100% var(--slant), 
+    100% calc(100% - var(--slant)), 
+    var(--slant) 100%, 
+    0 var(--slant)
+  );
+  transition: color var(--t,0.3s), background-size 0.3s;
+
+
 
 }
 
+
+.links-auth{
+
+    margin-right: 5px;
+}
+
+.links-nav{
+
+    margin-right: 5px;
+
+}
+
+.links-nav:focus-visible .button-link:focus-visible,
+.links-auth:focus-visible .button-link:focus-visible,
+#signup:focus-visible,
+#login:focus-visible,
+#logout-butto:focus-visible {
+    outline-offset: calc(-1*var(--border));
+    outline: var(--border) solid #000c;
+    clip-path: none;
+    background-size: 0 0;
+}
+
 .links-nav:hover .button-link:hover,
-.links-auth:hover .button-link:hover {
-  display: inline-block;
-  padding: 10px 20px; 
-  border-right: 4px solid #F7BE56; 
-  background-color: gray;
-  /* background: linear-gradient(to bottom,  rgb(91, 105, 123) 20%, rgb(81, 94, 110) 90%, rgb(68, 82, 99));  color: #F2A71B;  */
-  text-decoration: none; 
-  cursor: pointer; 
-  border-radius: 20px;
-  color: #F7BE56;
+.links-auth:hover .button-link:hover,
+.links-nav:active .button-link:active,
+.links-auth:active .button-link:active,
+#signup:hover,
+#login:hover,
+#logout-button:hover,
+#signup:active,
+#login:active,
+#logout-button:active
+ {
+    background-size: 100% 100%;
+    color: rgb(87, 143, 138);
+    --t: 0.2s 0.1s;
+}
+
+.links-nav:active .button-link:active,
+.links-auth:active .button-link:active,
+#signup:active,
+#login:active,
+#logout-button:active {
+
+    --s: #0005;
+    transition: none;
+
+}
+
+
+
+
+
+
+#logout-button{
+    
+    height: 35px;
+    position: relative;
+    top: -1px;
+    
 }
 
 
@@ -103,40 +177,3 @@ margin-right: 10px;
 
 
 
-
-#logout-button{
-
-    border: none;
-    border-right: 1px solid #ccc;
-    margin-right: 4px;
-}
-
-#logout-button:hover{
-
-    border: none;
-    border-right: 4px solid #F7BE56;
-    margin-right: 3px;
-}
-
-
-.links-auth{
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 3px;
-}
-
-#signup{
-
-    border-right: solid 1px white;
-    
-}
-
-
-
-#signup:hover {
-
-    border-right: solid 1px #F7BE56;
-    
-}
