@@ -13,6 +13,7 @@ function TrackShowPage({ track }) {
   // const track = useSelector(state => state.tracks.all);
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
+  const [showCommentForm, setShowCommentForm] = useState(false)
   // const comments = useSelector(state => sortComments(state.comments.all, trackId)) 
   const comments = useSelector(state => Object.values(state.comments.all))
   useEffect(() => {
@@ -29,6 +30,7 @@ function TrackShowPage({ track }) {
   function handleSubmit(e) {
     e.preventDefault()
     dispatch(composeComment({ description: newComment, author: author, track: track }))
+    setShowCommentForm(false)
   }
   return (
     <>
@@ -49,7 +51,8 @@ function TrackShowPage({ track }) {
           ) : null
         ))}
       </ul>
-      <form onSubmit={handleSubmit}>
+
+      {/* <form onSubmit={handleSubmit}>
         <h3>Create Comment</h3>
         <label>Description
           <input type="text" value={newComment} name="newComment"
@@ -57,7 +60,26 @@ function TrackShowPage({ track }) {
         </label>
 
         <input type="submit" value={`New Comment`} />
-      </form>
+      </form> */}
+      {showCommentForm ? (
+        <div>
+          <form onSubmit={handleSubmit}>
+            <h3>Create Comment</h3>
+            <label>Description
+              <input
+                type="text"
+                value={newComment}
+                name="newComment"
+                onChange={(e) => { setNewComment(e.target.value) }}
+              />
+            </label>
+            <input type="submit" value={`New Comment`} />
+          </form>
+          <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
+        </div>
+      ) : (
+        <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
+      )}
     </>
 
   );
