@@ -53,6 +53,11 @@ function SearchBar() {
             value={searchText} 
             placeholder='Search for tracks'
             onChange={handleSearch}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                    handleSubmit()
+                }
+            }}
             />
            
            <button id='search-button' onClick={handleSubmit}>

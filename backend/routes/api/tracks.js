@@ -3,10 +3,12 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Track = mongoose.model('Track');
+const Comment = mongoose.model('Comment');
 const { requireUser } = require('../../config/passport');
 const validateTrackInput = require('../../validations/tracks');
 
 router.get('/', async (req, res) => {
+  console.log('im tracks being logged')
   try {
     const tracks = await Track.find()
                               .populate("author", "_id username")
@@ -61,6 +63,8 @@ router.post('/', requireUser, validateTrackInput, async (req, res, next) => {
       location: req.body.location,
       miles: req.body.miles,
       description: req.body.description,
+      startAddress: req.body.startAddress,
+      endAddress: req.body.endAddress
     });
 
     let track = await newTrack.save();

@@ -1,0 +1,35 @@
+.track-infowindow {
+    font-size: 14px;
+    font-family: 'Vollkorn', sans-serif;
+
+}
+
+.track-name {
+
+    font-size: 18px;
+    font-weight: bold;
+}
+.track-infowindow span {
+    font-weight: bold;
+}
+
+
+.track-info-btn {
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Vollkorn', sans-serif;
+    font-weight: bold;
+    border: none;
+    background-color: rgb(212, 212, 212);
+    display: block;
+    margin: 0 auto;
+    padding: 5px;
+    
+
+}
+
+.track-info-btn:hover {
+    background-color: black;
+    color: white;
+}
+

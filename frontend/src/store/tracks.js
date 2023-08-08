@@ -1,11 +1,11 @@
 import jwtFetch from './jwt';
 import { RECEIVE_USER_LOGOUT } from './session';
 
-const RECEIVE_TRACKS = "tracks/RECEIVE_TRACKS";
-const RECEIVE_USER_TRACKS = "tracks/RECEIVE_USER_TRACKS";
-const RECEIVE_NEW_TRACK = "tracks/RECEIVE_NEW_TRACK";
-const RECEIVE_TRACK_ERRORS = "tracks/RECEIVE_TRACK_ERRORS";
-const CLEAR_TRACK_ERRORS = "tracks/CLEAR_TRACK_ERRORS";
+export const RECEIVE_TRACKS = "tracks/RECEIVE_TRACKS";
+export const RECEIVE_USER_TRACKS = "tracks/RECEIVE_USER_TRACKS";
+export const RECEIVE_NEW_TRACK = "tracks/RECEIVE_NEW_TRACK";
+export const RECEIVE_TRACK_ERRORS = "tracks/RECEIVE_TRACK_ERRORS";
+export const CLEAR_TRACK_ERRORS = "tracks/CLEAR_TRACK_ERRORS";
 
 const receiveTracks = tracks => ({
   type: RECEIVE_TRACKS,

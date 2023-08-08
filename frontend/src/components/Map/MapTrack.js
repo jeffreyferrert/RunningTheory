@@ -22,6 +22,7 @@ const MapTrack = ({ track }) => {
     
   });
 
+  
   const onLoad = useCallback(function callback(map) {
     setMap(map);
   }, []);
