@@ -16,8 +16,6 @@ import TrackShowPage from './components/TrackShowPage';
 import { getCurrentUser } from './store/session';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 
-import TracksIndex from './components/Tracks/TracksIndex';
-import TestsPage from './components/TestsPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,7 +35,6 @@ function App() {
         <ProtectedRoute exact path="/tracks/new" component={TrackCompose} />
         <ProtectedRoute exact path="/tracks/:trackId" component={TrackShowPage}/>
         <ProtectedRoute exact path="/profile" component={Profile} />
-        <Route to='/tests' component={TestsPage} />
       </Switch>
     </>
   );

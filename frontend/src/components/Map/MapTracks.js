@@ -1,11 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 import { useHistory } from 'react-router-dom';
 import "./MapTrack.css"
 const MapTracks = ({ tracks }) => {
   const history = useHistory();
-  const [map, setMap] = useState(null); 
+  const [map, setMap] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -16,7 +15,7 @@ const MapTracks = ({ tracks }) => {
     width: '100%',
     height: '100vh',
   };
- 
+
   const center = {
     lat: 40.7873414,
     lng: -73.9516308,
@@ -40,7 +39,6 @@ const MapTracks = ({ tracks }) => {
   const handleInfoWindowClose = () => {
     setSelectedTrack(null);
   };
-  
 
   useEffect(() => {
     if (isLoaded && map) {
@@ -70,9 +68,6 @@ const MapTracks = ({ tracks }) => {
     return null;
   };
 
-  
-
-
   return isLoaded ? (
     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad}>
       {selectedTrack && (
@@ -87,7 +82,7 @@ const MapTracks = ({ tracks }) => {
             <br></br>
             <span>Starting Point:</span> {selectedTrack.startAddress}
             <br></br>
-            <span>Number of People Signed Up:</span> 8  
+            <span>Number of People Signed Up:</span> 8
             <br></br>
             <button className="track-info-btn" onClick={handleInfoWindowClick}>View Event</button>
           </div>

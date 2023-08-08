@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState, useCallback } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
@@ -9,20 +7,19 @@ const MapTrack = ({ track }) => {
     height: '100vh',
   };
 
-  const startAddress =  '123 Riverside Drive New York City' //track.startAddress
+  const startAddress = '123 Riverside Drive New York City' //track.startAddress
   const endAddress = '11 W 53rd St, New York, NY 10019';  //track.endAddress
 
   const [startLatLng, setStartLatLng] = useState(null);
   const [endLatLng, setEndLatLng] = useState(null);
   const [map, setMap] = useState(null);
-  const [directionsRenderer, setDirectionsRenderer] = useState(null); 
+  const [directionsRenderer, setDirectionsRenderer] = useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
-    
+
   });
 
-  
   const onLoad = useCallback(function callback(map) {
     setMap(map);
   }, []);
