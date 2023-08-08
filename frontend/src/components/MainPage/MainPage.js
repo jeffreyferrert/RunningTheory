@@ -1,4 +1,5 @@
 import SearchBar from '../Searchbar';
+import NavBarSearch from '../NavBar/NavBarSearch';
 import './MainPage.css';
 
 function MainPage() {
@@ -13,20 +14,6 @@ function MainPage() {
                     <div id='main-text'>Get On Track</div>
                     <SearchBar />
                 </div>
-
-                <div id='page-divider'> <div id="circle"></div></div>
-
-
-                <div id='bottom-info-containers'>
-                    <div id='upcoming-container'>
-                            upcoming event
-                    </div>
-
-                    <div id='leaderboard-container'>
-                        leaderboard
-                    </div>
-                </div>
-                
             </div>
             
         </>

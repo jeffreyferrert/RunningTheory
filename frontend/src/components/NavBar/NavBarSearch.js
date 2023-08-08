@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 
-function NavBar() {
+function NavBarSearch() {
   const loggedIn = useSelector(state => !!state.session.user);
   const user = useSelector(state => state.session.user)
   const [input, setInput] = useState('')
@@ -58,8 +58,18 @@ function NavBar() {
         <Link to='/'>  <img id='main-logo' src='/rt-logo4.png'></img> </Link>
       
         </div>
-    
 
+        <div id='nav-search-container'>
+            <form onSubmit={handleSubmit}>
+                <input
+                id='nav-search' 
+                type="text"
+                placeholder="Search..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)} />
+                <button type='submit' hidden/>
+            </form>
+        </div>
       {getLinks()}
 
 
@@ -69,4 +79,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavBarSearch;
