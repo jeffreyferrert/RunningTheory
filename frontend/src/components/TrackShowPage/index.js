@@ -6,26 +6,26 @@ import tracksReducer, { clearTrackErrors, fetchTracks } from '../../store/tracks
 import { fetchComments, composeComment } from '../../store/comments';
 import "./TrackShowPage.css"
 import MapTrack from '../Map/MapTrack';
+import Comment from './Comment';
 
-function TrackShowPage({ track }) {
+function TrackShowPage() {
   const dispatch = useDispatch();
   const { trackId } = useParams()
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
+  const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
+
   const comments = useSelector(state => Object.values(state.comments.all))
   const [time, setTime] = useState(0)
 
   useEffect(() => {
     dispatch(fetchTracks())
-  }, [dispatch, trackId])
-
-  useEffect(() => {
     dispatch(fetchComments())
   }, [dispatch, trackId])
 
   function handleSubmit(e) {
-    e.preventDefault()
+    // e.preventDefault()
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
   }
@@ -36,6 +36,7 @@ function TrackShowPage({ track }) {
   }
   return (
     <>
+
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
           <h1>Track Name</h1>
@@ -80,33 +81,32 @@ function TrackShowPage({ track }) {
 
 
           <div className="track-container">
-            <h2>Comments:</h2>
-            <ul>
-              {comments.map((comment, index) => (
-                comment.track._id === trackId ? (
-                  <li key={index}>
-                    <p>{comment.author.username}</p>
-                    <p>{comment.description}</p>
-                  </li>
-                ) : null
-              ))}
-            </ul>
+             <h2>Comments:</h2>
+      <ul>
+        {comments.map((comment, index) => (
+          <Comment key={index} comment={comment} author={author} track={track} />
+        ))}
+      </ul>
 
-            {showCommentForm ? (
-              <div>
-                <form onSubmit={handleSubmit}>
-                  <h3>Create Comment</h3>
-                  <label>Description
-                    <input
-                      type="text"
-                      value={newComment}
-                      name="newComment"
-                      onChange={(e) => { setNewComment(e.target.value) }}
-                    />
-                  </label>
-                  <input type="submit" value={`New Comment`} />
-                </form>
-                <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
+          {showCommentForm ? (
+            <div>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <h3>Create Comment</h3>
+                <label>Description
+                  <input
+                    type="text"
+                    value={newComment}
+                    name="newComment"
+                    onChange={(e) => { setNewComment(e.target.value) }}
+                  />
+                </label>
+                <input type="submit" value={`New Comment`} />
+              </form>
+              <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
+            </div>
+          ) : (
+            <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
+          )}
               </div>
             ) : (
               <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
@@ -117,6 +117,7 @@ function TrackShowPage({ track }) {
             <h2>Other Tracks</h2>
 
           </div>
+            
 
         </div>
 

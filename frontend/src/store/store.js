@@ -4,15 +4,12 @@ import session from './session';
 import errors from './errors';
 import tracks from './tracks';
 import comments from './comments';
-import search from './search';
-import searchReducer from './search';
 
 const rootReducer = combineReducers({
   session,
   errors,
   comments,
   tracks,
-  search: searchReducer
 });
 
 let enhancer;

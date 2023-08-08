@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearTrackErrors, fetchTracks } from '../../store/tracks';
 import TrackBox from './TrackBox';
 import MapTracks from '../Map/MapTracks';
+import "./Tracks.css"
 
 
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
@@ -31,6 +32,7 @@ function Tracks() {
 
   return (
     <>
+
       <div className="tracks-main-container">
 
         <div className="trackbox">
@@ -39,23 +41,12 @@ function Tracks() {
           ))}
         </div>
 
-
-      <div className="trackbox"> 
-
-      {tracks.map(track => (
-        <TrackBox key={track._id} track={track} />
-      ))}
-      </div>
-
-      <div className="map">
-          {/* <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/w_2560%2Cc_limit/GoogleMapTA.jpg"></img> */}
-          <MapTracks tracks={tracks}/>
-          
-          {/* <MapTrack /> */}
-      </div>
-
+        <div className="map">
+          <MapTracks tracks={tracks} />
+        </div>
 
       </div>
+
     </>
   );
 }

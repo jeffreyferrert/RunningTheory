@@ -7,7 +7,6 @@ const Comment = mongoose.model('Comment');
 const validateCommentInput = require('../../validations/comments')
 
 router.get('/', async (req, res) => {
-  console.log('im being called')
   try {
     const comments = await Comment.find()
                               .populate("author", "_id username")
@@ -52,20 +51,19 @@ router.get('/:commentId', (req, res) => {
     });
   });
 
-router.patch('/:commentId', validateCommentInput, async (req, res, next) => {
-  if(!req.user) return res.json(null)
+router.patch('/:commentId', async (req, res, next) => {
+  if(!req.body) return res.json(null)
   try {
-    const newComment = new Comment({
+    const commentId = req.url.slice(1)
+    const updateData = {
+      author: req.body.author,
       description: req.body.description,
-      author: req.body.author._id,
-      track: req.body.track._id
-    });
+      track: req.body.track
+    };
 
+    const updatedComment = await Comment.findByIdAndUpdate(commentId, updateData, { new: true });
 
-    let comment = await newComment.save();
-    comment = await comment.populate('author', '_id username');
-    comment = await comment.populate('track', "_id name")
-    return res.json(comment);
+    return res.json(updatedComment);
   }
   catch(err) {
     next(err);
