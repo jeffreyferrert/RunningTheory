@@ -63,14 +63,14 @@ function TrackShowPage() {
             <br></br>
 
             <form onSubmit={handleTimeSubmit}>
-  
-                <input
-                  className="time-bar"
-                  type="integer"
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
-                />
-                <button className="track-add-time" type="submit">Add Your Time</button>
+
+              <input
+                className="time-bar"
+                type="integer"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+              />
+              <button className="track-add-time" type="submit">Add Your Time</button>
 
 
             </form>
@@ -81,54 +81,50 @@ function TrackShowPage() {
 
 
           <div className="track-container">
-             <h2>Comments:</h2>
-      <ul>
-        {comments.map((comment, index) => (
-          <Comment key={index} comment={comment} author={author} track={track} />
-        ))}
-      </ul>
+            <h2>Comments:</h2>
+            <ul>
+              {comments.map((comment, index) => (
+                <Comment key={index} comment={comment} author={author} track={track} />
+              ))}
+            </ul>
 
-          {showCommentForm ? (
-            <div>
-              <form onSubmit={(e) => handleSubmit(e)}>
-                <h3>Create Comment</h3>
-                <label>Description
-                  <input
-                    type="text"
-                    value={newComment}
-                    name="newComment"
-                    onChange={(e) => { setNewComment(e.target.value) }}
-                  />
-                </label>
-                <input type="submit" value={`New Comment`} />
-              </form>
-              <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
-            </div>
-          ) : (
-            <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
-          )}
+            {showCommentForm ? (
+              <div>
+                <form onSubmit={(e) => handleSubmit(e)}>
+                  <h3>Create Comment</h3>
+                  <label>Description
+                    <input
+                      type="text"
+                      value={newComment}
+                      name="newComment"
+                      onChange={(e) => { setNewComment(e.target.value) }}
+                    />
+                  </label>
+                  <input type="submit" value={`New Comment`} />
+                </form>
+                <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
               </div>
             ) : (
               <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
             )}
-          </div>
-          
-          <div className="track-container">
-            <h2>Other Tracks</h2>
+        </div>
 
-          </div>
-            
+        <div className="track-container">
+          <h2>Other Tracks</h2>
 
         </div>
 
-        <div className='ts-right-container'>
-          <div className='ts-map'>
-            {/* MAP COMPONENT GOES HERE */}
-            <MapTrack />
-          </div>
-        </div>
 
       </div>
+
+      <div className='ts-right-container'>
+        <div className='ts-map'>
+          {/* MAP COMPONENT GOES HERE */}
+          <MapTrack />
+        </div>
+      </div>
+
+    </div >
 
     </>
 
