@@ -6,7 +6,9 @@ import "./TrackBox.css"
 function TrackBox(props) {
   const track = props.track
   return (
+
     // <Link to={`tracks/${track._id}`}>
+
 
       <div className="main-container-box">
         <div className="up-section">

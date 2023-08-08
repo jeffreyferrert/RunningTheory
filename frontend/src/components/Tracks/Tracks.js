@@ -7,7 +7,6 @@ import MapTracks from '../Map/MapTracks';
 
 import MapTrack from '../Map/MapTrack';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import "./Tracks.css"
 
 
 function Tracks() {
@@ -45,7 +44,6 @@ function Tracks() {
         </div>
 
 
-
       <div className="trackbox"> 
 
       {tracks.map(track => (
@@ -59,6 +57,7 @@ function Tracks() {
           
           {/* <MapTrack /> */}
       </div>
+
       </div>
     </>
   );
