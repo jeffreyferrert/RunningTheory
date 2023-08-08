@@ -41,10 +41,12 @@ function TrackShowPage({ track }) {
       <h2>Comments:</h2>
       <ul>
         {comments.map((comment, index) => (
-          <li key={index}>
-            <p>{comment.author.username}</p>
-            <p>{comment.description}</p>
-          </li>
+          comment.track._id === trackId ? (
+            <li key={index}>
+              <p>{comment.author.username}</p>
+              <p>{comment.description}</p>
+            </li>
+          ) : null
         ))}
       </ul>
       <form onSubmit={handleSubmit}>
