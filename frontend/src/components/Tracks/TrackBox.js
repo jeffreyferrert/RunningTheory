@@ -5,10 +5,13 @@ import "./TrackBox.css"
 
 function TrackBox(props) {
   const track = props.track
+
+  const handleRedirect = () => {
+
+  }
   return (
 
-    // <Link to={`tracks/${track._id}`}>
-
+    <Link className="link" to={`tracks/${track._id}`} >
 
       <div className="main-container-box">
         <div className="up-section">
@@ -25,7 +28,7 @@ function TrackBox(props) {
         </div>
       </div>
 
-    // </Link>
+    </Link>
   );
 }
 

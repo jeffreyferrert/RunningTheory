@@ -21,12 +21,13 @@ router.get('/', async (req, res) => {
 });
 
 
-router.post('/', validateCommentInput, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
+  console.log(req.body)
   try {
     const newComment = new Comment({
-      author: req.user._id,
-      track: req.track._id,
-      description: req.body.description
+      description: req.body.description,
+      author: req.body.author._id,
+      track: req.body.track._id
     });
 
     let comment = await newComment.save();
@@ -55,9 +56,9 @@ router.patch('/:commentId', validateCommentInput, async (req, res, next) => {
   if(!req.user) return res.json(null)
   try {
     const newComment = new Comment({
-      author: req.user._id,
-      track: req.track_id,
-      description: req.body.description
+      description: req.body.description,
+      author: req.body.author._id,
+      track: req.body.track._id
     });
 
 

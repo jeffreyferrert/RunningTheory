@@ -26,7 +26,6 @@ async function jwtFetch(url, options = {}) {
     }
 
     // Call fetch with the url and the updated options hash.
-    console.log(url)
     const res = await fetch(url, options);
     console.log(res)
     // If the response status code is 400 or above, then throw an error with the

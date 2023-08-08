@@ -5,7 +5,6 @@ import TrackBox from './TrackBox';
 import MapTracks from '../Map/MapTracks';
 
 
-import MapTrack from '../Map/MapTrack';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 
@@ -22,8 +21,6 @@ function Tracks() {
 
   if (tracks.length === 0) return <div>There are no Tracks</div>;
 
-  console.log(tracks)
-
   if (searchQuery) {
     tracks = tracks.filter(function (track) {
       return track.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -32,12 +29,12 @@ function Tracks() {
     });
   }
 
+
   return (
     <>
       <div className="tracks-main-container">
-        <div className="trackbox">
-          {/* <h2 id="all-tracks">All Tracks</h2> */}
 
+        <div className="trackbox">
           {tracks.map(track => (
             <TrackBox key={track._id} track={track} />
           ))}
@@ -57,6 +54,7 @@ function Tracks() {
           
           {/* <MapTrack /> */}
       </div>
+
 
       </div>
     </>
