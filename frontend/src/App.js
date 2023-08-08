@@ -29,6 +29,7 @@ function App() {
 
   return loaded && (
     <>
+   
       <NavBar />
       <Switch>
         <Route exact path="/" component={MainPage} />
@@ -42,6 +43,7 @@ function App() {
         <ProtectedRoute exact path="/profile" component={Profile} />
         <Route exact path="/tracks" component={Tracks} />
       </Switch>
+
     </>
   );
 }

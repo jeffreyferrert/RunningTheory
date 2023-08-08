@@ -19,7 +19,7 @@
 .env.test.local
 .env.production.local
 .eslintcache
-
+# .env // make a env on front end and put api keys in order to use google maps, could be any of the other env files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
