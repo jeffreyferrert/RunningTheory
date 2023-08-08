@@ -11,8 +11,13 @@ function TrackShowPage({ track }) {
   const dispatch = useDispatch();
   const { trackId } = useParams()
   const author = useSelector(state => state.session.user);
+  console.log(author)
   const [newComment, setNewComment] = useState('')
+  const [editComment, setEditComment] = useState("")
   const [showCommentForm, setShowCommentForm] = useState(false)
+
+  const [editCommentForm, setEditCommentForm] = useState(false)
+
   const comments = useSelector(state => Object.values(state.comments.all))
   useEffect(() => {
     dispatch(fetchTracks())
@@ -29,20 +34,40 @@ function TrackShowPage({ track }) {
   }
   return (
     <>
+
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
 
-          <h2>Comments:</h2>
-          <ul>
-            {comments.map((comment, index) => (
-              comment.track._id === trackId ? (
-                <li key={index}>
-                  <p>{comment.author.username}</p>
-                  <p>{comment.description}</p>
-                </li>
-              ) : null
-            ))}
-          </ul>
+            <h2>Comments:</h2>
+      <ul>
+        {comments.map((comment, index) => (
+          comment.track._id === trackId ? (
+            <li key={index}>
+              <p>{comment.author.username}</p>
+              <p>{comment.description}</p>
+              {comment.author._id === author._id && !editCommentForm && (
+                <button onClick={() => {
+                  setEditCommentForm(true)
+                  setEditComment(comment.description)
+                }}>Edit Comment</button>
+              )}
+              {comment.author._id === author._id && editCommentForm && (
+                <form>
+                  <label>Edit Comment
+                    <input
+                      type="text"
+                      value={editComment}
+                      name="newComment"
+                      onChange={(e) => { setEditComment(e.target.value) }}
+                    />
+                  </label>
+                <input type="submit" value={`Edit Comment`} />
+                </form>
+              )}
+            </li>
+          ) : null
+        ))}
+      </ul>
 
           {showCommentForm ? (
             <div>
