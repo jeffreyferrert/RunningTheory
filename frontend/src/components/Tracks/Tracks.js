@@ -42,7 +42,7 @@ function Tracks() {
         </div>
 
         <div className="map">
-          <MapTracks tracks={tracks} />
+          {/* <MapTracks tracks={tracks} /> */}
         </div>
 
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import tracksReducer, { clearTrackErrors, fetchTracks } from '../../store/tracks';
+import tracksReducer, { clearTrackErrors, fetchTracks, selectTrackById } from '../../store/tracks';
 import { fetchComments, composeComment } from '../../store/comments';
 import "./TrackShowPage.css"
 import MapTrack from '../Map/MapTrack';
@@ -14,18 +14,17 @@ function TrackShowPage() {
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
-  const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
+  const track = useSelector(state => selectTrackById(state, trackId));
 
   const comments = useSelector(state => Object.values(state.comments.all))
   const [time, setTime] = useState(0)
 
   useEffect(() => {
-    dispatch(fetchTracks())
     dispatch(fetchComments())
   }, [dispatch, trackId])
 
   function handleSubmit(e) {
-    // e.preventDefault()
+    e.preventDefault()
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
   }
@@ -38,6 +37,7 @@ function TrackShowPage() {
     <>
 
       <div className="main-container-trackshow">
+        {console.log(track)}
         <div className='ts-left-container'>
           <h1>Track Name</h1>
           <div className="track-container">
@@ -120,7 +120,7 @@ function TrackShowPage() {
       <div className='ts-right-container'>
         <div className='ts-map'>
           {/* MAP COMPONENT GOES HERE */}
-          <MapTrack />
+          {/* <MapTrack /> */}
         </div>
       </div>
 
