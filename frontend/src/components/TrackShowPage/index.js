@@ -12,6 +12,7 @@ function TrackShowPage({ track }) {
   // console.log(track)
   // const track = useSelector(state => state.tracks.all);
   const author = useSelector(state => state.session.user);
+  console.log(author)
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
   // const comments = useSelector(state => sortComments(state.comments.all, trackId)) 
@@ -44,6 +45,9 @@ function TrackShowPage({ track }) {
             <li key={index}>
               <p>{comment.author.username}</p>
               <p>{comment.description}</p>
+              {comment.author._id === author._id && (
+                <button>Edit Comment</button>
+              )}
             </li>
           ) : null
         ))}
