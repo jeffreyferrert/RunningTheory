@@ -59,7 +59,9 @@ function TrackCompose() {
         <div id='create-track-main'>
                 <form className="compose-track" onSubmit={handleSubmit}>
                     <div id='form-cont'>
+                     <div id='title-cont'>
                         <div id='create-title' className='shine'>Create Your Track</div>
+                        </div>
                         <div > Give Your Track A Name
                         <input 
                             className='form-box'
