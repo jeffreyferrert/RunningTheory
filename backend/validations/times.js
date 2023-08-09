@@ -13,13 +13,11 @@ const validateTimeInput = [
         .isInt({ min: 0, max: 59 })
         .withMessage('Seconds must be between 0 and 59'),
     check('minutes')
-        .exists({ checkFalsy: true })
         .isInt({ min: 0, max: 59 })
-        .withMessage('Minutes must be between 0 and 59'),
+        .withMessage('Minutes must be between 0 and 59, if they exist'),
     check('hours')
-        .exists({ checkFalsy: true })
         .isInt({ min: 0, max: 99 })
-        .withMessage('Seconds must be between 0 and 99'),
+        .withMessage('Seconds must be between 0 and 99, if they exist'),
     handleValidationErrors
 ];
 
