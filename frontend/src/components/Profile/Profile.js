@@ -24,7 +24,7 @@ function Profile() {
     return <div>{currentUser.username} has no Tracks</div>;
   } else {
     return (
-      <>
+      <div className="profile-container">
         <div className="profile-tracks">
           <h2>All of {currentUser.username}'s Tracks</h2>
           {userTracks.map(track => (
@@ -44,7 +44,7 @@ function Profile() {
           )))
           }
         </div>
-      </>
+      </div>
     );
   }
 }
