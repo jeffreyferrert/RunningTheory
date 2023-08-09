@@ -4,6 +4,7 @@ import { fetchUserTracks, clearTrackErrors } from '../../store/tracks';
 import { fetchUserTimes, clearTimeErrors } from "../../store/times";
 import TrackBox from '../Tracks/TrackBox';
 import Time from '../TrackShowPage/Time'
+import './Profile.css'
 
 function Profile() {
   const dispatch = useDispatch();
