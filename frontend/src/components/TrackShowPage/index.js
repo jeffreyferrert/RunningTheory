@@ -50,16 +50,16 @@ function TrackShowPage() {
 
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
-          <h1>Track Name</h1>
+          <h1>{track.name}</h1>
           <div className="track-container">
             <h2>General Info</h2>
-            <span>Starting Line: </span> test
+            <span>Starting Line: </span> {track.startAddress}
             <br></br>
-            <span>Finish Line: </span> test
+            <span>Finish Line: </span> {track.endAddress}
             <br></br>
-            <span>Distance: </span> 88 miles
+            <span>Distance: </span> {track.miles} miles
             <br></br>
-            <span>Description: </span> weiruhweiruwheriuwheriuhweriuhweiurhwieurhwuierhewiurew
+            <span>Description: </span> {track.description}
           </div>
 
           <div className="track-container">
