@@ -33,7 +33,9 @@ function Tracks() {
   return (
     <>
 
-      <div className="tracks-main-container">
+      {tracks && (
+        <div className="tracks-main-container">
+          {console.log(tracks)}
 
         <div className="trackbox">
           {tracks.map(track => (
@@ -46,6 +48,7 @@ function Tracks() {
         </div>
 
       </div>
+      )}
 
     </>
   );

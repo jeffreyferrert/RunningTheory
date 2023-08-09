@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 import { useHistory } from 'react-router-dom';
 import "./MapTrack.css"
+
+
 const MapTracks = ({ tracks }) => {
   const history = useHistory();
   const [map, setMap] = useState(null);
@@ -10,6 +12,7 @@ const MapTracks = ({ tracks }) => {
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
   });
+
 
   const containerStyle = {
     width: '100%',
@@ -41,6 +44,7 @@ const MapTracks = ({ tracks }) => {
   };
 
   useEffect(() => {
+    
     if (isLoaded && map) {
       tracks.map(async (track) => {
         const location = await geocodeAddress(track.startAddress);
@@ -67,38 +71,45 @@ const MapTracks = ({ tracks }) => {
     }
     return null;
   };
+    
+  return (
 
-  return isLoaded ? (
-    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad}>
-      {selectedTrack && (
-        <InfoWindow
-          position={{ lat: selectedTrack.latitude, lng: selectedTrack.longitude }}
-          onCloseClick={handleInfoWindowClose}
-        >
-          <div className="track-infowindow">
-            <span className="track-name">{selectedTrack.name}</span>
-            <br></br>
-            <span>Event Organizer:</span> {selectedTrack.author.username}
-            <br></br>
-            <span>Starting Point:</span> {selectedTrack.startAddress}
-            <br></br>
-            <span>Number of People Signed Up:</span> 8
-            <br></br>
-            <button className="track-info-btn" onClick={handleInfoWindowClick}>View Event</button>
-          </div>
-        </InfoWindow>
-      )}
-      {tracks.map((track) => (
-        <Marker
-          key={track._id}
-          position={{ lat: track.latitude, lng: track.longitude }}
-          onClick={() => handleMarkerClick(track)}
-        />
-      ))}
-    </GoogleMap>
-  ) : (
-    <></>
-  );
+    <>
+      {
+        isLoaded && (
+
+          <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad}>
+            {selectedTrack && (
+              <InfoWindow
+                position={{ lat: selectedTrack.latitude, lng: selectedTrack.longitude }}
+                onCloseClick={handleInfoWindowClose}
+              >
+                <div className="track-infowindow">
+                  <span className="track-name">{selectedTrack.name}</span>
+                  <br></br>
+                  <span>Event Organizer:</span> {selectedTrack.author.username}
+                  <br></br>
+                  <span>Starting Point:</span> {selectedTrack.startAddress}
+                  <br></br>
+                  <span>Number of People Signed Up:</span> 8
+                  <br></br>
+                  <button className="track-info-btn" onClick={handleInfoWindowClick}>View Event</button>
+                </div>
+              </InfoWindow>
+            )}
+            {tracks.map((track) => (
+              <Marker
+                key={track._id}
+                position={{ lat: track.latitude, lng: track.longitude }}
+                onClick={() => handleMarkerClick(track)}
+              />
+            ))}
+          </GoogleMap>
+        )
+
+      }
+    </>
+  )
 };
 
 export default MapTracks;
