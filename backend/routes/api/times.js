@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Track = mongoose.model('Track');
 const Time = mongoose.model('Time');
+const validateTimeInput = require('../../validations/times')
 
 router.get('/', async (req, res) => {
   try {
@@ -18,10 +19,12 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validateTimeInput, async (req, res, next) => {
     try {
       const newTime = new Time({
-        description: req.body.description,
+        seconds: req.body.seconds,
+        minutes: req.body.minutes,
+        hours: req.body.hours,
         author: req.body.author._id,
         track: req.body.track._id
       });

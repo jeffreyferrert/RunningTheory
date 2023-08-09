@@ -18,8 +18,8 @@ function TrackShowPage() {
   const [showCommentForm, setShowCommentForm] = useState(false)
   
   const comments = useSelector(state => Object.values(state.comments.all))
-  const times = useSelector(state => Object.values(state.times.all))
-  const [time, setTime] = useState(0)
+  const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
+  const [time, setTime] = useState("")
   
   useEffect(() => {
     dispatch(fetchTracks())
@@ -38,6 +38,7 @@ function TrackShowPage() {
 
   function handleTimeSubmit(e) {
     let arrTime = time.split(":")
+    console.log(arrTime)
     if(arrTime.length === 3){
       dispatch(composeTime({hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track}))
     } else if (arrTime.length === 2){
@@ -51,6 +52,7 @@ function TrackShowPage() {
 
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
+
         {track && (
           <>
             <h1>{track.name}</h1>
@@ -67,15 +69,17 @@ function TrackShowPage() {
           </>
         )}
 
+
           <div className="track-container">
             <h2>Leaderboard</h2>
             <ol>
-              {times.map((time, index) => (
+              {times ? (times.map((time, index) => (
                 // <div className={`leaderboard${index}`}>{time}</div>
-                <li className={index} key={index}>
-                  <Time key={index} time={time}  />
+                <li className={index}>
+                  <Time key={index} time={time} currUser={author} />
+
                 </li>
-              ))}
+              ))): null }
             </ol>
 
             <form onSubmit={handleTimeSubmit}>
@@ -84,6 +88,7 @@ function TrackShowPage() {
                 className="time-bar"
                 type="string"
                 value={time}
+                placeholder='00:00:00'
                 onChange={(e) => setTime(e.target.value)}
               />
               <button className="track-add-time" type="submit">Add Your Time</button>
