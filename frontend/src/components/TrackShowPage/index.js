@@ -19,8 +19,7 @@ function TrackShowPage() {
   const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
   
   const comments = useSelector(state => Object.values(state.comments.all))
-  const times = useSelector(state => Object.values(state.times.all))
-  console.log(times)
+  const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
   const [time, setTime] = useState(0)
 
   useEffect(() => {
@@ -53,7 +52,7 @@ function TrackShowPage() {
           <h1>Track Name</h1>
           <div className="track-container">
             <h2>General Info</h2>
-            <span>Starting Line: </span> test
+            <span>Starting Line: </span> {track.name}
             <br></br>
             <span>Finish Line: </span> test
             <br></br>
@@ -65,12 +64,12 @@ function TrackShowPage() {
           <div className="track-container">
             <h2>Leaderboard</h2>
             <ol>
-              {times.map((time, index) => (
+              {times ? (times.map((time, index) => (
                 // <div className={`leaderboard${index}`}>{time}</div>
                 <li className={index}>
                   <Time key={index} time={time}  />
                 </li>
-              ))}
+              ))): null }
             </ol>
 
             <form onSubmit={handleTimeSubmit}>
