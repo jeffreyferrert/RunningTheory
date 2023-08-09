@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import tracksReducer, { clearTrackErrors, fetchTracks, selectTrackById } from '../../store/tracks';
 import { fetchComments, composeComment } from '../../store/comments';
+import { fetchTimes, composeTime } from '../../store/times.js';
 import "./TrackShowPage.css"
 import MapTrack from '../Map/MapTrack';
 import Comment from './Comment';
+import Time from './Time';
 
 function TrackShowPage() {
   const dispatch = useDispatch();
@@ -14,13 +16,17 @@ function TrackShowPage() {
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
-  const track = useSelector(state => selectTrackById(state, trackId));
+
+  const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
 
   const comments = useSelector(state => Object.values(state.comments.all))
+  const times = useSelector(state => Object.values(state.times.all))
+  console.log(times)
   const [time, setTime] = useState(0)
 
   useEffect(() => {
     dispatch(fetchComments())
+    dispatch(fetchTimes())
   }, [dispatch, trackId])
 
   function handleSubmit(e) {
@@ -30,8 +36,14 @@ function TrackShowPage() {
   }
 
   function handleTimeSubmit(e) {
-    e.preventDefault()
-    setTime(0)
+    let arrTime = time.split(":")
+    if(arrTime.length === 3){
+      dispatch(composeTime({hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track}))
+    } else if (arrTime.length === 2){
+      dispatch(composeTime({hours: 0, minutes: arrTime[0], seconds: arrTime[1], author: author, track: track}))
+    } else {
+      dispatch(composeTime({hours: 0, minutes: 0, seconds: arrTime[0], author: author, track: track}))
+    }
   }
   return (
     <>
@@ -53,20 +65,20 @@ function TrackShowPage() {
 
           <div className="track-container">
             <h2>Leaderboard</h2>
-            1. DEMO
-            <br></br>
-            2. DEMO
-            <br></br>
-            3. DEMO
-            <br></br>
-            4. DEMO
-            <br></br>
+            <ol>
+              {times.map((time, index) => (
+                // <div className={`leaderboard${index}`}>{time}</div>
+                <li className={index}>
+                  <Time key={index} time={time}  />
+                </li>
+              ))}
+            </ol>
 
             <form onSubmit={handleTimeSubmit}>
 
               <input
                 className="time-bar"
-                type="integer"
+                type="string"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
               />
@@ -133,7 +145,6 @@ function TrackShowPage() {
 
 
       </div>
-      </div>
 
       <div className='ts-right-container'>
         <div className='ts-map'>
@@ -141,12 +152,6 @@ function TrackShowPage() {
           <MapTrack />
         </div>
       </div>
-
-    </div >
-        
-
-    </div >
-
     </>
 
   );

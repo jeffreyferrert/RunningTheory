@@ -21,7 +21,6 @@ router.get('/', async (req, res) => {
 
 
 router.post('/', async (req, res, next) => {
-  console.log(req.body)
   try {
     const newComment = new Comment({
       description: req.body.description,

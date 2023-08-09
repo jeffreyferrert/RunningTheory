@@ -4,12 +4,14 @@ import session from './session';
 import errors from './errors';
 import tracks from './tracks';
 import comments from './comments';
+import times from './times';
 
 const rootReducer = combineReducers({
   session,
   errors,
   comments,
   tracks,
+  times
 });
 
 let enhancer;

@@ -8,21 +8,15 @@ export default function Comment({ comment, author, track }) {
 
     const dispatch = useDispatch()
     const { trackId } = useParams()
-    // console.log("author")
-    // console.log(author)
-    // console.log('track')
-    // console.log(track)
 
     const [editTheComment, setEditTheComment] = useState("")
 
     const [editCommentForm, setEditCommentForm] = useState(false)
 
     const handleSubmit = (e, type) => {
-        // e.preventDefault()
         if(type === "edit"){
             dispatch(editComment(comment._id, { description: editTheComment, author: author, track: track }))
         } else {
-            console.log('im here')
             dispatch(deleteComment(comment._id))
         }
     }

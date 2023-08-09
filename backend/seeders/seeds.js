@@ -3,12 +3,14 @@ const { mongoURI: db } = require('../config/keys.js');
 const User = require('../models/User');
 const Track = require('../models/Track')
 const Comment = require('../models/Comment');
+const Time = require('../models/Time')
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
 const NUM_SEED_USERS = 5;
 const NUM_SEED_TRACKS = 30;
 const NUM_SEED_COMMENTS = 20;
+const NUM_SEED_TIMES = 20;
 
 const addresses = ["123 Riverside Drive, New York City", "456 West End Avenue, New York City", "789 Harlem Lane, New York City", "101 East 110th Street, New York City", "222 Morningside Heights, New York City", "333 Upper West Side, New York City", "444 Washington Heights, New York City", "555 Lenox Hill, New York City", "666 Yorkville Avenue, New York City", "777 East Harlem, New York City", "888 Central Park North, New York City", "999 Columbus Circle, New York City", "111 Lincoln Square, New York City", "222 Hudson Heights, New York City", "333 Manhattan Valley, New York City", "444 East 96th Street, New York City", "555 Sutton Place, New York City", "666 Inwood Hill Park, New York City", "777 Carnegie Hill, New York City", "888 Roosevelt Island, New York City", "999 Gramercy Park, New York City", "111 Lenox Avenue, New York City", "222 Battery Park City, New York City", "333 Astor Row, New York City", "444 Peter Cooper Village, New York City", "555 Tudor City, New York City", "666 East River Plaza, New York City", "777 Stuyvesant Town, New York City", "888 Chelsea Waterside Park, New York City", "999 York Avenue, New York City", "111 Hamilton Heights, New York City", "222 West 87th Street, New York City", "333 Sutton Place South, New York City", "444 East End Avenue, New York City", "555 Randalls Island, New York City", "666 Fort George, New York City", "777 Lower East Side, New York City", "888 Kips Bay, New York City", "999 Marcus Garvey Park, New York City", "111 Waterside Plaza, New York City", "222 Tudor City Place, New York City", "333 East River Esplanade, New York City", "444 Chelsea Piers, New York City", "555 Frederick Douglass Boulevard, New York City", "666 West 96th Street, New York City", "777 Randalls Island Park, New York City", "888 St. Nicholas Avenue, New York City", "999 Wards Island, New York City", "111 East 84th Street, New York City", "222 Harlem River Park, New Yor City"]
 
@@ -83,6 +85,22 @@ for (let i = 0; i < NUM_SEED_COMMENTS; i++) {
     )
 }
 
+//Create Times
+const times = []
+for(let i = 0; i < NUM_SEED_TIMES; i = i + 4){
+    for(let j = 0; j < 4; j++){
+        times.push(
+            new Time({
+                author: users[Math.floor((Math.random() * NUM_SEED_USERS)/4*(j+1))]._id,
+                track: tracks[j]._id,
+                hours: Math.floor(Math.random()*3),
+                minutes: Math.floor(Math.random()*60),
+                seconds: Math.floor(Math.random()*60)
+            })
+        )
+    }
+}
+
 // Connect to database
 mongoose
     .connect(db, { useNewUrlParser: true })
@@ -102,9 +120,11 @@ const insertSeeds = () => {
     User.collection.drop()
         .then(() => Track.collection.drop())
         .then(() => Comment.collection.drop())
+        .then(() => Time.collection.drop())
         .then(() => User.insertMany(users))
         .then(() => Track.insertMany(tracks))
         .then(() => Comment.insertMany(comments))
+        .then(() => Time.insertMany(times))
         .then(() => {
             console.log("Done!");
             mongoose.disconnect();
