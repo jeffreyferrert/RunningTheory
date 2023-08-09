@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux"
-import { composeComment, editComment, deleteComment } from "../../store/comments"
+import { composeComment, editComment, deleteComment, fetchComments } from "../../store/comments"
 import { useState } from "react"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 
@@ -19,6 +19,7 @@ export default function Comment({ comment, author, track }) {
         } else {
             dispatch(deleteComment(comment._id))
         }
+        dispatch(fetchComments());
     }
 
     return (
