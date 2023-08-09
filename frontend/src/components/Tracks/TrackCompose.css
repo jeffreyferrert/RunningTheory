@@ -5,8 +5,8 @@
     /* justify-content: center;*/
     align-items: left;
     margin: 30px;
-    border: 3px solid blue;
-
+    /* border: 3px solid blue; */
+    border: solid 1px #ccc;
 
 }
 
@@ -17,15 +17,15 @@
     flex-direction: column;
     justify-content: center;
     gap: 20px;
-    border: 3px solid red;
-
-    width: 400px;
-    /* height: 400px; */
+  
+    width: 380px;
     padding: 0px;
     box-sizing: border-box;
-    background-color: rgb(58, 74, 101);
+    background: linear-gradient(to bottom,  rgb(91, 105, 123) 20%, rgb(81, 94, 110) 90%, rgb(68, 82, 99));    
     color: white;
-    height: 101vh;
+    height: 100vh;  
+    border-left: solid 6px rgb(91, 105, 123);
+    border-right: solid 2px rgb(130, 130, 130);
 }
 
 .form-box{
@@ -39,28 +39,107 @@
     font-family: 'Vollkorn', sans-serif;
     padding: 0px;
     box-sizing: border-box;
-    /* height: ; */
+  
+}
+
+.form-box:focus{
+
+    outline: none;
+
 }
 
 #form-map{
 
     display: flex;
-    border: 3px solid red;
+    /* border: 3px solid red; */
     width: 100%;
     height: 100vh;
+    /* z-index: 0; */
+}
+
+.form-box-button {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-style: none;
+  box-shadow: #d5e3f7 0 -12px 6px inset;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+    font-family: 'Vollkorn', sans-serif; 
+  letter-spacing: -.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.3rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.form-box-button:hover {
+  background-color: #F7BE56;
+  box-shadow: #F7BE56 0 -6px 8px inset;
+  transform: scale(1.02);
+}
+
+.form-box-button:active {
+  transform: scale(1.02);
+}
+
+@media (min-width: 768px) {
+  .form-box-button {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+}
+
+#address-check{
+
+    position: relative;
+    /* left: 10px; */
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: center;
+    height: 50px;
 
 }
 
-.form-box-button{
 
-    display: flex;
-    justify-content: center;
-    gap: 3px;
-    width: 95%;
-    height: 50px;
+#button-form1{
+
     font-size: 17px;
-    font-family: 'Vollkorn', sans-serif;
+
+}
+
+
+#button-form2{
+
+    font-size: 17px;
+
+}
+
+#form-submit{
+
+    width: 95%;
+    height: 35px;
+    text-align: center;
+    line-height: 0.4;
+    margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
-    
+    font-size: 20px;
+    position: relative;
+    bottom: 12px;
+}
+
+#create-title{
+
+    font-size: 25px;
+    color: #F7BE56;
 }

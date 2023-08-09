@@ -59,6 +59,7 @@ function TrackCompose() {
         <div id='create-track-main'>
                 <form className="compose-track" onSubmit={handleSubmit}>
                     <div id='form-cont'>
+                        <div id='create-title'>Create Your Track</div>
                         <div > Give Your Track A Name
                         <input 
                             className='form-box'
@@ -79,7 +80,7 @@ function TrackCompose() {
                             required
                         />
                         </div>
-                        <div > Start Location
+                        <div  > Start Location
                         <input
                             className='form-box'
                             type="textarea"
@@ -99,8 +100,10 @@ function TrackCompose() {
                             required
                         />
                         </div>
-                        <button  className='form-box-button' onClick={handleClick}>Check Address</button>
-                        <button  className='form-box-button'onClick={handleReset}>Rest Address</button>
+                        <div id='address-check'>
+                            <button  id='button-form1' className='form-box-button' onClick={handleClick}>Check Address</button>
+                            <button id='button-form2' className='form-box-button'onClick={handleReset}>Reset Address</button>
+                        </div>
                         <div >Input The Approximate Distance
                         <input
                             className='form-box'
@@ -126,7 +129,7 @@ function TrackCompose() {
                             <div className="errors">{errors?.text}</div>
                         </div>
                         <div>
-                        <input id='form-submit' className='form-box' type="submit" value="Submit" />
+                        <input id='form-submit' className='form-box-button' type="submit" value="Submit" />
                         </div>
                     </div>
                 </form>
