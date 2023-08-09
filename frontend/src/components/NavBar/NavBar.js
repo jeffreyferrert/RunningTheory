@@ -65,11 +65,9 @@ function NavBar() {
         <div className="links-nav">
           {/* <div id='user-name-container'></div> */}
           
-          <div id='drop-container' onMouseEnter={open} onMouseLeave={close}>
-          
-          </div>
+      
 
-          {menu ? <> <div id='main-drop-cont'> <div id='all-track' onMouseEnter={open} onMouseLeave={close}>
+          {menu ? <> <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='all-track' >
             <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
           </div>
           
@@ -77,11 +75,11 @@ function NavBar() {
             <Link className='button-link' to={'/profile'}>{user.username}</Link>
           </div>
           <div>
-            <Link className='button-link' to={'/tracks/new'}>Create a Track</Link>
+            <Link className='button-link' to={'/tracks/new'}>Create Track</Link>
           </div>
           <div>
             <Link className='button-link' onClick={logoutUser}>Logout</Link>
-          </div> </div> </> : <div id='main-drop-cont'>  <div id='all-track' onMouseEnter={open} onMouseLeave={close}>
+          </div> </div> </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}><div id='all-track'>
             <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
           </div> </div> }
         </div>
