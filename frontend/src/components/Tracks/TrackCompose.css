@@ -1,0 +1,173 @@
+
+#create-track-main{
+
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    margin: 30px;
+    border: solid 0.5px #b0b0b0;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 10px 6px 6px rgba(0,0,0,0.23);
+
+}
+
+
+
+
+#form-cont{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 380px;
+    padding: 0px;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom,  rgb(205, 205, 205) 20%, rgb(215, 215, 215) 90%, rgb(208, 208, 208));    
+    color: black;
+    height: 100vh;  
+    border-left: solid 6px  rgb(208, 208, 208);
+    border-right: solid 3px rgb(113, 108, 108);
+
+}
+
+#form-cont:hover{
+
+    border-right: solid 5px #F7BE56;
+ 
+
+}
+
+.form-box{
+
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    width: 95%;
+    height: 50px;
+    font-size: 17px;
+    font-family: 'Vollkorn', sans-serif;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid rgb(221, 221, 221);
+   
+
+  
+}
+
+
+.form-box:hover{
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+
+}
+
+.form-box:focus{
+
+    outline: none;
+
+}
+
+#form-map{
+
+    display: flex;
+    width: 100%;
+    height: 100vh;
+ 
+}
+
+.form-box-button {
+    
+    box-shadow: 20px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0,0,0,0.23);
+    appearance: none;
+    background-color: #FFFFFF;
+    border-style: none;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Vollkorn', sans-serif; 
+    letter-spacing: -.24px;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1.3rem;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.form-box-button:hover {
+  background-color: #F7BE56;
+  box-shadow: #F7BE56 0 -6px 8px inset;
+  transform: scale(1.02);
+}
+
+.form-box-button:active {
+  transform: scale(1.02);
+}
+
+@media (min-width: 768px) {
+  .form-box-button {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+}
+
+#address-check{
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: center;
+    height: 50px;
+
+}
+
+
+#button-form1{
+
+    font-size: 17px;
+
+}
+
+
+#button-form2{
+
+    font-size: 17px;
+
+}
+
+#form-submit{
+
+    width: 95%;
+    height: 35px;
+    text-align: center;
+    line-height: 0.4;
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    position: relative;
+    bottom: 12px;
+}
+
+#create-title{
+
+    font-size: 30px;
+    color: rgb(87, 143, 138);
+    border-bottom: 1.5px solid #F7BE56;
+    
+}
+
+
+#title-cont{
+
+    width: 95%;
+
+}
