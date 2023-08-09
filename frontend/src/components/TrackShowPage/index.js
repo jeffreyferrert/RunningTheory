@@ -39,16 +39,16 @@ function TrackShowPage() {
 
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
-          <h1>Track Name</h1>
+          <h1>{track.name}</h1>
           <div className="track-container">
             <h2>General Info</h2>
-            <span>Starting Line: </span> test
+            <span>Starting Line: </span> {track.startAddress}
             <br></br>
-            <span>Finish Line: </span> test
+            <span>Finish Line: </span> {track.endAddress}
             <br></br>
-            <span>Distance: </span> 88 miles
+            <span>Distance: </span> {track.miles} miles
             <br></br>
-            <span>Description: </span> weiruhweiruwheriuwheriuhweriuhweiurhwieurhwuierhewiurew
+            <span>Description: </span> {track.description}
           </div>
 
           <div className="track-container">
@@ -63,14 +63,14 @@ function TrackShowPage() {
             <br></br>
 
             <form onSubmit={handleTimeSubmit}>
-  
-                <input
-                  className="time-bar"
-                  type="integer"
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
-                />
-                <button className="track-add-time" type="submit">Add Your Time</button>
+
+              <input
+                className="time-bar"
+                type="integer"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+              />
+              <button className="track-add-time" type="submit">Add Your Time</button>
 
 
             </form>
@@ -81,54 +81,52 @@ function TrackShowPage() {
 
 
           <div className="track-container">
-             <h2>Comments:</h2>
-      <ul>
-        {comments.map((comment, index) => (
-          <Comment key={index} comment={comment} author={author} track={track} />
-        ))}
-      </ul>
+            <h2>Comments:</h2>
+            <ul>
+              {comments.map((comment, index) => (
+                <Comment key={index} comment={comment} author={author} track={track} />
+              ))}
+            </ul>
 
-          {showCommentForm ? (
-            <div>
-              <form onSubmit={(e) => handleSubmit(e)}>
-                <h3>Create Comment</h3>
-                <label>Description
-                  <input
-                    type="text"
-                    value={newComment}
-                    name="newComment"
-                    onChange={(e) => { setNewComment(e.target.value) }}
-                  />
-                </label>
-                <input type="submit" value={`New Comment`} />
-              </form>
-              <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
-            </div>
-          ) : (
-            <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
-          )}
+            {showCommentForm ? (
+              <div>
+                <form onSubmit={(e) => handleSubmit(e)}>
+                  <h3>Create Comment</h3>
+                  <label>Description
+                    <input
+                      type="text"
+                      value={newComment}
+                      name="newComment"
+                      onChange={(e) => { setNewComment(e.target.value) }}
+                    />
+                  </label>
+                  <input type="submit" value={`New Comment`} />
+                </form>
+                <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
               </div>
             ) : (
               <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
             )}
-          </div>
-          
-          <div className="track-container">
-            <h2>Other Tracks</h2>
-
-          </div>
-            
 
         </div>
 
-        <div className='ts-right-container'>
-          <div className='ts-map'>
-            {/* MAP COMPONENT GOES HERE */}
-            <MapTrack />
-          </div>
+        <div className="track-container">
+          <h2>Other Tracks</h2>
+
         </div>
+
 
       </div>
+
+      <div className='ts-right-container'>
+        <div className='ts-map'>
+          {/* MAP COMPONENT GOES HERE */}
+          <MapTrack />
+        </div>
+      </div>
+
+    </div >
+        
 
     </>
 
