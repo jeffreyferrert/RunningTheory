@@ -59,7 +59,7 @@ function TrackCompose() {
         <div id='create-track-main'>
                 <form className="compose-track" onSubmit={handleSubmit}>
                     <div id='form-cont'>
-                        <div id='create-title'>Create Your Track</div>
+                        <div id='create-title' className='shine'>Create Your Track</div>
                         <div > Give Your Track A Name
                         <input 
                             className='form-box'
@@ -104,7 +104,7 @@ function TrackCompose() {
                             <button  id='button-form1' className='form-box-button' onClick={handleClick}>Check Address</button>
                             <button id='button-form2' className='form-box-button'onClick={handleReset}>Reset Address</button>
                         </div>
-                        <div >Input The Approximate Distance
+                        <div >Input The Approximate Distance in Miles
                         <input
                             className='form-box'
                             type="number"
