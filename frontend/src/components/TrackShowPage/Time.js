@@ -28,7 +28,21 @@ export default function Time({ time, currUser }) {
                     </form>
                 ) : null}
             </div>
-        ) : null
+        ) : (
+            <div>
+                <p>{time.track.name}</p>
+                <p>
+                    {time.hours < 10 ? "0" + time.hours : time.hours}:
+                    {time.minutes < 10 ? "0" + time.minutes : time.minutes}:
+                    {time.seconds < 10 ? "0" + time.seconds : time.seconds}
+                </p>
+                {time.author._id === currUser._id ? (
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                        <input type="submit" value={`Remove Time`} />
+                    </form>
+                ) : null}
+            </div>
+        )
     )
 
 }
