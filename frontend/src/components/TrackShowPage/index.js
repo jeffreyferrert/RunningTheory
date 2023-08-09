@@ -48,6 +48,9 @@ function TrackShowPage() {
   return (
     <>
 
+            {/* <div className="img">
+              <img src="https://www.esbnyc.com/sites/default/files/2020-01/ESB%20Day.jpg"></img>
+            </div> */}
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
         {track && (
@@ -55,13 +58,15 @@ function TrackShowPage() {
             <h1>{track.name}</h1>
             <div className="track-container">
               <h2>General Info</h2>
-              <span>Starting Line: {track.startAddress}</span>
-              <br />
-              <span>Finish Line: {track.endAddress}</span>
-              <br />
-              <span>Distance: {track.miles} miles</span>
-              <br />
-              <span>Description: {track.description}</span>
+              <div className ="track-general-info">
+                <span>Starting Line:</span> {track.startAddress}
+                <br />
+                <span>Finish Line:</span> {track.endAddress}
+                <br />
+                <span>Distance:</span> {track.miles} miles
+                <br />
+                <span>Description:</span> {track.description}
+              </div>
             </div>
           </>
         )}
@@ -85,7 +90,7 @@ function TrackShowPage() {
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
               />
-              <button className="track-add-time" type="submit">Add Your Time</button>
+              <button className="track-btns" type="submit">Add Your Time</button>
 
 
             </form>
@@ -96,7 +101,7 @@ function TrackShowPage() {
 
 
           <div className="track-container">
-            <h2>Comments:</h2>
+            <h2>Comments</h2>
             <ul>
               {comments.map((comment, index) => (
                 <Comment key={index} comment={comment} author={author} track={track} />
@@ -115,19 +120,15 @@ function TrackShowPage() {
                       onChange={(e) => { setNewComment(e.target.value) }}
                     />
                   </label>
-                  <input type="submit" value={`New Comment`} />
+                  <input className="comment-btns" type="submit" value={`Add Comment`} />
                 </form>
-                <button onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
+                <button className="track-btns" onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
               </div>
             ) : (
-              <button onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
+              <button className="track-btns" onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
             )}
         </div>
 
-        <div className="track-container">
-          <h2>Other Tracks</h2>
-
-        </div>
 
 
       </div>
