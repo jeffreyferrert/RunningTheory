@@ -19,7 +19,6 @@ function TrackCompose() {
     const [startAddress, setStartAddress] = useState('');
     const [endAddress, setEndAddress] = useState('');
     const [mapForm, setMapForm] = useState(false);
-    const newTrack = useSelector(state => state.tracks.new);
   
     useEffect(() => {
         return () => dispatch(clearTrackErrors());

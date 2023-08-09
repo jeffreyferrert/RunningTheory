@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
-const MapTrack = ({ track }) => {
+const MapTrackForm = ({ track }) => {
   const containerStyle = {
     width: '100%',
     height: '100vh',
   };
 
-  const startAddress = '123 Riverside Drive New York City' //track.startAddress
-  const endAddress = '11 W 53rd St, New York, NY 10019';  //track.endAddress
+
+  const startAddress =  track.startAddress
+  const endAddress = track.endAddress
 
   const [startLatLng, setStartLatLng] = useState(null);
   const [endLatLng, setEndLatLng] = useState(null);
@@ -19,6 +20,11 @@ const MapTrack = ({ track }) => {
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
 
   });
+
+  const center = {
+    lat: 40.7873414,
+    lng: -73.9516308,
+  };
 
   const onLoad = useCallback(function callback(map) {
     setMap(map);
@@ -91,17 +97,17 @@ const MapTrack = ({ track }) => {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={startLatLng}
+      center={startAddress}
       zoom={2.7}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      <Marker position={startLatLng} />
-      <Marker position={endLatLng} />
+      {/* <Marker position={startLatLng} />
+      <Marker position={endLatLng} /> */}
     </GoogleMap>
   ) : (
     <></>
   );
 };
 
-export default MapTrack;
+export default MapTrackForm;
