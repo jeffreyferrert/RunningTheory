@@ -30,7 +30,7 @@ function TrackShowPage() {
   }, [dispatch, trackId])
 
   function handleSubmit(e) {
-    // e.preventDefault()
+    // e.preventDefault() hoho
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
   }
