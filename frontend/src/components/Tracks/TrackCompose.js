@@ -26,7 +26,7 @@ function TrackCompose() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(composeTrack({author, name, location, miles, description }));
+        dispatch(composeTrack({author, name, location, miles, description, startAddress, endAddress}));
         setName('');
         setLocation('');
         setMiles(0);
@@ -74,8 +74,8 @@ function TrackCompose() {
                         <input
                             className='form-box'
                             type="textarea"
-                            value={city}
-                            onChange={e => setCity(e.currentTarget.value)}
+                            value={location}
+                            onChange={e => setLocation(e.currentTarget.value)}
                             placeholder="Write your track location..."
                             required
                         />
