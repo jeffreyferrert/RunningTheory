@@ -1,16 +1,16 @@
-#root{
+#root {
     margin: 0px;
     padding: 0px;
 }
 
-#navbar-main{ 
+#navbar-main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: relative;
     top: 0px;
     right: -7px;
-    background: linear-gradient(to bottom,  rgb(91, 105, 123) 20%, rgb(81, 94, 110) 90%, rgb(68, 82, 99));
+    background: linear-gradient(to bottom, rgb(91, 105, 123) 20%, rgb(81, 94, 110) 90%, rgb(68, 82, 99));
     height: 75px;
     border-radius: 5px;
     margin-top: 0px;
@@ -21,7 +21,7 @@
     z-index: 0;
 }
 
-#logo-container{
+#logo-container {
     height: 70px;
     width: 160px;
     position: relative;
@@ -32,18 +32,18 @@
     padding-left: 5px;
 }
 
-#logo-container:hover{
-  cursor: pointer;
+#logo-container:hover {
+    cursor: pointer;
 }
 
-#main-logo{
+#main-logo {
     position: absolute;
     left: -10px;
     height: 100%;
     border-radius: 100px;
 }
 
-.links-nav{
+.links-nav {
     z-index: 2;
 }
 
@@ -54,43 +54,40 @@
 #logout-button {
     display: inline-block;
     text-decoration: none;
-  --border: 0px;    
-  --slant: 0.0em;   
-  --color: rgb(197, 197, 197);
+    --border: 0px;
+    --slant: 0.0em;
+    --color: rgb(197, 197, 197);
     margin-top: 18px;
-  padding: 0.4em 1.2em;
-  border: solid 2px rgb(215, 215, 215);
-  border-radius: 2px;
-  cursor: pointer;
-  font-weight: bold;
-  color: var(--color);
-  background: 
-  linear-gradient(to bottom left, var(--color) 50%, #0000 50.1%) top right,
-  linear-gradient(to top right, var(--color) 50%, #0000 50.1%) bottom left,
-  linear-gradient(to top left, var(--color) 50%, #0000 50.1%) bottom right,
-  linear-gradient(to bottom right, var(--color) 50%, #0000 50.1%) top left;
-  background-size: calc(var(--slant) + 1.3*var(--border)) calc(var(--slant) + 1.3*var(--border));
-  background-repeat: no-repeat;
-  box-shadow:
-    0 0 0 200px inset var(--s,#0000),
-    0 0 0 var(--border) inset var(--color);
-  clip-path: polygon
-  (
-    0 0, 
-    calc(100% - var(--slant)) 0, 
-    100% var(--slant), 
-    100% calc(100% - var(--slant)), 
-    var(--slant) 100%, 
-    0 var(--slant)
-  );
-  transition: color var(--t,0.3s), background-size 0.3s;
+    padding: 0.4em 1.2em;
+    border: solid 2px rgb(215, 215, 215);
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color);
+    background:
+        linear-gradient(to bottom left, var(--color) 50%, #0000 50.1%) top right,
+        linear-gradient(to top right, var(--color) 50%, #0000 50.1%) bottom left,
+        linear-gradient(to top left, var(--color) 50%, #0000 50.1%) bottom right,
+        linear-gradient(to bottom right, var(--color) 50%, #0000 50.1%) top left;
+    background-size: calc(var(--slant) + 1.3*var(--border)) calc(var(--slant) + 1.3*var(--border));
+    background-repeat: no-repeat;
+    box-shadow:
+        0 0 0 200px inset var(--s, #0000),
+        0 0 0 var(--border) inset var(--color);
+    clip-path: polygon (0 0,
+            calc(100% - var(--slant)) 0,
+            100% var(--slant),
+            100% calc(100% - var(--slant)),
+            var(--slant) 100%,
+            0 var(--slant));
+    transition: color var(--t, 0.3s), background-size 0.3s;
 }
 
-.links-auth{
+.links-auth {
     margin-right: 5px;
 }
 
-.links-nav{
+.links-nav {
     margin-right: 5px;
 }
 
@@ -114,8 +111,7 @@
 #logout-button:hover,
 #signup:active,
 #login:active,
-#logout-button:active
- {
+#logout-button:active {
     background-size: 100% 100%;
     color: rgb(87, 143, 138);
     --t: 0.2s 0.1s;
@@ -132,36 +128,35 @@
 
 }
 
-#logout-button{
+#logout-button {
     height: 35px;
     position: relative;
     top: -1px;
 }
 
-#user-name{
-text-align: right;
-margin-right: 10px;
+#user-name {
+    text-align: right;
+    margin-right: 10px;
 }
 
-#nav-search{
-    border-radius: 3px;
+#nav-search {
+    border-radius: 1000px;
     width: 100%;
     height: 30px;
     border: none;
     font-family: 'Vollkorn', sans-serif;
     font-size: 17px;
-    padding: 2px;
-    padding-left: -10px;
+    background-color: #ffffff;
+    color: #000000;
+    width: 550px;
+    padding-left: 15px;
 }
 
-#nav-search:focus{
+#nav-search:focus {
     outline: 0;
 }
 
 #nav-search-container {
-    position: relative;
-    top: 0px;
-    right: -15px;
-    width: 40%;
-    padding-left: 10px;
+    margin: auto;
+    /* width: 700px; */
 }

@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearTrackErrors, composeTrack } from '../../store/tracks';
 import TrackBox from './TrackBox';
 import './TrackCompose.css';
-import MapTracks from '../Map/MapTracks';
-import MapTrack from '../Map/MapTrack';
 import MapTrackForm from '../Map/MapTrackForm';
 import MapTrackDefault from '../Map/MapTrackDefault';
 
@@ -21,12 +19,12 @@ function TrackCompose() {
     const [startAddress, setStartAddress] = useState('');
     const [endAddress, setEndAddress] = useState('');
     const [mapForm, setMapForm] = useState(false);
-
-    //
+    const newTrack = useSelector(state => state.tracks.new);
+  
     useEffect(() => {
         return () => dispatch(clearTrackErrors());
     }, [dispatch, mapForm]);
-    
+
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(composeTrack({author, name, location, miles, description }));
@@ -35,7 +33,7 @@ function TrackCompose() {
         setMiles(0);
         setDescription('');
     };
-    
+  
     
     const handleReset = (e) => {
         e.preventDefault();
@@ -56,6 +54,7 @@ function TrackCompose() {
 
     return (
         <>
+
         <div id='create-track-main'>
                 <form className="compose-track" onSubmit={handleSubmit}>
                     <div id='form-cont'>
@@ -139,9 +138,11 @@ function TrackCompose() {
                     {mapForm ? <MapTrackForm track={track} /> :  <MapTrackDefault />}
                     </div>
             </div>
+
             <div className="previous-track">
                 {newTrack ? (<>  <h3>Track Created</h3> <TrackBox track={newTrack} /> </>) : undefined}
             </div>
+
         </>
     )
 }

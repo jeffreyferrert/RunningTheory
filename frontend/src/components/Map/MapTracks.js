@@ -8,7 +8,7 @@ const MapTracks = ({ tracks }) => {
   const [selectedTrack, setSelectedTrack] = useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
+    // googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
   });
 
   const containerStyle = {

@@ -17,7 +17,7 @@ const receiveComments = comments => ({
     comment
   });
 
-  const deleteComment = commentId => ({
+  const removeComment = commentId => ({
     type: DELETE_COMMENT,
     commentId
   }); 
@@ -68,6 +68,31 @@ const receiveComments = comments => ({
       }
     }
   };
+
+  export const editComment = (commentId, data) => async dispatch => {
+    try {
+      const res = await jwtFetch(`/api/comments/${commentId}`, {
+        method: 'PATCH',
+        body: JSON.stringify(data)
+      });
+      const comment = await res.json();
+      dispatch(receiveNewComment(comment));
+    } catch(err) {
+      const resBody = await err.json();
+      if (resBody.statusCode === 400) {
+        return dispatch(receiveErrors(resBody.errors));
+      }
+    }
+  };
+  
+  export const deleteComment = (commentId) => async (dispatch) => {
+    const res = await jwtFetch(`/api/comments/${commentId}`, {
+        method: 'DELETE'
+    });
+    if (res.ok) {
+        dispatch(removeComment(commentId));
+    }
+};
 
   const nullErrors = null;
 
