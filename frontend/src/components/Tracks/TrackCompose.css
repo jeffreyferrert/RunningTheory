@@ -1,7 +1,7 @@
 #create-track-main{
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     /* justify-content: center;*/
     align-items: left;
     margin: 30px;
@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     border: 3px solid red;
 
     width: 400px;
@@ -25,6 +25,7 @@
     box-sizing: border-box;
     background-color: rgb(58, 74, 101);
     color: white;
+    height: 101vh;
 }
 
 .form-box{
@@ -34,9 +35,18 @@
     gap: 3px;
     width: 95%;
     height: 50px;
-    font-size: 15px;
+    font-size: 17px;
     font-family: 'Vollkorn', sans-serif;
     padding: 0px;
     box-sizing: border-box;
+    /* height: ; */
 }
 
+#form-map{
+
+    display: flex;
+    border: 3px solid red;
+    width: 100%;
+    height: 100vh;
+
+}

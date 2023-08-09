@@ -99,8 +99,8 @@ function TrackCompose() {
                             required
                         />
                         </div>
-                        <button onClick={handleClick}>Check Address</button>
-                        <button onClick={handleReset}>Rest Address</button>
+                        <button id='' className='form-box' onClick={handleClick}>Check Address</button>
+                        <button  className='form-box'onClick={handleReset}>Rest Address</button>
                         <div >Input The Approximate Distance
                         <input
                             className='form-box'
@@ -130,7 +130,7 @@ function TrackCompose() {
                         </div>
                     </div>
                 </form>
-                    <div>
+                    <div id='form-map'>
                     {mapForm ? <MapTrackForm track={track} /> :  <MapTrackDefault />}
                     </div>
             </div>
