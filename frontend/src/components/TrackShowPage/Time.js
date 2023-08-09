@@ -7,9 +7,15 @@ import { deleteTime } from "../../store/times"
 export default function Time({ time, currUser }) {
     const dispatch = useDispatch()
     const { trackId } = useParams()
+<<<<<<< HEAD
     console.log(time.track._id)
     console.log(trackId)
     function handleSubmit(e) {
+=======
+    // console.log(time.track._id)
+    // console.log(trackId)
+    function handleSubmit(e){
+>>>>>>> main
         dispatch(deleteTime(time._id))
     }
 

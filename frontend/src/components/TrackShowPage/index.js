@@ -16,20 +16,21 @@ function TrackShowPage() {
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
-  const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
   
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
   const [time, setTime] = useState(0)
-
+  
   useEffect(() => {
     dispatch(fetchTracks())
     dispatch(fetchComments())
     dispatch(fetchTimes())
   }, [dispatch, trackId])
+  
+  const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
 
   function handleSubmit(e) {
-    // e.preventDefault() hoho
+    e.preventDefault() 
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
   }
@@ -49,17 +50,23 @@ function TrackShowPage() {
 
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
-          <h1>Track Name</h1>
-          <div className="track-container">
-            <h2>General Info</h2>
-            <span>Starting Line: </span> {track.name}
-            <br></br>
-            <span>Finish Line: </span> test
-            <br></br>
-            <span>Distance: </span> 88 miles
-            <br></br>
-            <span>Description: </span> weiruhweiruwheriuwheriuhweriuhweiurhwieurhwuierhewiurew
-          </div>
+
+        {track && (
+          <>
+            <h1>{track.name}</h1>
+            <div className="track-container">
+              <h2>General Info</h2>
+              <span>Starting Line: {track.startAddress}</span>
+              <br />
+              <span>Finish Line: {track.endAddress}</span>
+              <br />
+              <span>Distance: {track.miles} miles</span>
+              <br />
+              <span>Description: {track.description}</span>
+            </div>
+          </>
+        )}
+
 
           <div className="track-container">
             <h2>Leaderboard</h2>
@@ -68,6 +75,7 @@ function TrackShowPage() {
                 // <div className={`leaderboard${index}`}>{time}</div>
                 <li className={index}>
                   <Time key={index} time={time} currUser={author} />
+
                 </li>
               ))): null }
             </ol>
