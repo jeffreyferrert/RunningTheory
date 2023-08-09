@@ -67,7 +67,7 @@ function TrackShowPage() {
               {times ? (times.map((time, index) => (
                 // <div className={`leaderboard${index}`}>{time}</div>
                 <li className={index}>
-                  <Time key={index} time={time}  />
+                  <Time key={index} time={time} currUser={author} />
                 </li>
               ))): null }
             </ol>
