@@ -16,21 +16,21 @@ function TrackShowPage() {
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
-  const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
   
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all))
-  console.log(times)
   const [time, setTime] = useState(0)
-
+  
   useEffect(() => {
     dispatch(fetchTracks())
     dispatch(fetchComments())
     dispatch(fetchTimes())
   }, [dispatch, trackId])
+  
+  const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
 
   function handleSubmit(e) {
-    // e.preventDefault() hoho
+    e.preventDefault() 
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
   }
@@ -50,24 +50,28 @@ function TrackShowPage() {
 
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
-          <h1>{track.name}</h1>
-          <div className="track-container">
-            <h2>General Info</h2>
-            <span>Starting Line: </span> {track.startAddress}
-            <br></br>
-            <span>Finish Line: </span> {track.endAddress}
-            <br></br>
-            <span>Distance: </span> {track.miles} miles
-            <br></br>
-            <span>Description: </span> {track.description}
-          </div>
+        {track && (
+          <>
+            <h1>{track.name}</h1>
+            <div className="track-container">
+              <h2>General Info</h2>
+              <span>Starting Line: {track.startAddress}</span>
+              <br />
+              <span>Finish Line: {track.endAddress}</span>
+              <br />
+              <span>Distance: {track.miles} miles</span>
+              <br />
+              <span>Description: {track.description}</span>
+            </div>
+          </>
+        )}
 
           <div className="track-container">
             <h2>Leaderboard</h2>
             <ol>
               {times.map((time, index) => (
                 // <div className={`leaderboard${index}`}>{time}</div>
-                <li className={index}>
+                <li className={index} key={index}>
                   <Time key={index} time={time}  />
                 </li>
               ))}
