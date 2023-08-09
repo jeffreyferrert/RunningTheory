@@ -55,7 +55,7 @@ function NavBar() {
           <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
           <Link className='button-link' to={'/profile'}>{user.username}</Link>
           <Link className='button-link' to={'/tracks/new'}>Create a Track</Link>
-          <Link className='button-link' onClick={logoutUser}>Logout</Link>
+          <Link className='button-link' to={'/'} onClick={logoutUser}>Logout</Link>
         </div>
       );
     } else {

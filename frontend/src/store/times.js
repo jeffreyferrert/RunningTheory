@@ -3,6 +3,7 @@ import jwtFetch from './jwt';
 export const RECEIVE_TIMES = "times/RECEIVE_TIMES";
 export const RECEIVE_NEW_TIME = "times/RECEIVE_NEW_TIME";
 export const DELETE_TIME = "times/DELETE_TIME";
+export const RECEIVE_USER_TIMES = "times/RECEIVE_USER_TIMES"
 export const RECEIVE_TIME_ERRORS = "comments/RECEIVE_COMMENT_ERRORS";
 export const CLEAR_TIME_ERRORS = "comments/CLEAR_COMMENT_ERRORS";
 
@@ -16,6 +17,11 @@ const receiveNewTime = time => ({
     time
 });
 
+const receiveUserTimes = times => ({
+  type: RECEIVE_USER_TIMES,
+  times
+});
+
 const removeTime = timeId => ({
     type: DELETE_TIME,
     timeId
@@ -26,7 +32,7 @@ const receiveErrors = errors => ({
     errors
   });
   
-  export const clearTrackErrors = errors => ({
+  export const clearTimeErrors = errors => ({
       type: CLEAR_TIME_ERRORS,
       errors
   });
@@ -70,6 +76,19 @@ export const fetchTimes = () => async dispatch => {
     }
 };
 
+export const fetchUserTimes = id => async dispatch => {
+  try {
+    const res = await jwtFetch(`/api/times/user/${id}`);
+    const times = await res.json();
+    dispatch(receiveUserTimes(times));
+  } catch(err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
 const nullErrors = null;
 
 export const timeErrorsReducer = (state = nullErrors, action) => {
@@ -84,13 +103,15 @@ export const timeErrorsReducer = (state = nullErrors, action) => {
     }
   };
 
-  const timesReducer = (state = {all: {}}, action) => {
+  const timesReducer = (state = {all: {}, user: {}}, action) => {
     let newState = state
     switch(action.type) {
         case RECEIVE_TIMES:
             return { ...newState, all: action.times}
         case RECEIVE_NEW_TIME:
           newState[action.time.id] = action.time;
+        case RECEIVE_USER_TIMES:
+          return { ...state, user: action.times}
           return newState;
         default:
              return state

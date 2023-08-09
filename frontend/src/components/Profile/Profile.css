@@ -1,0 +1,8 @@
+.profile-container{
+    display:flex
+}
+
+.profile-tracks .profile-times{
+    width: 45%;
+    margin: 10px;
+}
