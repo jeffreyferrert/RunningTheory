@@ -7,15 +7,9 @@ import { deleteTime } from "../../store/times"
 export default function Time({ time, currUser }) {
     const dispatch = useDispatch()
     const { trackId } = useParams()
-<<<<<<< HEAD
-    console.log(time.track._id)
-    console.log(trackId)
-    function handleSubmit(e) {
-=======
     // console.log(time.track._id)
     // console.log(trackId)
-    function handleSubmit(e){
->>>>>>> main
+    function handleSubmit(e) {
         dispatch(deleteTime(time._id))
     }
 
@@ -23,7 +17,11 @@ export default function Time({ time, currUser }) {
         time.track._id === trackId ? (
             <div>
                 <p>{time.author.username}</p>
-                <p>{time.hours}:{time.minutes}:{time.seconds}</p>
+                <p>
+                    {time.hours < 10 ? "0" + time.hours : time.hours}:
+                    {time.minutes < 10 ? "0" + time.minutes : time.minutes}:
+                    {time.seconds < 10 ? "0" + time.seconds : time.seconds}
+                </p>
                 {time.author._id === currUser._id ? (
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <input type="submit" value={`Remove Time`} />

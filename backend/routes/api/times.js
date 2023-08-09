@@ -21,7 +21,9 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res, next) => {
     try {
       const newTime = new Time({
-        description: req.body.description,
+        seconds: req.body.seconds,
+        minutes: req.body.minutes,
+        hours: req.body.hours,
         author: req.body.author._id,
         track: req.body.track._id
       });

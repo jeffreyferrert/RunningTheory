@@ -37,6 +37,7 @@ function TrackShowPage() {
 
   function handleTimeSubmit(e) {
     let arrTime = time.split(":")
+    console.log(arrTime)
     if(arrTime.length === 3){
       dispatch(composeTime({hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track}))
     } else if (arrTime.length === 2){
