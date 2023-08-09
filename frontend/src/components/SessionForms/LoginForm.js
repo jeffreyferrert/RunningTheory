@@ -55,33 +55,6 @@ function LoginForm () {
 
   return (
 
-    // <form className="session-form" onSubmit={handleSubmit}>
-    //   <h2>Log In Form</h2>
-    //   <div className="errors">{errors?.email}</div>
-    //   <label>
-    //     <span>Email</span>
-    //     <input type="text"
-    //       value={email}
-    //       onChange={update('email')}
-    //       placeholder="Email"
-    //     />
-    //   </label>
-    //   <div className="errors">{errors?.password}</div>
-    //   <label>
-    //     <span>Password</span>
-    //     <input type="password"
-    //       value={password}
-    //       onChange={update('password')}
-    //       placeholder="Password"
-    //     />
-    //   </label>
-    //   <input
-    //     type="submit"
-    //     value="Log In"
-    //     disabled={!email || !password}
-    //   />
-    // </form>
-
     <div className="login-main-container">
       <div className="login-form-container">
 
@@ -126,14 +99,7 @@ function LoginForm () {
           <Link to="signup" className="link"> Sign up</Link>
           
         </div>
-        <div className="hi">
-              hi
-        </div>
-         {/* <input
-      type="submit"
-      value="Demo User"
-      onSubmit={handleDemoUser}
-      disabled={!email || !password} /> */}
+        
     </div>
   );
 }

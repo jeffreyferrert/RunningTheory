@@ -26,6 +26,8 @@ function TrackShowPage() {
     dispatch(fetchComments())
     dispatch(fetchTimes())
   }, [dispatch, trackId])
+
+  let tracks = useSelector(state => Object.values(state.tracks.all));
   
   const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
 

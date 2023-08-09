@@ -1,4 +1,4 @@
-#landing-main-container{
+#landing-main-container {
 
     position: absolute;
     top: 0px;
@@ -14,13 +14,13 @@
     height: 100vh;
 }
 
-#main-img{
+#main-img {
     width: 100vw;
     height: 100vh;
     z-index: 0;
 }
 
-#search-bar-container{
+#search-bar-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,12 +32,13 @@
     z-index: 1;
 }
 
-#main-text{
+#main-text {
     position: relative;
-    left: 295px;
     font-family: 'Vollkorn', sans-serif;
-    font-size: 45px;
+    font-size: 60px;
     color: #F7BE56;
+    align-self: center;
+    margin-bottom: 10px;
     text-shadow:
         -1px -1px 0 #454545,
         1px -1px 0 #878686,
