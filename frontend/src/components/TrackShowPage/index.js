@@ -18,7 +18,7 @@ function TrackShowPage() {
   const [showCommentForm, setShowCommentForm] = useState(false)
 
   const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
-
+  console.log(track)
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all))
   console.log(times)
@@ -27,6 +27,7 @@ function TrackShowPage() {
   useEffect(() => {
     dispatch(fetchComments())
     dispatch(fetchTimes())
+    dispatch(fetchTracks())
   }, [dispatch, trackId])
 
   function handleSubmit(e) {
