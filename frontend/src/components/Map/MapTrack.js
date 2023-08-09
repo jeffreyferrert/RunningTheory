@@ -7,8 +7,9 @@ const MapTrack = ({ track }) => {
     height: '100vh',
   };
 
-  const startAddress = '123 Riverside Drive New York City' //track.startAddress
-  const endAddress = '11 W 53rd St, New York, NY 10019';  //track.endAddress
+  
+  const startAddress = track.startAddress
+  const endAddress = track.endAddress
 
   const [startLatLng, setStartLatLng] = useState(null);
   const [endLatLng, setEndLatLng] = useState(null);
@@ -88,7 +89,10 @@ const MapTrack = ({ track }) => {
     }
   }, [isLoaded, map, directionsRenderer, startLatLng, endLatLng]);
 
-  return isLoaded ? (
+  return (
+    <>
+    {
+      isLoaded  && (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={startLatLng}
@@ -99,9 +103,9 @@ const MapTrack = ({ track }) => {
       <Marker position={startLatLng} />
       <Marker position={endLatLng} />
     </GoogleMap>
-  ) : (
-    <></>
-  );
+    ) }
+    </>
+  )
 };
 
 export default MapTrack;

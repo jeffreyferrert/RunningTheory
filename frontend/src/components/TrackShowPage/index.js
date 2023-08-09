@@ -139,12 +139,17 @@ function TrackShowPage() {
 
       </div>
 
-      <div className='ts-right-container'>
-        <div className='ts-map'>
-          {/* MAP COMPONENT GOES HERE */}
-          <MapTrack />
-        </div>
-      </div>
+          {
+            track && (
+
+          <div className='ts-right-container'>
+            <div className='ts-map'>
+              {/* MAP COMPONENT GOES HERE */}
+              <MapTrack track={track}/>
+            </div>
+          </div>
+            )
+          }
 
     </div >
 

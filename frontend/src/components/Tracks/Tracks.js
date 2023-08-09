@@ -34,7 +34,9 @@ function Tracks() {
   return (
     <>
 
-      <div className="tracks-main-container">
+      {tracks && (
+        <div className="tracks-main-container">
+          {console.log(tracks)}
 
         <div className="trackbox">
           <EventBox />
@@ -48,6 +50,7 @@ function Tracks() {
         </div>
 
       </div>
+      )}
 
     </>
   );

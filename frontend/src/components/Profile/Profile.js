@@ -26,15 +26,6 @@ function Profile() {
   } else {
     return (
       <div className="profile-container">
-        <div className="profile-tracks">
-          <h2>All of {currentUser.username}'s Tracks</h2>
-          {userTracks.map(track => (
-            <TrackBox
-              key={track._id}
-              track={track}
-            />
-          ))}
-        </div>
         <div className="profile-times">
           <h2>All of {currentUser.username}'s Times</h2>
           {userTimes && (userTimes.map((time, index) => (
@@ -44,6 +35,15 @@ function Profile() {
             </li>
           )))
           }
+        </div>
+        <div className="profile-tracks">
+          <h2>All of {currentUser.username}'s Tracks</h2>
+          {userTracks.map(track => (
+            <TrackBox
+              key={track._id}
+              track={track}
+            />
+          ))}
         </div>
       </div>
     );
