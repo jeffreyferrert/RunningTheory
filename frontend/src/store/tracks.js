@@ -13,6 +13,11 @@ const receiveTracks = tracks => ({
   tracks
 });
 
+const receiveTrack = tracks => ({
+  type: RECEIVE_TRACK,
+  tracks
+});
+
 const receiveUserTracks = tracks => ({
   type: RECEIVE_USER_TRACKS,
   tracks
@@ -29,14 +34,14 @@ const receiveErrors = errors => ({
 });
 
 export const clearTrackErrors = errors => ({
-    type: CLEAR_TRACK_ERRORS,
-    errors
+  type: CLEAR_TRACK_ERRORS,
+  errors
 });
 
 
 export const fetchTracks = () => async dispatch => {
   try {
-    const res = await jwtFetch ('/api/tracks');
+    const res = await jwtFetch('/api/tracks');
     const tracks = await res.json();
     dispatch(receiveTracks(tracks));
   } catch (err) {
@@ -47,12 +52,15 @@ export const fetchTracks = () => async dispatch => {
   }
 };
 
+export const selectTrackById = (state, trackId) =>
+  Object.values(state.tracks.all).find(track => track._id === trackId);
+
 export const fetchUserTracks = id => async dispatch => {
   try {
     const res = await jwtFetch(`/api/tracks/user/${id}`);
     const tracks = await res.json();
     dispatch(receiveUserTracks(tracks));
-  } catch(err) {
+  } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
       return dispatch(receiveErrors(resBody.errors));
@@ -68,7 +76,7 @@ export const composeTrack = data => async dispatch => {
     });
     const track = await res.json();
     dispatch(receiveNewTrack(track));
-  } catch(err) {
+  } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
       return dispatch(receiveErrors(resBody.errors));
@@ -79,7 +87,7 @@ export const composeTrack = data => async dispatch => {
 const nullErrors = null;
 
 export const trackErrorsReducer = (state = nullErrors, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case RECEIVE_TRACK_ERRORS:
       return action.errors;
     case RECEIVE_NEW_TRACK:
@@ -91,13 +99,15 @@ export const trackErrorsReducer = (state = nullErrors, action) => {
 };
 
 const tracksReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case RECEIVE_TRACKS:
-      return { ...state, all: action.tracks, new: undefined};
+      return { ...state, all: action.tracks, new: undefined };
+    case RECEIVE_TRACK:
+      return { ...state, all: action.track, new: undefined };
     case RECEIVE_USER_TRACKS:
-      return { ...state, user: action.tracks, new: undefined};
+      return { ...state, user: action.tracks, new: undefined };
     case RECEIVE_NEW_TRACK:
-      return { ...state, new: action.track};
+      return { ...state, new: action.track };
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined }
     default:
