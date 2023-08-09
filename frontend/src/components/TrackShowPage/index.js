@@ -19,7 +19,7 @@ function TrackShowPage() {
   
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
-  const [time, setTime] = useState(0)
+  const [time, setTime] = useState("")
   
   useEffect(() => {
     dispatch(fetchTracks())
@@ -87,6 +87,7 @@ function TrackShowPage() {
                 className="time-bar"
                 type="string"
                 value={time}
+                placeholder='00:00:00'
                 onChange={(e) => setTime(e.target.value)}
               />
               <button className="track-add-time" type="submit">Add Your Time</button>
