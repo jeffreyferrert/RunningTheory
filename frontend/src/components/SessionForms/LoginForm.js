@@ -96,7 +96,7 @@ function LoginForm () {
 
         <div className="redirect-su">
           Don’t have an account?
-          <Link to="signup" className="link"> Sign up</Link>
+          <Link to="signup" className="link" id="sign-in-link">Sign up</Link>
           
         </div>
         

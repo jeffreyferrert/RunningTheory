@@ -127,9 +127,8 @@ const SignUpForm = () => {
             <br />
             <div id='redirect-sign-in'>
               <span>Already have an account?</span>
-              <span id='re-spacer'></span>
               <Link to='/login'>
-                <span>Sign In</span>
+                <span id="sign-in-link">Sign In</span>
               </Link>
             </div>
           </form>

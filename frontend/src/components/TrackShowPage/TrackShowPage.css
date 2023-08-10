@@ -1,14 +1,24 @@
+#html, body {
+    /* background-color: rgb(27, 26, 26); */
+    /* background-color: rgb(224, 224, 224); */
+    /* background-color: red; */
+    background-color: rgb(208, 208, 208);
+}
 .main-container-trackshow {
     display: flex;
     width: 100vw;
     font-family: 'Vollkorn', sans-serif;
+
+
+    color: black;
     
 }
 
 .main-container-trackshow h2 {
-    border-bottom: 1px solid black;
+    border-bottom: 1.5px solid orange;
     
     margin-top: 0;
+    margin-bottom: 0;
     
 }
 
@@ -18,8 +28,18 @@
 }
 .ts-left-container h1 {
     /* text-align: center; */
-    font-weight: bold;
+    /* font-weight: bold;
     font-size: 45px;
+    color: black; */
+    font-size: 45px;
+    color: rgb(76, 124, 120);
+    /* color: navy; */
+
+    text-shadow:
+        -1px -1px 0 rgb(76, 124, 120),
+        1px -1px 0 #878686,
+        -1px 1px 0 #9b9b9b,
+        1px 1px 0 #646363;
 }
 
 
@@ -28,7 +48,11 @@
     margin-bottom: 30px;
     padding: 15px;
     border: 1px solid rgb(221, 221, 221);
+
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    /* background-color: rgb(78, 77, 77); */
+    background-color: white;
+    color: rgb(92, 92, 92);
 
     /* border: 1px solid rgb(181, 181, 181);
     box-shadow: 3px 4px 0px 0px #4e57ef; */
@@ -39,14 +63,18 @@
     font-weight: bold;
 }
 
-.track-add-time {
+.track-general-info {
+    padding-top: 10px;
+}
+.track-btns {
 
     margin-top: 10px;
     display: inline-block;
     outline: none;
     cursor: pointer;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    /* border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px; */
+    border-radius: 3px;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
@@ -55,20 +83,78 @@
     min-width: 96px;
     min-height: 38px;
     border: none;
-    color: #fff;
-    background-color: rgb(66, 81, 243);
-    transition: background-color .17s ease,color .17s ease;
+    color: black;
+    font-weight: bold;
+    /* background-color: rgb(66, 81, 243); */
+    background-color: white;
+    box-shadow: 20px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0,0,0,0.23);
 
 }
 
-.track-add-time:hover {
-    /* background-color: black;
+.track-btns:hover {
+    background-color: #F7BE56;
+    box-shadow: #F7BE56 0 -6px 8px inset;
+  transform: scale(1.02);
+}
+.comment-container {
+    background-color: rgb(213, 213, 213);
+    padding: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 8px;
+    margin: 5px;
+    color: black;
+}
+.comments-btn-container {
+    display: flex;
+    justify-content: right;
+    
+}
+
+
+.comment-btns {
+    
+    display: inline-block;
+    outline: 0;
     border: none;
-    color: white; */
-    transform: scale(1.07);
-    background-color: rgb(48, 60, 192);
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: 13px;
+    height: 30px;
+    color: #0e0e10;
+    padding: 0 20px;
+    margin-top: 7px;
+    margin-right: 7px;
+    background-color: white;
+    box-shadow: 20px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
+
+.comment-btns:hover {
+    background-color: #F7BE56;
+    box-shadow: #F7BE56 0 -6px 8px inset;
+  transform: scale(1.02);
+}
+
+.comment-btns:active {
+    transform: scale(1.02);
+  }
+
+.comment-author-list {
+    list-style: none;
+    
+}
+
+.comment-author {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.track-container ul {
+    padding: 5px;
+    margin-top: 0;
+}
 .track-add-time span {
     font-size: 14px;
 }
@@ -86,5 +172,50 @@
     width: 100%;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.22) 0px 6px 12px;
+
     z-index: -50;
 }
+
+}
+
+
+
+/* .comment-btns {
+    box-shadow: 20px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0,0,0,0.23);
+    appearance: none;
+    background-color: #FFFFFF;
+    border-style: none;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: ‘Vollkorn’, sans-serif;
+    letter-spacing: -.24px;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1.3rem;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+.comment-btns:hover {
+  background-color: #F7BE56;
+  box-shadow: #F7BE56 0 -6px 8px inset;
+  transform: scale(1.02);
+}
+.comment-btns:active {
+  transform: scale(1.02);
+}
+@media (min-width: 768px) {
+  .comment-btns {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+} */
+

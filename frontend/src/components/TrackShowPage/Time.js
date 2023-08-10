@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { useState } from "react"
 import { useParams } from "react-router-dom/cjs/react-router-dom"
 import { deleteTime } from "../../store/times"
+import './Time.css'
 
 export default function Time({ time, currUser }) {
     const dispatch = useDispatch()
@@ -15,20 +16,36 @@ export default function Time({ time, currUser }) {
 
     return (
         time.track._id === trackId ? (
-            <div>
+            <div className="single-time-container">
                 <p>{time.author.username}</p>
-                <p>
+                <p className="track-time">
                     {time.hours < 10 ? "0" + time.hours : time.hours}:
                     {time.minutes < 10 ? "0" + time.minutes : time.minutes}:
                     {time.seconds < 10 ? "0" + time.seconds : time.seconds}
                 </p>
                 {time.author._id === currUser._id ? (
                     <form onSubmit={(e) => handleSubmit(e)}>
-                        <input type="submit" value={`Remove Time`} />
+                        <input id="delete-time-btn"
+                        type="submit" value={`Remove Time`} />
                     </form>
                 ) : null}
             </div>
-        ) : null
+        ) : (
+            <div className="single-time-container">
+                <p>{time.track.name}</p>
+                <p className="track-time">
+                    {time.hours < 10 ? "0" + time.hours : time.hours}:
+                    {time.minutes < 10 ? "0" + time.minutes : time.minutes}:
+                    {time.seconds < 10 ? "0" + time.seconds : time.seconds}
+                </p>
+                {time.author._id === currUser._id ? (
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                        <input id="delete-time-btn"
+                        type="submit" value={`Remove Time`} />
+                    </form>
+                ) : null}
+            </div>
+        )
     )
 
 }

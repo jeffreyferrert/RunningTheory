@@ -40,6 +40,28 @@ router.post('/', validateTimeInput, async (req, res, next) => {
     }
 });
 
+router.get('/user/:userId', async (req, res, next) => {
+  let user;
+  try {
+    user = await User.findById(req.params.userId);
+  } catch(err) {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }
+  try {
+    const times = await Time.find({ author: user._id })
+                              .sort({ createdAt: -1 })
+                              .populate("author", "_id username")
+                              .populate("track", "_id name");
+    return res.json(times);
+  }
+  catch(err) {
+    return res.json([]);
+  }
+})
+
 router.delete('/:timeId', async (req, res, next) => {
     try {
       const timeId = req.url.slice(1)

@@ -24,31 +24,36 @@ export default function Comment({ comment, author, track }) {
 
     return (
         comment.track._id === trackId ? (
-            <li>
-                <p>{comment.author.username}</p>
-                <p>{comment.description}</p>
+            <li className="comment-author-list">
+                <div className="comment-container">
+                    <p className="comment-author">@{comment.author.username}</p>
+                    <p>{comment.description}</p>
+
+                </div>
                 {comment.author._id === author._id && !editCommentForm && (
-                    <>
-                        <button onClick={() => {
+                    <div className="comments-btn-container">
+
+                        <button className="comment-btns" onClick={() => {
                             setEditCommentForm(true)
                             setEditTheComment(comment.description)
                         }}>Edit Comment</button>
                         <form onSubmit={(e) => handleSubmit(e, "delete")}>
-                            <input type="submit" value={`Remove Comment`} />
+                            <input className="comment-btns" type="submit" value={`Remove Comment`} />
                         </form>
-                    </>
+                    </div>
                 )}
                 {comment.author._id === author._id && editCommentForm && (
                     <form onSubmit={(e) => handleSubmit(e, "edit")}>
-                        <label>Edit Comment
+                        <label>
                             <input
+                            
                                 type="text"
                                 value={editTheComment}
                                 name="editComment"
                                 onChange={(e) => { setEditTheComment(e.target.value) }}
                             />
                         </label>
-                        <input type="submit" value={`Edit Comment`} />
+                        <input className="comment-btns" type="submit" value={`Edit Comment`} />
                     </form>
                 )}
             </li>

@@ -70,6 +70,7 @@ function NavBar() {
           {menu ? <> <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='all-track' >
             <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
           </div>
+
           
           <div>
             <Link className='button-link' to={'/profile'}>{user.username}</Link>
@@ -82,6 +83,7 @@ function NavBar() {
           </div> </div> </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}><div id='all-track'>
             <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
           </div> </div> }
+
         </div>
       );
     } else {

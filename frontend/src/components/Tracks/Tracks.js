@@ -7,6 +7,7 @@ import "./Tracks.css"
 
 
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import EventBox from './EventBox';
 
 
 function Tracks() {
@@ -33,9 +34,12 @@ function Tracks() {
   return (
     <>
 
-      <div className="tracks-main-container">
+      {tracks && (
+        <div className="tracks-main-container">
+          {console.log(tracks)}
 
         <div className="trackbox">
+          <EventBox />
           {tracks.map(track => (
             <TrackBox key={track._id} track={track} />
           ))}
@@ -46,6 +50,7 @@ function Tracks() {
         </div>
 
       </div>
+      )}
 
     </>
   );
