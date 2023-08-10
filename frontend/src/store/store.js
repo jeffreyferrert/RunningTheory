@@ -5,13 +5,15 @@ import errors from './errors';
 import tracks from './tracks';
 import comments from './comments';
 import times from './times';
+import event from './event';
 
 const rootReducer = combineReducers({
   session,
   errors,
   comments,
   tracks,
-  times
+  times,
+  event
 });
 
 let enhancer;

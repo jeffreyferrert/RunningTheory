@@ -4,6 +4,7 @@ const User = require('../models/User');
 const Track = require('../models/Track')
 const Comment = require('../models/Comment');
 const Time = require('../models/Time')
+const Event = require('../models/Event')
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
@@ -56,21 +57,21 @@ const descriptionArrays = [descriptions1, descriptions2, descriptions3];
 const flatDescriptions = descriptionArrays.flat();
 
 function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
+    return Math.floor(Math.random() * array.length);
 }
 
 for (let i = 0; i < NUM_SEED_TRACKS; i++) {
-  tracks.push(
-    new Track({
-      author: users[getRandomIndex(users)]._id,
-      name: faker.vehicle.manufacturer() + " Track",
-      location: "New York City",
-      miles: faker.number.int(100),
-      description: flatDescriptions[getRandomIndex(flatDescriptions)],
-      startAddress: addresses[getRandomIndex(addresses)],
-      endAddress: addresses[getRandomIndex(addresses)],
-    })
-  );
+    tracks.push(
+        new Track({
+            author: users[getRandomIndex(users)]._id,
+            name: faker.vehicle.manufacturer() + " Track",
+            location: "New York City",
+            miles: faker.number.int(100),
+            description: flatDescriptions[getRandomIndex(flatDescriptions)],
+            startAddress: addresses[getRandomIndex(addresses)],
+            endAddress: addresses[getRandomIndex(addresses)],
+        })
+    );
 }
 
 //Create Comments
@@ -87,19 +88,28 @@ for (let i = 0; i < NUM_SEED_COMMENTS; i++) {
 
 //Create Times
 const times = []
-for(let i = 0; i < NUM_SEED_TIMES; i = i + 4){
-    for(let j = 0; j < 4; j++){
+for (let i = 0; i < NUM_SEED_TIMES; i = i + 4) {
+    for (let j = 0; j < 4; j++) {
         times.push(
             new Time({
-                author: users[Math.floor((Math.random() * NUM_SEED_USERS)/4*(j+1))]._id,
+                author: users[Math.floor((Math.random() * NUM_SEED_USERS) / 4 * (j + 1))]._id,
                 track: tracks[j]._id,
-                hours: Math.floor(Math.random()*3),
-                minutes: Math.floor(Math.random()*60),
-                seconds: Math.floor(Math.random()*60)
+                hours: Math.floor(Math.random() * 3),
+                minutes: Math.floor(Math.random() * 60),
+                seconds: Math.floor(Math.random() * 60)
             })
         )
     }
 }
+
+//Create Event
+const events = []
+events.push(
+    new Event({
+        track: tracks[1]._id,
+        date: new Date('2023-08-12')
+    })
+)
 
 // Connect to database
 mongoose
@@ -121,10 +131,12 @@ const insertSeeds = () => {
         .then(() => Track.collection.drop())
         .then(() => Comment.collection.drop())
         .then(() => Time.collection.drop())
+        .then(() => Event.collection.drop())
         .then(() => User.insertMany(users))
         .then(() => Track.insertMany(tracks))
         .then(() => Comment.insertMany(comments))
         .then(() => Time.insertMany(times))
+        .then(() => Event.insertMany(events))
         .then(() => {
             console.log("Done!");
             mongoose.disconnect();
