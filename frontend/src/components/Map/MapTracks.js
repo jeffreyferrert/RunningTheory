@@ -81,7 +81,7 @@ const MapTracks = ({ tracks }) => {
           <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad}>
             {selectedTrack && (
               <InfoWindow
-                position={{ lat: selectedTrack.latitude, lng: selectedTrack.longitude }}
+                position={{ lat: parseFloat(selectedTrack.latitude), lng: parseFloat(selectedTrack.longitude) }}
                 onCloseClick={handleInfoWindowClose}
               >
                 <div className="track-infowindow">
@@ -100,7 +100,7 @@ const MapTracks = ({ tracks }) => {
             {tracks.map((track) => (
               <Marker
                 key={track._id}
-                position={{ lat: track.latitude, lng: track.longitude }}
+                position={{ lat: parseFloat(track.latitude), lng: parseFloat(track.longitude) }}
                 onClick={() => handleMarkerClick(track)}
               />
             ))}

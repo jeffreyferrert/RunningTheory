@@ -1,24 +1,25 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
+
 const MapTrack = ({ track }) => {
   const containerStyle = {
     width: '100%',
     height: '100vh',
   };
 
-  
-  const startAddress = track.startAddress
-  const endAddress = track.endAddress
+  const startAddress = track.startAddress;
+  const endAddress = track.endAddress;
 
   const [startLatLng, setStartLatLng] = useState(null);
   const [endLatLng, setEndLatLng] = useState(null);
   const [map, setMap] = useState(null);
   const [directionsRenderer, setDirectionsRenderer] = useState(null);
+  const [bicycleDistance, setBicycleDistance] = useState(null);
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
-
   });
 
   const onLoad = useCallback(function callback(map) {
@@ -32,6 +33,7 @@ const MapTrack = ({ track }) => {
   useEffect(() => {
     if (isLoaded) {
       const geocoder = new window.google.maps.Geocoder();
+
       const geocodeAddress = (address) => {
         return new Promise((resolve, reject) => {
           geocoder.geocode({ address }, (results, status) => {
@@ -53,7 +55,7 @@ const MapTrack = ({ track }) => {
           console.error('Error geocoding addresses:', error);
         });
     }
-  }, [isLoaded]);
+  }, [isLoaded, startAddress, endAddress]);
 
   useEffect(() => {
     if (isLoaded && startLatLng && endLatLng) {
@@ -80,6 +82,13 @@ const MapTrack = ({ track }) => {
               });
               newDirectionsRenderer.setMap(map);
               setDirectionsRenderer(newDirectionsRenderer);
+
+              // Calculate and set bicycle distance
+              if (result.routes && result.routes[0] && result.routes[0].legs && result.routes[0].legs[0]) {
+                const distance = result.routes[0].legs[0].distance.text;
+                setBicycleDistance(distance);
+              }
+              
             }
           } else {
             console.error('Error fetching directions:', status);
@@ -91,21 +100,24 @@ const MapTrack = ({ track }) => {
 
   return (
     <>
-    {
-      isLoaded  && (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={startLatLng}
-      zoom={2.7}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      <Marker position={startLatLng} />
-      <Marker position={endLatLng} />
-    </GoogleMap>
-    ) }
+      {isLoaded && (
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={startLatLng}
+          zoom={2.7}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+        >
+          <Marker position={startLatLng} />
+          <Marker position={endLatLng} />
+        </GoogleMap>
+      )}
+
+      {bicycleDistance !== null && <p>Bicycle Distance: {bicycleDistance}</p>}
+      {console.log(bicycleDistance)}
     </>
-  )
+  );
 };
 
 export default MapTrack;
+
