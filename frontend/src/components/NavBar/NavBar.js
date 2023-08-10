@@ -20,7 +20,7 @@ function NavBar() {
     e.preventDefault();
     dispatch(logout());
   }
-
+//
 
   const handleSubmit = (e) => {
     e.preventDefault();
