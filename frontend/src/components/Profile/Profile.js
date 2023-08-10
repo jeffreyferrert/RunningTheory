@@ -30,7 +30,10 @@ function Profile() {
         <div className="profile-demo">
           <p className='single-letter'>{currentUser.username[0].toUpperCase()}</p>
         </div>
-        <h2 className='welcome-user'>{currentUser.username}'s stats and tracks</h2>
+        <h2 className='welcome-user'>
+          {`${currentUser.username[0].toUpperCase()}${currentUser.username.slice(1)}`}
+          {/* {currentUser.username} */}
+          </h2>
       </div>
       <div className="profile-container">
         <img id='user-img' alt='hihi-img' src='/UserBackSplash.jpg'></img>
