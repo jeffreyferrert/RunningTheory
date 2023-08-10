@@ -93,16 +93,16 @@ function NavBar() {
 
           {menu ? <>
            <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
-            <div id='all-track'>
-            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
+            <div id='all-tracker'>
+            <Link id='all-tracks-signin' className='button-link' to={'/tracks'}>All Tracks</Link>
             </div>
 
             <div><Link id='signup' className='button-link' to={'/signup'}>Signup</Link></div>
            <div> <Link id='login' className='button-link' to={'/login'}>Login</Link></div>
         </div>
-        </> :<div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
-            <div id='all-track'>
-            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
+        </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
+            <div id='all-tracker'>
+            <Link id='all-tracks-signin' className='button-link' to={'/tracks'}>All Tracks</Link>
             </div> </div> }
         </div>
       );
@@ -114,10 +114,10 @@ function NavBar() {
       <div id='all-nav'>
         <div id='navbar-main'>
           <div id='logo-container' >
-            <Link to='/'>  <img id='main-logo' alt='im' src='/rt-logo4.png'></img> </Link>
+            <Link to='/'>  <img id='main-logo' alt='im' src='/rt-logo5.png'></img> </Link>
           </div>
-          {main()}
           {getLinks()}
+          {main()}
         </div>
       </div>
     </>
