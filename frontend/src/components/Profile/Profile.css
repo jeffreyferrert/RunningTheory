@@ -16,20 +16,25 @@
 .profile-tracks-outer{
     width: 40%;
     height: auto;
-    max-height: 40vw;
-    margin: 50px 30px 200px 50vw;
+    max-height: 60vh;
+    margin: 100px 30px 200px 50vw;
     background-color: lightgrey;
     border-radius: 12px;
     z-index: -1;
+    position: fixed;
+    padding-bottom: 20px;
 }
+
 
 .profile-tracks-inner{
     margin: 0px;
     width: 90%;
     margin-left: 5%; 
+    height: 50vh;
     overflow-y: scroll;
     font-size: larger;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .profile-tracks-inner::-webkit-scrollbar{
@@ -41,23 +46,41 @@
     margin-left: 30px;
 }
 
+.user-header {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically align the content */
+}
+
+.welcome-message {
+    text-align: center; /* Center-align the text */
+}
 .profile-times-outer {
     width: 30%;
     height: auto;
-    max-height: 40vw;
-    margin: 50px 50px 50px 60px;
+    max-height: 60vh;
+    margin: 100px 50px 50px 60px;
     background-color: lightgrey;
     border-radius: 12px;
     position: fixed;
+    padding-bottom: 20px;
 }
 .profile-times-outer h2{
-    margin: 30px;
+    text-align: center;
+    margin: 25px;
+    margin-bottom: 10px;
+}
+
+.profile-tracks-outer h2{
+    text-align: center;
+    margin: 25px;
     margin-bottom: 10px;
 }
 .profile-times-inner{
     width: 90%;
     margin-left: 5%;
-    height: 35vw;
+    height: 50vh;
     overflow-y: scroll;
     font-size: larger;
 }

@@ -27,6 +27,9 @@ function Profile() {
   return (
     <div className="profile-container">
       <img id='user-img' alt='hihi-img' src='/UserBackSplash.jpg'></img>
+      {/* <div className='user-header'>
+        <h2 className='welcome-user'>{currentUser.username}'s Stats and Tracks</h2>
+      </div> */}
       <div className="profile-times-outer">
         <h2>All of {currentUser.username}'s Times</h2>
         {userTimes.length === 0 ? (
