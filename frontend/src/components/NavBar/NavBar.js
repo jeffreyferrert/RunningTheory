@@ -14,6 +14,7 @@ function NavBar() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
+  const [menu, setMenu] = useState(false)
 
   const logoutUser = e => {
     e.preventDefault();
@@ -27,6 +28,18 @@ function NavBar() {
     setInput('');
   }
 
+  const open = () => {
+
+    setMenu(true)
+
+  }
+
+
+  const close = () => {
+
+    setMenu(false)
+
+  }
 
   const main = () => {
     if (location.pathname !== '/') {
@@ -50,12 +63,27 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <div id='user-name-container'>
+          {/* <div id='user-name-container'></div> */}
+          
+      
+
+          {menu ? <> <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='all-track' >
+            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
           </div>
-          <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
-          <Link className='button-link' to={'/profile'}>{user.username}</Link>
-          <Link className='button-link' to={'/tracks/new'}>Create a Track</Link>
-          <Link className='button-link' to={'/'} onClick={logoutUser}>Logout</Link>
+
+          
+          <div>
+            <Link className='button-link' to={'/profile'}>{user.username}</Link>
+          </div>
+          <div>
+            <Link className='button-link' to={'/tracks/new'}>Create Track</Link>
+          </div>
+          <div>
+            <Link className='button-link' onClick={logoutUser}>Logout</Link>
+          </div> </div> </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}><div id='all-track'>
+            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
+          </div> </div> }
+
         </div>
       );
     } else {
