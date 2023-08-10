@@ -30,7 +30,8 @@
 }
 
 .single-time-container{
-    background-color: rgb(213, 213, 213);
+    /* background-color: rgb(213, 213, 213); */
+    background-color: rgba(151, 175, 203, 0.8);
     padding: 6px;
     border-radius: 6px;
     margin-bottom: 10px;

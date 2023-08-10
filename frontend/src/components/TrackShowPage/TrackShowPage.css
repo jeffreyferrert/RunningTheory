@@ -3,6 +3,7 @@
     /* background-color: rgb(224, 224, 224); */
     /* background-color: red; */
     background-color: rgb(208, 208, 208);
+    font-family: 'Vollkorn', sans-serif;
 }
 .main-container-trackshow {
     display: flex;
@@ -15,7 +16,7 @@
 }
 
 .main-container-trackshow h2 {
-    border-bottom: 1.5px solid orange;
+    border-bottom: 1.5px solid darkgreen;
     
     margin-top: 0;
     margin-bottom: 0;
@@ -33,13 +34,15 @@
     color: black; */
     font-size: 45px;
     color: rgb(76, 124, 120);
-    /* color: navy; */
-
-    text-shadow:
+    /* color: black; */
+    margin-top: 15px;
+    /* font-family: 'Trebuchet MS', sans-serif; */
+    text-align: center;
+    /* text-shadow:
         -1px -1px 0 rgb(76, 124, 120),
         1px -1px 0 #878686,
         -1px 1px 0 #9b9b9b,
-        1px 1px 0 #646363;
+        1px 1px 0 #646363; */
 }
 
 
@@ -97,7 +100,8 @@
   transform: scale(1.02);
 }
 .comment-container {
-    background-color: rgb(213, 213, 213);
+    /* background-color: rgb(213, 213, 213); */
+    background-color: rgba(151, 175, 203, 0.8);
     padding: 2px;
     padding-left: 20px;
     padding-right: 20px;
@@ -149,6 +153,7 @@
 .comment-author {
     font-size: 18px;
     margin-bottom: 0;
+    font-weight: bold;
 }
 
 .track-container ul {
@@ -166,6 +171,8 @@
 .ts-right-container {
     width: 50%;
     z-index: -3;
+    margin-top: 15px;
+    margin-right: 15px;
 }
 
 .ts-map {
