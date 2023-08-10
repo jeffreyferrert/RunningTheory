@@ -26,7 +26,8 @@ function Profile() {
   } else {
     return (
       <div className="profile-container">
-        <div className="profile-times">
+        <div className="profile-times-outer">
+          <div className="profile-times-inner">
           <h2>All of {currentUser.username}'s Times</h2>
           {userTimes && (userTimes.map((time, index) => (
             <li className={index}>
@@ -35,8 +36,10 @@ function Profile() {
             </li>
           )))
           }
+          </div>
         </div>
-        <div className="profile-tracks">
+        <div className="profile-tracks-outer">
+        <div className="profile-tracks-inner">
           <h2>All of {currentUser.username}'s Tracks</h2>
           {userTracks.map(track => (
             <TrackBox
@@ -44,6 +47,7 @@ function Profile() {
               track={track}
             />
           ))}
+        </div>
         </div>
       </div>
     );
