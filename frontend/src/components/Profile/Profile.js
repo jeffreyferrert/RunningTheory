@@ -21,37 +21,47 @@ function Profile() {
     };
   }, [currentUser, dispatch]);
 
-  if (userTracks.length === 0) {
-    return <div>{currentUser.username} has no Tracks</div>;
-  } else {
-    return (
-      <div className="profile-container">
-        <div className="profile-times-outer">
+  // if (userTracks.length === 0) {
+  //   return <div>{currentUser.username} has no Tracks</div>;
+  // } else {
+  return (
+    <div className="profile-container">
+      <img id='user-img' alt='hihi-img' src='/UserBackSplash.jpg'></img>
+      <div className="profile-times-outer">
+        <h2>All of {currentUser.username}'s Times</h2>
+        {userTimes.length === 0 ? (
+          <p className="no-race-message">Go out and run your first race!</p>
+        ) : (
           <div className="profile-times-inner">
-          <h2>All of {currentUser.username}'s Times</h2>
-          {userTimes && (userTimes.map((time, index) => (
-            <li className={index}>
-              <Time key={index} time={time} currUser={currentUser} />
+            {userTimes && (userTimes.map((time, index) => (
+              <li className={index}>
+                <Time key={index} time={time} currUser={currentUser} />
 
-            </li>
-          )))
-          }
+              </li>
+            )))
+            }
           </div>
-        </div>
-        <div className="profile-tracks-outer">
-        <div className="profile-tracks-inner">
-          <h2>All of {currentUser.username}'s Tracks</h2>
-          {userTracks.map(track => (
-            <TrackBox
-              key={track._id}
-              track={track}
-            />
-          ))}
-        </div>
-        </div>
+        )}
       </div>
-    );
-  }
+      <div className="profile-tracks-outer">
+        <h2>All of {currentUser.username}'s Tracks</h2>
+        {userTracks.length === 0 ? (
+          <p className="no-race-message">Make a race for everyone to see!</p>
+        ) : (
+          <div className="profile-tracks-inner">
+            {
+              userTracks.map(track => (
+                <TrackBox
+                  key={track._id}
+                  track={track}
+                />
+              ))
+            }
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default Profile;

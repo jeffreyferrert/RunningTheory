@@ -7,35 +7,74 @@
 .profile-container h2 {
     font-size: 32px;
     /* color: rgb(76, 124, 120); */
+    display: flex;
+    width: 100vw;
+    font-family: 'Vollkorn', sans-serif;
+    position: relative; /* Make the container a reference for positioning */
+    align-items: center;
 }
 .profile-tracks-outer{
-    width: 50%;
-    margin: 50px 30px 50px auto;
-    background-color: white;
+    width: 40%;
+    height: auto;
+    max-height: 40vw;
+    margin: 50px 30px 200px 50vw;
+    background-color: lightgrey;
     border-radius: 12px;
+    z-index: -1;
 }
 
 .profile-tracks-inner{
     margin: 0px;
-    width: 74%;
-    margin-left: 13%;
+    width: 90%;
+    margin-left: 5%; 
+    overflow-y: scroll;
     font-size: larger;
     text-align: center;
 }
 
+.profile-tracks-inner::-webkit-scrollbar{
+    display: none;
+}
+
+.no-race-message{
+    font-size: 20px;
+    margin-left: 30px;
+}
 
 .profile-times-outer {
     width: 30%;
-    margin: 50px 200px 50px 60px;
-    background-color: white;
+    height: auto;
+    max-height: 40vw;
+    margin: 50px 50px 50px 60px;
+    background-color: lightgrey;
     border-radius: 12px;
+    position: fixed;
+}
+.profile-times-outer h2{
+    margin: 30px;
+    margin-bottom: 10px;
 }
 .profile-times-inner{
-    width: 75%;
+    width: 90%;
     margin-left: 5%;
+    height: 35vw;
+    overflow-y: scroll;
     font-size: larger;
+}
+
+.profile-times-inner::-webkit-scrollbar { 
+    display: none; 
 }
 
 .profile-times-inner li{
     list-style: none;
+}
+
+#user-img {
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    position: absolute; /* Position the image absolutely */
+    top: 0;
+    left: 0;
 }
