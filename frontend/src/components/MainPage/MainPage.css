@@ -39,8 +39,7 @@
     font-size: 80px;
     font-weight: bolder;
     color: rgb(39, 104, 135);
-    /* color: rgb(246,189,95); */
-    /* color: white; */
+
     align-self: center;
     margin-bottom: 10px;
     text-shadow:
@@ -48,13 +47,5 @@
         1px -1px 0 #878686,
         -1px 1px 0 #9b9b9b,
         1px 1px 0 #646363;
-
-    /* text-shadow:
-        -1px -1px 0 orange,
-        1px -1px 0 orange,
-        -1px 1px 0 orange,
-        1px 1px 0 black; */
-        
-
     
 }

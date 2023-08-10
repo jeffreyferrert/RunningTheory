@@ -96,7 +96,7 @@ const MapTracks = ({ tracks }) => {
                 <br></br>
                 <span>Starting Point:</span> {selectedTrack.startAddress}
                 <br></br>
-                <span>Number of People Signed Up:</span> 8
+                <span>Distance:</span> {selectedTrack.miles} Miles
                 <br></br>
                 <button className="track-info-btn" onClick={handleInfoWindowClick}>View Event</button>
               </div>
