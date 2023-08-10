@@ -17,11 +17,17 @@ function TrackBox(props) {
 
         </div>
         <div className="low-section">
-          <ul>
-            <li><span>Length</span> {track.miles} mi</li>
-            <li><span>Elevation</span> 177 ft</li>
-            <li><span>Location</span> {track.location}</li>
-          </ul>
+        <ul>
+                <li>
+                  <span>Length</span> {track.miles} mi
+                </li>
+                <li>
+                  <span>Start Address</span> {track.startAddress.split(",")[0]} ft
+                </li>
+                <li>
+                  <span>Location</span> {track.location}
+                </li>
+              </ul>
         </div>
       </div>
 

@@ -7,7 +7,7 @@ const Track = mongoose.model('Track');
 router.get('/', async (req, res) => {
     try {
         const event = await Event.find()
-            .populate("track", "_id name description location startAddress")
+            .populate("track", "_id name description location startAddress miles")
             .sort({ createdAt: -1 });
         return res.json(event);
     }

@@ -32,10 +32,10 @@ function EventBox(props) {
             <div className="e-low-section">
               <ul>
                 <li>
-                  <span>Length</span> {track.length}
+                  <span>Length</span> {track.miles} mi
                 </li>
                 <li>
-                  <span>Start Address</span> {track.startAddress} ft
+                  <span>Start Address</span> {track.startAddress.split(",")[0]} ft
                 </li>
                 <li>
                   <span>Location</span> {track.location}
