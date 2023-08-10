@@ -16,16 +16,17 @@ async function jwtFetch(url, options = {}) {
     // Remember to add 'Bearer ' to the front of the token.
     const jwtToken = localStorage.getItem("jwtToken");
     if (jwtToken) options.headers["Authorization"] = 'Bearer ' + jwtToken;
-
+    
     // If the options.method is not 'GET', then set the "Content-Type" header to
     // "application/json".
     if (options.method.toUpperCase() !== "GET") {
         options.headers["Content-Type"] =
-            options.headers["Content-Type"] || "application/json";
+        options.headers["Content-Type"] || "application/json";
         options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
     }
-
+    
     // Call fetch with the url and the updated options hash.
+    console.log(url)
     const res = await fetch(url, options);
     // console.log(res)
     // If the response status code is 400 or above, then throw an error with the

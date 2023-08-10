@@ -9,6 +9,7 @@ require('./models/User');
 require('./models/Track');
 require(`./models/Comment`)
 require(`./models/Time`)
+require('./models/Event')
 require('./config/passport');
 
 const passport = require('passport');
@@ -43,10 +44,12 @@ const tracksRouter = require('./routes/api/tracks');
 const csrfRouter = require('./routes/api/csrf');
 const commentsRouter = require('./routes/api/comments');
 const timesRouter = require('./routes/api/times')
+const eventsRouter = require("./routes/api/events")
 app.use('/api/users', usersRouter);
 app.use('/api/tracks', tracksRouter);
 app.use('/api/comments', commentsRouter)
 app.use(`/api/times`, timesRouter)
+app.use(`/api/events`, eventsRouter)
 app.use('/api/csrf', csrfRouter);
 
 

@@ -13,8 +13,10 @@
 
 
 .e-main-container-box:hover {
-  border-left: 4px solid #F2A718;
+  border-left: 4px solid rgb(81, 94, 110);
+  border-radius: 4px 0 0 4px;
   box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+  border-bottom: 0px;
 }
 
 .e-l-c {
@@ -23,8 +25,10 @@
   border-right: 0px solid transparent;
   margin: 0;
   padding: 0;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+  background-color: gold;
 }
+
 
 .ribbon {
   writing-mode: vertical-rl;
@@ -50,7 +54,7 @@
   background-color: white;
   margin: 0 0px 0 0;
   padding: 0 10px;
-
+  background-color: rgba(151, 175, 203, 0.8);
 }
 
 .e-up-section h4 {
@@ -68,7 +72,7 @@
   border-top: solid transparent;
   border-radius: 0 0 4px 0;
   background-color: #f1f1f1;
-  margin: 0 0px 10px 0;
+  margin: 0 0px 0px 0;
 }
 
 .e-low-section ul {
@@ -91,3 +95,6 @@
   font-size: 14px;
 }
 
+.e-r-c{
+  border-bottom: 0px;
+}
