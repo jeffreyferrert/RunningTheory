@@ -4,6 +4,7 @@ const User = require('../models/User');
 const Track = require('../models/Track')
 const Comment = require('../models/Comment');
 const Time = require('../models/Time')
+const Event = require('../models/Event')
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
@@ -130,7 +131,7 @@ const insertSeeds = () => {
         .then(() => Track.collection.drop())
         .then(() => Comment.collection.drop())
         .then(() => Time.collection.drop())
-        .them(() => Event.collection.drop())
+        .then(() => Event.collection.drop())
         .then(() => User.insertMany(users))
         .then(() => Track.insertMany(tracks))
         .then(() => Comment.insertMany(comments))
