@@ -91,7 +91,7 @@ export const eventErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
-const eventReducer = (state = {all: {}}, action) => {
+export const eventReducer = (state = {all: {}}, action) => {
     let newState = state
     switch(action.type) {
         case RECEIVE_EVENT:
@@ -101,7 +101,7 @@ const eventReducer = (state = {all: {}}, action) => {
             delete newState[action.eventId]
             return newState;
         case RECEIVE_NEW_TRACK:
-            newState = { ...newState, ...action.tracks}
+            return newState = { ...newState, ...action.tracks}
         default:
              return state
     }

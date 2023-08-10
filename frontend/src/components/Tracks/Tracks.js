@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearTrackErrors, fetchTracks } from '../../store/tracks';
+import { fetchEvent } from "../../store/event"
 import TrackBox from './TrackBox';
 import MapTracks from '../Map/MapTracks';
 import "./Tracks.css"
@@ -15,9 +16,11 @@ function Tracks() {
   let tracks = useSelector(state => Object.values(state.tracks.all));
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get('search');
+  const event = useSelector(state => Object.values(state.events))
 
   useEffect(() => {
     dispatch(fetchTracks());
+    dispatch(fetchEvent())
     return () => dispatch(clearTrackErrors());
   }, [dispatch])
 
@@ -39,7 +42,7 @@ function Tracks() {
           {console.log(tracks)}
 
         <div className="trackbox">
-          <EventBox />
+          <EventBox track={event.track}/>
           {tracks.map(track => (
             <TrackBox key={track._id} track={track} />
           ))}

@@ -1,10 +1,19 @@
 import React from "react";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { fetchEvent } from "../../store/event"
 import "./EventBox.css"
 
 
 function EventBox(props) {
+  const dispatch = useDispatch()
   const track = props.track
+
+  useEffect(() => {
+    dispatch(fetchEvent())
+
+  })
 
   return (
 
