@@ -113,8 +113,6 @@ const MapTrack = ({ track }) => {
         </GoogleMap>
       )}
 
-      {bicycleDistance !== null && <p>Bicycle Distance: {bicycleDistance}</p>}
-      {console.log(bicycleDistance)}
     </>
   );
 };

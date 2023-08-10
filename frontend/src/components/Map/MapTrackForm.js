@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
-const MapTrackForm = ({ track }) => {
+const MapTrackForm = ({ track, onBicycleDistanceChange }) => {
   const containerStyle = {
     width: '100%',
     height: '100vh',
   };
-
 
   const startAddress =  track.startAddress
   const endAddress = track.endAddress
@@ -85,6 +84,13 @@ const MapTrackForm = ({ track }) => {
               });
               newDirectionsRenderer.setMap(map);
               setDirectionsRenderer(newDirectionsRenderer);
+
+              // Calculate and set bicycle distance
+              if (result.routes && result.routes[0] && result.routes[0].legs && result.routes[0].legs[0]) {
+                const distance = parseFloat(result.routes[0].legs[0].distance.text.replace(/[^\d.-]/g, ''));
+                onBicycleDistanceChange(distance)
+              }
+
             }
           } else {
             console.error('Error fetching directions:', status);
@@ -102,8 +108,6 @@ const MapTrackForm = ({ track }) => {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      {/* <Marker position={startLatLng} />
-      <Marker position={endLatLng} /> */}
     </GoogleMap>
   ) : (
     <></>

@@ -14,7 +14,6 @@ function EventBox(props) {
     dispatch(fetchEvent())
 
   },[dispatch])
-  console.log(track, "im the track in eventbox")
   return (
     <div className="e-main-container-box">
       <div className="e-l-c">
