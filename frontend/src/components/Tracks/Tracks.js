@@ -16,8 +16,8 @@ function Tracks() {
   let tracks = useSelector(state => Object.values(state.tracks.all));
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get('search');
-  const event = useSelector(state => Object.values(state.events))
-
+  const event = useSelector(state => Object.values(state.event))
+  console.log(event)
   useEffect(() => {
     dispatch(fetchTracks());
     dispatch(fetchEvent())
