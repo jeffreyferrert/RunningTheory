@@ -13,17 +13,14 @@ import Time from './Time';
 
 
 function TrackShowPage() {
-
   const dispatch = useDispatch();
   const { trackId } = useParams()
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
   const [showCommentForm, setShowCommentForm] = useState(false)
-  
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
   const [time, setTime] = useState("")
-
 
   useEffect(() => {
     dispatch(fetchTracks())
@@ -34,67 +31,66 @@ function TrackShowPage() {
   const track = useSelector(state => Object.values(state.tracks.all).find(track => track._id === trackId))
 
   function handleSubmit(e) {
-    e.preventDefault() 
+    e.preventDefault()
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
     dispatch(fetchComments())
   }
 
   function handleTimeSubmit(e) {
+    e.preventDefault()
     let arrTime = time.split(":")
-    console.log(arrTime)
-    if(arrTime.length === 3){
-      dispatch(composeTime({hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track}))
-    } else if (arrTime.length === 2){
-      dispatch(composeTime({hours: 0, minutes: arrTime[0], seconds: arrTime[1], author: author, track: track}))
+    if (arrTime.length === 3) {
+      dispatch(composeTime({ hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track }))
+    } else if (arrTime.length === 2) {
+      dispatch(composeTime({ hours: 0, minutes: arrTime[0], seconds: arrTime[1], author: author, track: track }))
     } else {
-      dispatch(composeTime({hours: 0, minutes: 0, seconds: arrTime[0], author: author, track: track}))
+      dispatch(composeTime({ hours: 0, minutes: 0, seconds: arrTime[0], author: author, track: track }))
     }
+    const newTime = { hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track };
+    setTime([...times, newTime]);
+    setTime("");
+    dispatch(fetchTimes());
   }
+
+
+
   return (
     <>
-
-            {/* <div className="img">
-              <img src="https://www.esbnyc.com/sites/default/files/2020-01/ESB%20Day.jpg"></img>
-            </div> */}
       <div className="main-container-trackshow">
         <div className='ts-left-container'>
 
-        {track && (
-          <>
+          {track && (
+            <>
 
-            <h1>{track.name}</h1>
-            <div className="track-container">
-              <h2>General Info</h2>
-              <div className ="track-general-info">
-                <span>Starting Line:</span> {track.startAddress}
-                <br />
-                <span>Finish Line:</span> {track.endAddress}
-                <br />
-                <span>Distance:</span> {track.miles} miles
-                <br />
-                <span>Description:</span> {track.description}
+              <h1>{track.name}</h1>
+              <div className="track-container">
+                <h2>General Info</h2>
+                <div className="track-general-info">
+                  <span>Starting Line:</span> {track.startAddress}
+                  <br />
+                  <span>Finish Line:</span> {track.endAddress}
+                  <br />
+                  <span>Distance:</span> {track.miles} miles
+                  <br />
+                  <span>Description:</span> {track.description}
+                </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
 
 
           <div className="track-container">
             <h2>Leaderboard</h2>
             <ol>
-              {times ? (times.map((time, index) => (
-                // <div className={`leaderboard${index}`}>{time}</div>
+              {times.map((time, index) => (
                 <li className={index}>
                   <Time key={index} time={time} currUser={author} />
-
                 </li>
-              ))): null }
+              ))}
             </ol>
-              
 
             <form onSubmit={handleTimeSubmit}>
-
               <input
                 className="time-bar"
                 type="string"
@@ -103,14 +99,8 @@ function TrackShowPage() {
                 onChange={(e) => setTime(e.target.value)}
               />
               <button className="track-btns" type="submit">Add Your Time</button>
-
-
             </form>
-            {/* <button className="track-add-time">
-              <span>Add Time</span>
-            </button> */}
           </div>
-
 
           <div className="track-container">
             <h2>Comments</h2>
@@ -139,27 +129,22 @@ function TrackShowPage() {
             ) : (
               <button className="track-btns" onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
             )}
-        </div>
-
-
-
-      </div>
-
-          {
-            track && (
-
-          <div className='ts-right-container'>
-            <div className='ts-map'>
-              {/* MAP COMPONENT GOES HERE */}
-              <MapTrack track={track} />
-                
-            </div>
           </div>
-            )
-          }
 
+        </div>
+        {
+          track && (
 
-    </div >
+            <div className='ts-right-container'>
+              <div className='ts-map'>
+                {/* MAP COMPONENT GOES HERE */}
+                <MapTrack track={track} />
+
+              </div>
+            </div>
+          )
+        }
+      </div >
 
     </>
 
