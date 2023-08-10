@@ -67,32 +67,43 @@ function NavBar() {
           
       
 
-          {menu ? <> <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='all-track' >
-            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
-          </div>
+          {menu ? <> <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='user-all-container'> <div id='user-profile'><Link id='user-name'  to={'/profile'}><span id='user'>{user.username[0]}</span></Link></div> <div id='all-track' >
+            <Link id='all-tracks'  to={'/tracks'}><span id='track-color'>All Tracks</span></Link>
+          </div></div>
 
           
           <div>
-            <Link className='button-link' to={'/profile'}>{user.username}</Link>
+            <Link className='button-link' to={'/profile'}>My Profile</Link>
           </div>
           <div>
             <Link className='button-link' to={'/tracks/new'}>Create Track</Link>
           </div>
           <div>
             <Link className='button-link' onClick={logoutUser}>Logout</Link>
-          </div> </div> </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}><div id='all-track'>
-            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
-          </div> </div> }
+          </div> </div> </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='user-all-container'> <div id='user-profile'><Link id='user-name' to={'/profile'}><span id='user'>{user.username[0]}</span></Link></div> <div id='all-track' >
+            <Link id='all-tracks'  to={'/tracks'}><span id='track-color'>All Tracks</span></Link>
+          </div></div></div> }
 
         </div>
       );
     } else {
       return (
         <div className="links-auth">
-          <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
 
-          <Link id='signup' className='button-link' to={'/signup'}>Signup</Link>
-          <Link id='login' className='button-link' to={'/login'}>Login</Link>
+
+          {menu ? <>
+           <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
+            <div id='all-track'>
+            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
+            </div>
+
+            <div><Link id='signup' className='button-link' to={'/signup'}>Signup</Link></div>
+           <div> <Link id='login' className='button-link' to={'/login'}>Login</Link></div>
+        </div>
+        </> :<div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
+            <div id='all-track'>
+            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
+            </div> </div> }
         </div>
       );
     }
