@@ -89,10 +89,21 @@ function NavBar() {
     } else {
       return (
         <div className="links-auth">
-          <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
 
-          <Link id='signup' className='button-link' to={'/signup'}>Signup</Link>
-          <Link id='login' className='button-link' to={'/login'}>Login</Link>
+
+          {menu ? <>
+           <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
+            <div id='all-track'>
+            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
+            </div>
+
+            <div><Link id='signup' className='button-link' to={'/signup'}>Signup</Link></div>
+           <div> <Link id='login' className='button-link' to={'/login'}>Login</Link></div>
+        </div>
+        </> :<div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
+            <div id='all-track'>
+            <Link id='all-tracks' className='button-link' to={'/tracks'}>All Tracks</Link>
+            </div> </div> }
         </div>
       );
     }
