@@ -8,6 +8,7 @@ const Event = require('../models/Event')
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
+
 const NUM_SEED_USERS = 5;
 const NUM_SEED_TRACKS = 7;
 const NUM_SEED_COMMENTS = 20;
