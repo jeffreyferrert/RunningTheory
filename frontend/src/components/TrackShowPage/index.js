@@ -10,7 +10,10 @@ import MapTrack from '../Map/MapTrack';
 import Comment from './Comment';
 import Time from './Time';
 
+
+
 function TrackShowPage() {
+
   const dispatch = useDispatch();
   const { trackId } = useParams()
   const author = useSelector(state => state.session.user);
@@ -20,7 +23,8 @@ function TrackShowPage() {
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
   const [time, setTime] = useState("")
-  
+
+
   useEffect(() => {
     dispatch(fetchTracks())
     dispatch(fetchComments())
@@ -58,6 +62,7 @@ function TrackShowPage() {
 
         {track && (
           <>
+
             <h1>{track.name}</h1>
             <div className="track-container">
               <h2>General Info</h2>
@@ -86,6 +91,7 @@ function TrackShowPage() {
                 </li>
               ))): null }
             </ol>
+              
 
             <form onSubmit={handleTimeSubmit}>
 
@@ -145,11 +151,13 @@ function TrackShowPage() {
           <div className='ts-right-container'>
             <div className='ts-map'>
               {/* MAP COMPONENT GOES HERE */}
-              <MapTrack track={track}/>
+              <MapTrack track={track} />
+                
             </div>
           </div>
             )
           }
+
 
     </div >
 
