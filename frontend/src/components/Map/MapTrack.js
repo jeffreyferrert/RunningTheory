@@ -108,8 +108,8 @@ const MapTrack = ({ track }) => {
           onLoad={onLoad}
           onUnmount={onUnmount}
         >
-          <Marker position={startLatLng} />
-          <Marker position={endLatLng} />
+          {/* <Marker position={startLatLng} />
+          <Marker position={endLatLng} /> */}
         </GoogleMap>
       )}
 

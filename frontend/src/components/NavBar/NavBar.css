@@ -171,9 +171,12 @@
 }
 
 #nav-search-container {
-    margin: auto;
     position: relative;
-    left: 115px;
+    top: 13px;
+    right: 10px;
+    /* margin: auto; */
+    /* position: relative;
+    left: 115px; */
    
     
 }
@@ -184,13 +187,17 @@
 
     /* dont mess with the size of this */
 
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; */
+    /* position: relative; */
+    /* left: 0px; */
+    /* right: 950px; */
+    /* left: 180px;
+    top: 15px; */
     position: relative;
-
-    left: 175px;
-    top: 15px;
+    top: 10px;
+    right: 18px;
     border: 2px solid lightgray;
     background-color: #dedede; 
     text-align: center;
