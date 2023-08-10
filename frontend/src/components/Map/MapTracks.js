@@ -8,6 +8,7 @@ const MapTracks = ({ tracks }) => {
   const history = useHistory();
   const [map, setMap] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(null);
+  const [updatedTracks, setUpdatedTracks] = useState([]);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
@@ -44,16 +45,22 @@ const MapTracks = ({ tracks }) => {
   };
 
   useEffect(() => {
-    
-    if (isLoaded && map) {
-      tracks.map(async (track) => {
-        const location = await geocodeAddress(track.startAddress);
-        if (location) {
-          track.latitude = location.lat;
-          track.longitude = location.lng;
-        }
-      });
-    }
+    const geocodeAndSetTracks = async () => {
+      if (isLoaded && map) {
+        const updatedTracks = await Promise.all(
+          tracks.map(async (track) => {
+            const location = await geocodeAddress(track.startAddress);
+            if (location) {
+              return { ...track, latitude: location.lat, longitude: location.lng };
+            }
+            return track;
+          })
+        );
+        setUpdatedTracks(updatedTracks);
+      }
+    };
+
+    geocodeAndSetTracks();
   }, [isLoaded, map, tracks]);
 
   const geocodeAddress = async (address) => {
@@ -71,45 +78,41 @@ const MapTracks = ({ tracks }) => {
     }
     return null;
   };
-    
+
+
   return (
-
     <>
-      {
-        isLoaded && (
-
-          <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad}>
-            {selectedTrack && (
-              <InfoWindow
-                position={{ lat: parseFloat(selectedTrack.latitude), lng: parseFloat(selectedTrack.longitude) }}
-                onCloseClick={handleInfoWindowClose}
-              >
-                <div className="track-infowindow">
-                  <span className="track-name">{selectedTrack.name}</span>
-                  <br></br>
-                  <span>Event Organizer:</span> {selectedTrack.author.username}
-                  <br></br>
-                  <span>Starting Point:</span> {selectedTrack.startAddress}
-                  <br></br>
-                  <span>Number of People Signed Up:</span> 8
-                  <br></br>
-                  <button className="track-info-btn" onClick={handleInfoWindowClick}>View Event</button>
-                </div>
-              </InfoWindow>
-            )}
-            {tracks.map((track) => (
-              <Marker
-                key={track._id}
-                position={{ lat: parseFloat(track.latitude), lng: parseFloat(track.longitude) }}
-                onClick={() => handleMarkerClick(track)}
-              />
-            ))}
-          </GoogleMap>
-        )
-
-      }
+      {isLoaded && (
+        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12} onLoad={onLoad}>
+          {selectedTrack && (
+            <InfoWindow
+              position={{ lat: parseFloat(selectedTrack.latitude), lng: parseFloat(selectedTrack.longitude) }}
+              onCloseClick={handleInfoWindowClose}
+            >
+              <div className="track-infowindow">
+                <span className="track-name">{selectedTrack.name}</span>
+                <br></br>
+                <span>Event Organizer:</span> {selectedTrack.author.username}
+                <br></br>
+                <span>Starting Point:</span> {selectedTrack.startAddress}
+                <br></br>
+                <span>Number of People Signed Up:</span> 8
+                <br></br>
+                <button className="track-info-btn" onClick={handleInfoWindowClick}>View Event</button>
+              </div>
+            </InfoWindow>
+          )}
+          {updatedTracks.map((track) => (
+            <Marker
+              key={track._id}
+              position={{ lat: parseFloat(track.latitude), lng: parseFloat(track.longitude) }}
+              onClick={() => handleMarkerClick(track)}
+            />
+          ))}
+        </GoogleMap>
+      )}
     </>
-  )
+  );
 };
 
 export default MapTracks;

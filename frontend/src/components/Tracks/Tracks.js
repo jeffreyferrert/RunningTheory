@@ -36,7 +36,6 @@ function Tracks() {
 
       {tracks && (
         <div className="tracks-main-container">
-          {console.log(tracks)}
 
         <div className="trackbox">
           <EventBox />
