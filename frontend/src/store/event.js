@@ -95,7 +95,7 @@ export const eventReducer = (state = {all: {}}, action) => {
     let newState = state
     switch(action.type) {
         case RECEIVE_EVENT:
-          newState[action.event.id] = action.event;
+          newState = action.event;
           return newState;
         case DELETE_EVENT:
             delete newState[action.eventId]

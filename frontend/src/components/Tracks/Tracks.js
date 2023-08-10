@@ -42,7 +42,7 @@ function Tracks() {
           {console.log(tracks)}
 
         <div className="trackbox">
-          <EventBox track={event.track}/>
+          <EventBox track={event[0].track}/>
           {tracks.map(track => (
             <TrackBox key={track._id} track={track} />
           ))}
