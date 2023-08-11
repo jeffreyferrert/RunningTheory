@@ -46,7 +46,7 @@ function Tracks() {
           ))}
         </div>
 
-        <div className="map">
+        <div id='the-main-map' className="map">
           <MapTracks tracks={tracks} />
         </div>
 

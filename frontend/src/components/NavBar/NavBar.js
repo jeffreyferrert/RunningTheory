@@ -71,7 +71,7 @@ function NavBar() {
             <Link id='all-tracks'  to={'/tracks'}><span id='track-color'>All Tracks</span></Link>
           </div></div>
 
-          
+          <div id='extender-container'>
           <div>
             <Link className='button-link' to={'/profile'}>My Profile</Link>
           </div>
@@ -80,7 +80,7 @@ function NavBar() {
           </div>
           <div>
             <Link className='button-link' onClick={logoutUser}>Logout</Link>
-          </div> </div> </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='user-all-container'> <div id='user-profile'><Link id='user-name' to={'/profile'}><span id='user'>{user.username[0]}</span></Link></div> <div id='all-track' >
+          </div> </div> </div> </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='user-all-container'> <div id='user-profile'><Link id='user-name' to={'/profile'}><span id='user'>{user.username[0]}</span></Link></div> <div id='all-track' >
             <Link id='all-tracks'  to={'/tracks'}><span id='track-color'>All Tracks</span></Link>
           </div></div></div> }
 
@@ -116,8 +116,8 @@ function NavBar() {
           <div id='logo-container' >
             <Link to='/'>  <img id='main-logo' alt='im' src='/rt-logo5.png'></img> </Link>
           </div>
-          {getLinks()}
           {main()}
+          {getLinks()}
         </div>
       </div>
     </>
