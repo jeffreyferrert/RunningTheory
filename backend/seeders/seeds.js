@@ -27,15 +27,15 @@ const commentp = ["Such an iconic route, passing through the heart of the citys 
 // Create users
 const users = [];
 users.push(
-    new User({
-        username: 'demo-user',
-        email: 'demo-user@appacademy.io',
-        hashedPassword: bcrypt.hashSync('starwars', 10)
-    }),
+    // new User({
+    //     username: 'demo-user',
+    //     email: 'demo-user@appacademy.io',
+    //     hashedPassword: bcrypt.hashSync('starwars', 10)
+    // }),
 
     new User({
-        username: 'user',
-        email: "123@123.com",
+        username: 'demo',
+        email: "demo@gmail.com",
         hashedPassword: bcrypt.hashSync('password', 10)
     })
 )
@@ -67,7 +67,7 @@ for (let i = 0; i < NUM_SEED_TRACKS; i++) {
             author: users[getRandomIndex(users)]._id,
             name: faker.vehicle.manufacturer() + " Track",
             location: "New York City",
-            miles: faker.number.int(100),
+            miles: faker.number.int(10),
             description: flatDescriptions[getRandomIndex(flatDescriptions)],
             startAddress: addresses[getRandomIndex(addresses)],
             endAddress: addresses[getRandomIndex(addresses)],
