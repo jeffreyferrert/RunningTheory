@@ -41,16 +41,16 @@ function LoginForm () {
       });
   };
 
-  const demoUser = (e) => {
-    e.preventDefault();
-    const demoEmail = "demo@gmail.com";
-    const demoPassword = "password";
-    dispatch(login({ email: demoEmail, password: demoPassword }));
-  };
+  // const demoUser = (e) => {
+  //   e.preventDefault();
+  //   const demoEmail = "demo@gmail.com";
+  //   const demoPassword = "password";
+  //   dispatch(login({ email: demoEmail, password: demoPassword }));
+  // };
 
   const handleDemoUser = (e) => {
     e.preventDefault();
-    dispatch(login({email: "demo-user@appacademy.io", password: "starwars"}))
+    dispatch(login({email: "demo@gmail.com", password: "password"}))
   }
 
   return (

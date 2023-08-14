@@ -1,19 +1,32 @@
-.profile-container{
+.profile-container {
     display: flex;
     width: 100vw;
     font-family: 'Vollkorn', sans-serif;
 
 }
+
+#create-track-btn{
+    margin-left: 25px;
+}
+
+#create-track-btn :first-child:visited {
+    text-decoration: none;
+    color: black;
+    text-decoration: none;
+}
+
 .profile-container h2 {
     font-size: 32px;
     /* color: rgb(76, 124, 120); */
     display: flex;
     width: 100vw;
     font-family: 'Vollkorn', sans-serif;
-    position: relative; /* Make the container a reference for positioning */
+    position: relative;
+    /* Make the container a reference for positioning */
     align-items: center;
 }
-.profile-tracks-outer{
+
+.profile-tracks-outer {
     width: 40%;
     height: auto;
     max-height: 60vh;
@@ -26,10 +39,10 @@
 }
 
 
-.profile-tracks-inner{
+.profile-tracks-inner {
     margin: 0px;
     width: 90%;
-    margin-left: 5%; 
+    margin-left: 5%;
     height: 50vh;
     overflow-y: scroll;
     font-size: larger;
@@ -37,11 +50,14 @@
     margin-bottom: 10px;
 }
 
-.profile-tracks-inner::-webkit-scrollbar{
+.profile-tracks-inner > *{
+    margin-left: 15px;
+}
+.profile-tracks-inner::-webkit-scrollbar {
     display: none;
 }
 
-.no-race-message{
+.no-race-message {
     font-size: 20px;
     margin-left: 30px;
 }
@@ -49,22 +65,22 @@
 .user-header {
     width: 100%;
     display: flex;
-    justify-content: left; 
-    align-items: center; 
+    justify-content: left;
+    align-items: center;
     margin: auto;
     margin-top: 8px;
 }
 
 .welcome-user {
-    text-align: left; 
+    text-align: left;
     font-size: 35px;
     margin: 10px;
     margin-left: 120px;
-    
+
 }
 
 .profile-demo {
-    background-color: rgb(87,143,138);
+    background-color: rgb(87, 143, 138);
     height: 70px;
     width: 70px;
     border-radius: 35px;
@@ -79,17 +95,19 @@
     cursor: pointer;
 }
 
-.profile-demo:hover{
+.profile-demo:hover {
     border: 1px solid orange;
     left: 39px;
     color: orange;
 }
-.profile-demo p{
+
+.profile-demo p {
     position: relative;
     font-size: 38px;
     /* top: -20px; */
     margin: auto;
 }
+
 .profile-times-outer {
     width: 30%;
     height: auto;
@@ -100,18 +118,20 @@
     position: fixed;
     padding-bottom: 20px;
 }
-.profile-times-outer h2{
+
+.profile-times-outer h2 {
     text-align: center;
     margin: 25px;
     margin-bottom: 10px;
 }
 
-.profile-tracks-outer h2{
+.profile-tracks-outer h2 {
     text-align: center;
     margin: 25px;
     margin-bottom: 10px;
 }
-.profile-times-inner{
+
+.profile-times-inner {
     width: 90%;
     margin-left: 5%;
     height: 50vh;
@@ -119,11 +139,11 @@
     font-size: larger;
 }
 
-.profile-times-inner::-webkit-scrollbar { 
-    display: none; 
+.profile-times-inner::-webkit-scrollbar {
+    display: none;
 }
 
-.profile-times-inner li{
+.profile-times-inner li {
     list-style: none;
 }
 
@@ -131,7 +151,8 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    position: absolute; /* Position the image absolutely */
+    position: absolute;
+    /* Position the image absolutely */
     top: 0;
     left: 0;
 }
