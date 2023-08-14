@@ -68,7 +68,7 @@ function NavBar() {
       
 
           {menu ? <> <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='user-all-container'> <div id='user-profile'><Link id='user-name'  to={'/profile'}><span id='user'>{user.username[0]}</span></Link></div> <div id='all-track' >
-            <Link id='all-tracks'  to={'/tracks'}><span id='track-color'>All Tracks</span></Link>
+            <Link id='all-tracks'  to={'/tracks'}><div id='track-cont'>All Tracks</div></Link>
           </div></div>
 
           <div id='extender-container'>
@@ -81,7 +81,7 @@ function NavBar() {
           <div>
             <Link className='button-link' onClick={logoutUser}>Logout</Link>
           </div> </div> </div> </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> <div id='user-all-container'> <div id='user-profile'><Link id='user-name' to={'/profile'}><span id='user'>{user.username[0]}</span></Link></div> <div id='all-track' >
-            <Link id='all-tracks'  to={'/tracks'}><span id='track-color'>All Tracks</span></Link>
+            <Link id='all-tracks'  to={'/tracks'}><div id='track-cont'>All Tracks</div></Link>
           </div></div></div> }
 
         </div>
@@ -92,18 +92,21 @@ function NavBar() {
 
 
           {menu ? <>
-           <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
+           <div id='main-drop-cont-signin' onMouseEnter={open} onMouseLeave={close}> <div id='user-all-container-signin'> 
             <div id='all-tracker'>
             <Link id='all-tracks-signin' className='button-link' to={'/tracks'}>All Tracks</Link>
             </div>
+            </div>
+
+            <div id='extender-container-signin'>
 
             <div><Link id='signup' className='button-link' to={'/signup'}>Signup</Link></div>
            <div> <Link id='login' className='button-link' to={'/login'}>Login</Link></div>
-        </div>
-        </> : <div id='main-drop-cont' onMouseEnter={open} onMouseLeave={close}> 
+        </div></div>
+        </> : <div id='main-drop-cont-signin' onMouseEnter={open} onMouseLeave={close}> <div id='user-all-container-signin'> 
             <div id='all-tracker'>
             <Link id='all-tracks-signin' className='button-link' to={'/tracks'}>All Tracks</Link>
-            </div> </div> }
+            </div> </div> </div> }
         </div>
       );
     }
