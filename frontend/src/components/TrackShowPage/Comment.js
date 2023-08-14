@@ -14,12 +14,17 @@ export default function Comment({ comment, author, track }) {
     const [editCommentForm, setEditCommentForm] = useState(false)
 
     const handleSubmit = (e, type) => {
+        e.preventDefault()
         if(type === "edit"){
             dispatch(editComment(comment._id, { description: editTheComment, author: author, track: track }))
+            dispatch(fetchComments());
+            setEditCommentForm(false)
         } else {
             dispatch(deleteComment(comment._id))
+            setTimeout(() => {
+                dispatch(fetchComments());
+            }, 100);
         }
-        dispatch(fetchComments());
     }
 
     return (

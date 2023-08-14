@@ -34,7 +34,9 @@ function TrackShowPage() {
     e.preventDefault()
     dispatch(composeComment({ description: newComment, author: author, track: track }))
     setShowCommentForm(false)
-    dispatch(fetchComments())
+    setTimeout(() => {
+      dispatch(fetchComments());
+    }, 100);
   }
 
   function handleTimeSubmit(e) {
