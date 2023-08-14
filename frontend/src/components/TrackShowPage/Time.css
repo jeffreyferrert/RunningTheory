@@ -1,4 +1,4 @@
-#delete-time-btn {
+#delete-time-btn, #create-track-btn {
 
     margin-top: 10px;
     display: inline-block;
@@ -16,6 +16,7 @@
     min-height: 38px;
     border: none;
     color: black;
+    
     font-weight: bold;
     /* background-color: rgb(66, 81, 243); */
     background-color: white;
@@ -23,7 +24,7 @@
 
 }
 
-#delete-time-btn:hover {
+#delete-time-btn:hover, #create-track-btn:hover {
     background-color: #F7BE56;
     box-shadow: #F7BE56 0 -6px 8px inset;
   transform: scale(1.02);
