@@ -12,7 +12,7 @@ const validateTrackInput = [
     check('miles')
         .exists({ checkFalsy: true })
         .withMessage('Miles field is required')
-        .isFloat({ min: 0, max: 100 })
+        .isFloat({ min: 0, max: 100 }) // helps remove unreasonable routes
         .withMessage('Miles must be a number between 0 and 100'),
     check('description')
         .exists({ checkFalsy: true })

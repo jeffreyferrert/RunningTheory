@@ -2,12 +2,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserTracks, clearTrackErrors } from '../../store/tracks';
 import { fetchUserTimes, clearTimeErrors } from "../../store/times";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import TrackBox from '../Tracks/TrackBox';
 import Time from '../TrackShowPage/Time'
 import './Profile.css'
 
 function Profile() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
   const userTracks = useSelector(state => Object.values(state.tracks.user))
   const userTimes = useSelector(state => Object.values(state.times.user))
@@ -33,7 +35,7 @@ function Profile() {
         <h2 className='welcome-user'>
           {`${currentUser.username[0].toUpperCase()}${currentUser.username.slice(1)}`}
           {/* {currentUser.username} */}
-          </h2>
+        </h2>
       </div>
       <div className="profile-container">
         <img id='user-img' alt='hihi-img' src='/UserBackSplash.jpg'></img>
@@ -56,7 +58,18 @@ function Profile() {
         <div className="profile-tracks-outer">
           <h2>All of {currentUser.username}'s Tracks</h2>
           {userTracks.length === 0 ? (
-            <p className="no-race-message">Make a race for everyone to see!</p>
+            <>
+              <p className="no-race-message">Make a race for everyone to see!</p>
+              {/* <div id='create-track-btn'>
+                <Link className='button-link' to={'/tracks/new'}>Create Track</Link>
+              </div> */}
+              <button
+                id="create-track-btn"
+                onClick={() => history.push('/tracks/new')}
+              >
+                Create Track
+              </button>
+            </>
           ) : (
             <div className="profile-tracks-inner">
               {
