@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import tracksReducer, { clearTrackErrors, fetchTracks } from '../../store/tracks';
+import { fetchTracks } from '../../store/tracks';
 import { fetchComments, composeComment } from '../../store/comments';
 import { fetchTimes, composeTime } from '../../store/times.js';
 import "./TrackShowPage.css"

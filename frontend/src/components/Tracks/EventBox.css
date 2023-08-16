@@ -9,26 +9,14 @@
   margin-bottom: 10px;
 }
 
-
-
-
-.e-main-container-box:hover {
-  border-left: 4px solid rgb(81, 94, 110);
-  border-radius: 4px 0 0 4px;
-  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
-  border-bottom: 0px;
-}
-
 .e-l-c {
   border: 1px solid black;
   border-radius: 4px 0 0 4px;
   border-right: 0px solid transparent;
   margin: 0;
   padding: 0;
-  /* margin-bottom: 10px; */
-  background-color: gold;
+  background-color: #F7BE56;
 }
-
 
 .ribbon {
   writing-mode: vertical-rl;
@@ -37,10 +25,8 @@
   display:flex;
   justify-content:center;
   align-items:center;
-  padding: 45px 5px;
-  /* background-color: #F2A718; */
+  padding: 40px 5px;
 }
-
 
 .e-l-sec {
   border: 1px solid orange;
@@ -69,7 +55,7 @@
 
 .e-low-section {
   border: 1px solid black;
-  border-top: solid transparent;
+  border-top: transparent;
   border-radius: 0 0 4px 0;
   background-color: #f1f1f1;
   margin: 0 0px 0px 0;

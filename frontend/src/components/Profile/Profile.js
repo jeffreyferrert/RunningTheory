@@ -23,9 +23,6 @@ function Profile() {
     };
   }, [currentUser, dispatch]);
 
-  // if (userTracks.length === 0) {
-  //   return <div>{currentUser.username} has no Tracks</div>;
-  // } else {
   return (
     <>
       <div className='user-header'>
@@ -34,7 +31,6 @@ function Profile() {
         </div>
         <h2 className='welcome-user'>
           {`${currentUser.username[0].toUpperCase()}${currentUser.username.slice(1)}`}
-          {/* {currentUser.username} */}
         </h2>
       </div>
       <div className="profile-container">
@@ -60,9 +56,6 @@ function Profile() {
           {userTracks.length === 0 ? (
             <>
               <p className="no-race-message">Make a race for everyone to see!</p>
-              {/* <div id='create-track-btn'>
-                <Link className='button-link' to={'/tracks/new'}>Create Track</Link>
-              </div> */}
               <button
                 id="create-track-btn"
                 onClick={() => history.push('/tracks/new')}

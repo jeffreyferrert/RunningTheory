@@ -1,4 +1,4 @@
-#landing-main-container {
+.landing-main-container {
 
     position: absolute;
     top: 0px;
@@ -14,13 +14,13 @@
     height: 100vh;
 }
 
-#main-img {
+.main-img {
     width: 100vw;
     height: 100vh;
     z-index: 0;
 }
 
-#search-bar-container {
+.search-bar-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,7 +32,7 @@
     z-index: 1;
 }
 
-#main-text {
+.main-text {
     position: relative;
     right: -4px;
     font-family: 'Tacoma', sans-serif;

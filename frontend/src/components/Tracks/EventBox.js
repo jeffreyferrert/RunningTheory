@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchEvent } from "../../store/event"
 import "./EventBox.css"
@@ -21,7 +21,7 @@ function EventBox(props) {
       </div>
 
       <div className="e-r-c">
-        {track ? ( // Render the Link only if track exists
+        {track ? ( 
           <Link className="link" to={`tracks/${track._id}`}>
             <div className="e-up-section">
               <h4>{track.name}</h4>

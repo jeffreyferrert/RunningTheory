@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearTrackErrors, composeTrack } from '../../store/tracks';
-import TrackBox from './TrackBox';
+// import TrackBox from './TrackBox';
 import './TrackCompose.css';
 import MapTrackForm from '../Map/MapTrackForm';
 import MapTrackDefault from '../Map/MapTrackDefault';
@@ -10,20 +10,15 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 function TrackCompose() {
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
-    const [miles, setMiles] = useState(0);
     const [description, setDescription] = useState('');
     const dispatch = useDispatch();
     const author = useSelector(state => state.session.user);
-    const newTrack = useSelector(state => state.tracks.new);
     const errors = useSelector(state => state.errors.tracks);
-    const [city, setCity] = useState('');
     const [startAddress, setStartAddress] = useState('');
     const [endAddress, setEndAddress] = useState('');
     const [mapForm, setMapForm] = useState(false);
     const [bicycleDistance, setBicycleDistance] = useState(0);
     const history = useHistory();
-
-
 
     useEffect(() => {
         return () => dispatch(clearTrackErrors());
@@ -49,93 +44,86 @@ function TrackCompose() {
     return (
         <>
             <div id='create-track-main'>
-                <form className="compose-track" onSubmit={handleSubmit}>
-                    <div id='form-cont'>
-                        <div id='title-cont'>
-                            <div id='create-title' className='shine'>Create Your Track</div>
-                        </div>
-                        <div > Give Your Track A Name
-                            <input
-                                className='form-box'
-                                type="textarea"
-                                value={name}
-                                onChange={e => setName(e.currentTarget.value)}
-                                placeholder="Write the track name..."
-                                required
-                            />
-                        </div>
-                        <div > City
-                            <input
-                                className='form-box'
-                                type="textarea"
-                                value={location}
-                                onChange={e => setLocation(e.currentTarget.value)}
-                                placeholder="Write your track location..."
-                                required
-                            />
-                        </div>
-                        <div  > Start Location
-                            <input
-                                className='form-box'
-                                type="textarea"
-                                value={startAddress}
-                                onChange={e => setStartAddress(e.currentTarget.value)}
-                                placeholder="Write your track location..."
-                                required
-                            />
-                        </div>
-                        <div > End Location
-                            <input
-                                className='form-box'
-                                type="textarea"
-                                value={endAddress}
-                                onChange={e => setEndAddress(e.currentTarget.value)}
-                                placeholder="Write your track location..."
-                                required
-                            />
-                        </div>
-                        <div id='address-check'>
-                            <button id='button-form1' className='form-box-button' onClick={handleClick}>Check Address</button>
-                            <button id='button-form2' className='form-box-button' onClick={handleReset}>Reset Address</button>
-                        </div>
-                        <div >Input The Approximate Distance in Miles
-                            <input
-                                className='form-box'
-                                type="number"
-                                value={bicycleDistance}
-                                onChange={e => setBicycleDistance(parseFloat(e.currentTarget.value))}
-                                placeholder="Write your track miles..."
-                                required
-                            />
+                    <form className="compose-track" onSubmit={handleSubmit}>
+                        <div id='form-cont'>
+                            <h2>Create your track</h2>
+                            <div className='compose-box'> Give Your Track A Name
+                                <input
+                                    className='form-box'
+                                    type="textarea"
+                                    value={name}
+                                    onChange={e => setName(e.currentTarget.value)}
+                                    placeholder="Write the track name..."
+                                    required
+                                />
+                            </div>
+                            <div className='compose-box'> City
+                                <input
+                                    className='form-box'
+                                    type="textarea"
+                                    value={location}
+                                    onChange={e => setLocation(e.currentTarget.value)}
+                                    placeholder="Write your track location..."
+                                    required
+                                />
+                            </div>
+                            <div className='compose-box'> Start Location
+                                <input
+                                    className='form-box'
+                                    type="textarea"
+                                    value={startAddress}
+                                    onChange={e => setStartAddress(e.currentTarget.value)}
+                                    placeholder="Write your track location..."
+                                    required
+                                />
+                            </div>
+                            <div className='compose-box'> End Location
+                                <input
+                                    className='form-box'
+                                    type="textarea"
+                                    value={endAddress}
+                                    onChange={e => setEndAddress(e.currentTarget.value)}
+                                    placeholder="Write your track location..."
+                                    required
+                                />
+                            </div>
+                            <div id='address-check'>
+                                <button id='button-form1' className='form-box-button' onClick={handleClick}>Check Address</button>
+                                <button id='button-form2' className='form-box-button' onClick={handleReset}>Reset Address</button>
+                            </div>
+                            <div className='compose-box'>Input The Approximate Distance in Miles
+                                <input
+                                    className='form-box'
+                                    type="number"
+                                    value={bicycleDistance}
+                                    onChange={e => setBicycleDistance(parseFloat(e.currentTarget.value))}
+                                    placeholder="Write your track miles..."
+                                    required
+                                />
 
+                            </div>
+                            <div className='compose-box'> Tell Us About Your Track
+                                <input
+                                    className='form-box'
+                                    type="textarea"
+                                    value={description}
+                                    onChange={e => setDescription(e.currentTarget.value)}
+                                    placeholder="Write your track description..."
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <div className="errors">{errors?.text}</div>
+                            </div>
+                            <div>
+                                <input id='form-submit' className='form-box-button qfb' type="submit" value="Submit" />
+                            </div>
                         </div>
-                        <div > Tell Us About Your Track
-                            <input
-                                className='form-box'
-                                type="textarea"
-                                value={description}
-                                onChange={e => setDescription(e.currentTarget.value)}
-                                placeholder="Write your track description..."
-                                required
-                            />
-                        </div>
-                        <div>
-                            <div className="errors">{errors?.text}</div>
-                        </div>
-                        <div>
-                            <input id='form-submit' className='form-box-button' type="submit" value="Submit" />
-                        </div>
+                    </form>
+                    <div id='form-map'>
+                        {mapForm ? <MapTrackForm track={track} onBicycleDistanceChange={setBicycleDistance} /> : <MapTrackDefault />}
                     </div>
-                </form>
-                <div id='form-map'>
-                    {mapForm ? <MapTrackForm track={track} onBicycleDistanceChange={setBicycleDistance} /> : <MapTrackDefault />}
-                </div>
             </div>
-
-            <div className="previous-track">
-                {newTrack ? (<>  <h3>Track Created</h3> <TrackBox track={newTrack} /> </>) : undefined}
-            </div>
-
         </>
     )
 }

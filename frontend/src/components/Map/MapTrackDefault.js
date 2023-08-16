@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import React, { useEffect } from 'react';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const MapTrackDefault = () => {
   const containerStyle = {
@@ -7,13 +7,8 @@ const MapTrackDefault = () => {
     height: '100vh',
   };
 
-
   const startAddress = 'New York, New York'
 
-  const [startLatLng, setStartLatLng] = useState(null);
-  const [endLatLng, setEndLatLng] = useState(null);
-  const [map, setMap] = useState(null);
-  const [directionsRenderer, setDirectionsRenderer] = useState(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY,
@@ -24,14 +19,6 @@ const MapTrackDefault = () => {
     lat: 40.7873414,
     lng: -73.9516308,
   };
-
-  const onLoad = useCallback(function callback(map) {
-    setMap(map);
-  }, []);
-
-  const onUnmount = useCallback(function callback() {
-    setMap(null);
-  }, []);
 
   useEffect(() => {
     if (isLoaded) {
@@ -49,59 +36,17 @@ const MapTrackDefault = () => {
       };
 
       Promise.all([geocodeAddress(startAddress)])
-        .then(([startLocation]) => {
-          setStartLatLng(startLocation);
-        })
-        .catch((error) => {
-          console.error('Error geocoding addresses:', error);
-        });
+        
     }
   }, [isLoaded]);
-
-//   useEffect(() => {
-//     if (isLoaded && startLatLng && endLatLng) {
-//       const DirectionsService = new window.google.maps.DirectionsService();
-
-//       DirectionsService.route(
-//         {
-//           origin: startLatLng,
-//           destination: endLatLng,
-//           travelMode: window.google.maps.TravelMode.BICYCLING,
-//         },
-//         (result, status) => {
-//           if (status === window.google.maps.DirectionsStatus.OK) {
-//             if (directionsRenderer) {
-//               directionsRenderer.setDirections(result);
-//             } else {
-//               const newDirectionsRenderer = new window.google.maps.DirectionsRenderer({
-//                 directions: result,
-//                 polylineOptions: {
-//                   strokeColor: '#FF0000',
-//                   strokeOpacity: 0.8,
-//                   strokeWeight: 4,
-//                 },
-//               });
-//               newDirectionsRenderer.setMap(map);
-//               setDirectionsRenderer(newDirectionsRenderer);
-//             }
-//           } else {
-//             console.error('Error fetching directions:', status);
-//           }
-//         }
-//       );
-//     }
-//   }, [isLoaded, map, directionsRenderer, startLatLng, endLatLng]);
 
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={13}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
+
     >
-      {/* <Marker position={startLatLng} />
-      <Marker position={endLatLng} /> */}
     </GoogleMap>
   ) : (
     <></>

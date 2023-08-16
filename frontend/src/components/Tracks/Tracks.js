@@ -5,11 +5,8 @@ import { fetchEvent } from "../../store/event"
 import TrackBox from './TrackBox';
 import MapTracks from '../Map/MapTracks';
 import "./Tracks.css"
-
-
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { NavLink, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import EventBox from './EventBox';
-
 
 function Tracks() {
   const dispatch = useDispatch();
@@ -17,6 +14,7 @@ function Tracks() {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get('search');
   const event = useSelector(state => Object.values(state.event))
+
   useEffect(() => {
     dispatch(fetchTracks());
     dispatch(fetchEvent())
@@ -32,27 +30,26 @@ function Tracks() {
     });
   }
 
-
   return (
     <>
-
       {tracks && (
         <div className="tracks-main-container">
+          <div className="trackbox">
+            <div className='tmc-create'>
+              <NavLink to="/tracks/new" className="tmc-topbar-login">Create Track</NavLink>
+            </div>
+            <EventBox track={event[0].track} />
 
-        <div className="trackbox">
-          <EventBox track={event[0].track}/>
-          {tracks.map(track => (
-            <TrackBox key={track._id} track={track} />
-          ))}
+            {tracks.map(track => (
+              <TrackBox key={track._id} track={track} />
+            ))}
+          </div>
+
+          <div id='the-main-map' className="map">
+            <MapTracks tracks={tracks} />
+          </div>
         </div>
-
-        <div id='the-main-map' className="map">
-          <MapTracks tracks={tracks} />
-        </div>
-
-      </div>
       )}
-
     </>
   );
 }

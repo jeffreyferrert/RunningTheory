@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux"
-import { composeComment, editComment, deleteComment, fetchComments } from "../../store/comments"
+import { editComment, deleteComment, fetchComments } from "../../store/comments"
 import { useState } from "react"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 

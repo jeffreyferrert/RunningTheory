@@ -6,7 +6,7 @@ import './SessionForm.css';
 import { login } from '../../store/session';
 // import { login, clearSessionErrors } from '../../store/session';
 
-function LoginForm () {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const error = useSelector(state => state.errors.session);
@@ -19,11 +19,6 @@ function LoginForm () {
     };
   }, [dispatch]);
 
-  const update = (field) => {
-    const setState = field === 'email' ? setEmail : setPassword;
-    return e => setState(e.currentTarget.value);
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -33,7 +28,7 @@ function LoginForm () {
         try {
           data = await res.clone().json();
         } catch {
-          data = await res.text(); 
+          data = await res.text();
         }
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
@@ -41,66 +36,60 @@ function LoginForm () {
       });
   };
 
-  // const demoUser = (e) => {
-  //   e.preventDefault();
-  //   const demoEmail = "demo@gmail.com";
-  //   const demoPassword = "password";
-  //   dispatch(login({ email: demoEmail, password: demoPassword }));
-  // };
-
-  const handleDemoUser = (e) => {
+  const demoUser = (e) => {
     e.preventDefault();
-    dispatch(login({email: "demo@gmail.com", password: "password"}))
+    dispatch(login({ email: "demo@gmail.com", password: "password" }))
   }
 
   return (
+    <>
+      <div className="li-main-container">
 
-    <div className="login-main-container">
-      <div className="login-form-container">
+        <div className="li-form-container">
 
-        <form onSubmit={handleSubmit} >
+          <form onSubmit={handleSubmit} >
+            <h3>Access your account</h3>
 
-          <ul>
-            {/* {errors.map(error => <li key={error}>{error}</li>)} */}
-          </ul>
-          <div className="errors">{error?.email}</div>
-          <label>
-            Email
-            <input
-              type="text"
-              value={email}
-              // onChange={(e) => setEmail(e.target.value)}
-              onChange={update('email')}
-              required
-            />
-          </label>
+            <ul>
+              {errors.map(error => <li key={error}>{error}</li>)}
+            </ul>
 
-          <span></span><br />
-          <div className="errors">{error?.password}</div>
-          <label>
-            Password
-            <input
-              type="password"
-              value={password}
-              // onChange={(e) => setPassword(e.target.value)}
-              onChange={update('password')}
-              required
-            />
-          </label>
+            <label>
+              Email
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
 
-          <button type="submit" className="login-btn">Log In</button>
+            <div className="errors">{error?.email}</div>
 
-        </form>
-        <button onClick={handleDemoUser} className="login-btn">Demo User</button>
-    </div>
+            <label>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </label>
+
+            <div className="errors">{error?.password}</div>
+
+            <button type="submit" className="li-login">Log In</button>
+          </form>
+
+          <button onClick={demoUser} className="li-login">Demo User</button>
+        </div>
 
         <div className="redirect-su">
           Don’t have an account?
-          <Link to="signup" className="link" id="sign-in-link">Sign up</Link>
-          
+          <Link to="signup" className="link"> Sign up</Link>
         </div>
-        
-    </div>
+      </div>
+    </>
   );
 }
 
