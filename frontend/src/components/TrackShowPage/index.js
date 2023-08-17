@@ -19,6 +19,7 @@ function TrackShowPage() {
   const [newComment, setNewComment] = useState('')
   const [newCommentError, setNewCommentError] = useState(false)
   const [showCommentForm, setShowCommentForm] = useState(false)
+  const [timeErrors, setTimeErrors] = useState(false)
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
   const [time, setTime] = useState("")
@@ -46,7 +47,7 @@ function TrackShowPage() {
     }
   }
 
-  function handleTimeSubmit(e) {
+  async function handleTimeSubmit(e) {
     e.preventDefault()
     let arrTime = time.split(":")
     if (arrTime.length === 3) {
@@ -59,7 +60,17 @@ function TrackShowPage() {
     const newTime = { hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track };
     setTime([...times, newTime]);
     setTime("");
-    dispatch(fetchTimes());
+    try {
+      await dispatch(fetchTimes());
+      setTimeErrors(false);
+
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.log('ya got me')
+        // const validationErrors = error.
+        setTimeErrors(true);
+      }
+    }
   }
 
 
@@ -109,6 +120,9 @@ function TrackShowPage() {
               />
               <button className="track-btns" type="submit">Add Your Time</button>
             </form>
+            {timeErrors && (
+            <p className='error-message'>Invalid Time</p>
+          )}
           </div>
 
           <div className="track-container">
