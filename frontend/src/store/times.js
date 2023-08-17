@@ -4,8 +4,8 @@ export const RECEIVE_TIMES = "times/RECEIVE_TIMES";
 export const RECEIVE_NEW_TIME = "times/RECEIVE_NEW_TIME";
 export const DELETE_TIME = "times/DELETE_TIME";
 export const RECEIVE_USER_TIMES = "times/RECEIVE_USER_TIMES"
-export const RECEIVE_TIME_ERRORS = "comments/RECEIVE_COMMENT_ERRORS";
-export const CLEAR_TIME_ERRORS = "comments/CLEAR_COMMENT_ERRORS";
+export const RECEIVE_TIME_ERRORS = "comments/RECEIVE_TIME_ERRORS";
+export const CLEAR_TIME_ERRORS = "comments/CLEAR_TIME_ERRORS";
 
 const receiveTimes = times => ({
     type: RECEIVE_TIMES,
