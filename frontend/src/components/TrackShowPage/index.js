@@ -65,7 +65,9 @@ function TrackShowPage() {
       setTimeErrors(false);
 
     } catch (error) {
-      if (times.status === 400) {
+      console.log("hitting catch")
+      if (error.times) {
+        const errorMessage = error.response.data.message;
         console.log('ya got me')
         // const validationErrors = error.
         setTimeErrors(true);
@@ -104,7 +106,7 @@ function TrackShowPage() {
             <h2>Leaderboard</h2>
             <ol>
               {times.map((time, index) => (
-                <li className={index}>
+                <li className={index} key={index}>
                   <Time key={index} time={time} currUser={author} />
                 </li>
               ))}
