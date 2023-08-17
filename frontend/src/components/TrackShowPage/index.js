@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTracks } from '../../store/tracks';
 import { fetchComments, composeComment } from '../../store/comments';
-import { fetchTimes, composeTime } from '../../store/times.js';
+import { fetchTimes, composeTime, clearTimeErrors } from '../../store/times.js';
 import "./TrackShowPage.css"
 import MapTrack from '../Map/MapTrack';
 import Comment from './Comment';
@@ -22,6 +22,7 @@ function TrackShowPage() {
   const [timeErrors, setTimeErrors] = useState(false)
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
+  const sliceTimeErrors = useSelector(state => state.errors.times);
   const [time, setTime] = useState("")
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function TrackShowPage() {
     }
   }
 
-  async function handleTimeSubmit(e) {
+  function handleTimeSubmit(e) {
     e.preventDefault()
     let arrTime = time.split(":")
     if (arrTime.length === 3) {
@@ -60,19 +61,21 @@ function TrackShowPage() {
     const newTime = { hours: arrTime[0], minutes: arrTime[1], seconds: arrTime[2], author: author, track: track };
     setTime([...times, newTime]);
     setTime("");
-    try {
-      await dispatch(fetchTimes());
-      setTimeErrors(false);
+    dispatch(clearTimeErrors());
+    dispatch(fetchTimes())
+    // try {
+    //   await dispatch(fetchTimes());
+    //   setTimeErrors(false);
 
-    } catch (error) {
-      console.log("hitting catch")
-      if (error.times) {
-        const errorMessage = error.response.data.message;
-        console.log('ya got me')
-        // const validationErrors = error.
-        setTimeErrors(true);
-      }
-    }
+    // } catch (error) {
+    //   console.log("hitting catch")
+    //   if (error.times) {
+    //     const errorMessage = error.response.data.message;
+    //     console.log('ya got me')
+    //     // const validationErrors = error.
+    //     setTimeErrors(true);
+    //   }
+    // }
   }
 
 
@@ -111,7 +114,9 @@ function TrackShowPage() {
                 </li>
               ))}
             </ol>
-
+            {sliceTimeErrors && Object.values(sliceTimeErrors).map((error, index) => (
+              <p className='error-message'>{error}</p>
+            ))}
             <form onSubmit={handleTimeSubmit}>
               <input
                 className="time-bar"
@@ -123,8 +128,8 @@ function TrackShowPage() {
               <button className="track-btns" type="submit">Add Your Time</button>
             </form>
             {timeErrors && (
-            <p className='error-message'>Invalid Time</p>
-          )}
+              <p className='error-message'>Invalid Time</p>
+            )}
           </div>
 
           <div className="track-container">
@@ -140,7 +145,7 @@ function TrackShowPage() {
                 <form onSubmit={(e) => handleSubmit(e)}>
                   <h3>Create Comment</h3>
                   {newCommentError ? (
-                  <p className='error-message'>Comment cannot be empty</p>
+                    <p className='error-message'>Comment cannot be empty</p>
                   ) : null}
                   <label id="create-comment-form">Description
                     <input
