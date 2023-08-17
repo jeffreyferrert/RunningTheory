@@ -114,9 +114,11 @@ function TrackShowPage() {
                 </li>
               ))}
             </ol>
-            {sliceTimeErrors && Object.values(sliceTimeErrors).map((error, index) => (
-              <p className='error-message'>{error}</p>
-            ))}
+            <ol>
+              {sliceTimeErrors && Object.values(sliceTimeErrors).map((error, idx) => (
+                <li className='error-message' key={idx}>{error}</li>
+              ))}
+            </ol>
             <form onSubmit={handleTimeSubmit}>
               <input
                 className="time-bar"

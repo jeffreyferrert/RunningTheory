@@ -16,5 +16,6 @@ form > .errors {
   }
 
   .error-message{
-    color: red
+    color: red;
+    list-style: none;
   }
