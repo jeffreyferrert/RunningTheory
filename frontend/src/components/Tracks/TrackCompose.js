@@ -91,7 +91,7 @@ function TrackCompose() {
                                 <button id='button-form1' className='form-box-button' onClick={handleClick}>Check Address</button>
                                 <button id='button-form2' className='form-box-button' onClick={handleReset}>Reset Address</button>
                             </div>
-                            <div className='compose-box'>Input The Approximate Distance in Miles
+                            <div className='compose-box'>Calculated Miles
                                 <input
                                     className='form-box'
                                     type="number"
