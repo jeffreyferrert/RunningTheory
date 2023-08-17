@@ -66,7 +66,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              <div className="errors">{error?.username}</div>
+              <div className="error-message">{error?.username}</div>
 
               <label>
                 Email
@@ -78,7 +78,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              <div className="errors">{error?.email}</div>
+              <div className="error-message">{error?.email}</div>
 
               <label>
                 Password
@@ -90,7 +90,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              <div className="errors">{error?.password}</div>
+              <div className="error-message">{error?.password}</div>
 
               <label>
                 Confirm Password
@@ -102,7 +102,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              <div className="errors">{error?.password}</div>
+              <div className="error-message">{error?.password}</div>
 
               <button type="submit" className="su-signup">Sign Up</button>
             </div>

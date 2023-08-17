@@ -83,7 +83,7 @@ label input {
 .su-form {
   padding: 24px;
   padding-top: 15px;
-  height: 400px;
+  height: auto;
   width: 300px;
   background-color: white;
   border-radius: 7px;

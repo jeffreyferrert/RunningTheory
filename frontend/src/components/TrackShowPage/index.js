@@ -82,105 +82,111 @@ function TrackShowPage() {
 
   return (
     <>
-      <div className="main-container-trackshow">
-        <div className='ts-left-container'>
+      {track && (
+        <div className="main-container-trackshow">
+          <div className='ts-left-container'>
 
-          {track && (
-            <>
+            {track && (
+              <>
 
-              <h1>{track.name}</h1>
-              <div className="track-container">
-                <h2>General Info</h2>
-                <div className="track-general-info">
-                  <span>Starting Line:</span> {track.startAddress}
-                  <br />
-                  <span>Finish Line:</span> {track.endAddress}
-                  <br />
-                  <span>Distance:</span> {track.miles} miles
-                  <br />
-                  <span>Description:</span> {track.description}
+                <h1>{track.name}</h1>
+                <div className="track-container">
+                  <h2>General Info</h2>
+                  <div className="track-general-info">
+                    <span>Starting Line:</span> {track.startAddress}
+                    <br />
+                    <span>Finish Line:</span> {track.endAddress}
+                    <br />
+                    <span>Distance:</span> {track.miles} miles
+                    <br />
+                    <span>Description:</span> {track.description}
+                  </div>
+                </div>
+              </>
+            )}
+
+
+            <div className="track-container">
+              <h2>Leaderboard</h2>
+              <ol>
+                {times.map((time, index) => (
+                  <li className={index} key={index}>
+                    <Time key={index} time={time} currUser={author} />
+                  </li>
+                ))}
+              </ol>
+              <ol>
+                {sliceTimeErrors && Object.values(sliceTimeErrors).map((error, idx) => (
+                  <li className='error-message' key={idx}>{error}</li>
+                ))}
+              </ol>
+              <form onSubmit={handleTimeSubmit}>
+                <input
+                  className="time-bar"
+                  type="string"
+                  value={time}
+                  placeholder='00:00:00'
+                  onChange={(e) => setTime(e.target.value)}
+                />
+                <button className="track-btns" type="submit">Add Your Time</button>
+              </form>
+              {timeErrors && (
+                <p className='error-message'>Invalid Time</p>
+              )}
+            </div>
+
+            <div className="track-container">
+              <h2>Comments</h2>
+              <ul>
+                {comments.map((comment, index) => (
+                  <Comment key={index} comment={comment} author={author} track={track} />
+                ))}
+              </ul>
+
+              {showCommentForm ? (
+                <div>
+                  <form onSubmit={(e) => handleSubmit(e)}>
+                    <h3>Create Comment</h3>
+                    {newCommentError ? (
+                      <p className='error-message'>Comment cannot be empty</p>
+                    ) : null}
+                    <label id="create-comment-form">Description
+                      <input
+                        type="text"
+                        value={newComment}
+                        name="newComment"
+                        onChange={(e) => { setNewComment(e.target.value) }}
+                      />
+                    </label>
+                    <input className="comment-btns" type="submit" value={`Add Comment`} />
+                  </form>
+                  <button className="track-btns" onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
+                </div>
+              ) : (
+                <button className="track-btns" onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
+              )}
+            </div>
+
+          </div>
+          {
+            track && (
+
+              <div className='ts-right-container'>
+                <div className='ts-map'>
+                  {/* MAP COMPONENT GOES HERE */}
+                  <MapTrack track={track} />
+
                 </div>
               </div>
-            </>
-          )}
-
-
-          <div className="track-container">
-            <h2>Leaderboard</h2>
-            <ol>
-              {times.map((time, index) => (
-                <li className={index} key={index}>
-                  <Time key={index} time={time} currUser={author} />
-                </li>
-              ))}
-            </ol>
-            <ol>
-              {sliceTimeErrors && Object.values(sliceTimeErrors).map((error, idx) => (
-                <li className='error-message' key={idx}>{error}</li>
-              ))}
-            </ol>
-            <form onSubmit={handleTimeSubmit}>
-              <input
-                className="time-bar"
-                type="string"
-                value={time}
-                placeholder='00:00:00'
-                onChange={(e) => setTime(e.target.value)}
-              />
-              <button className="track-btns" type="submit">Add Your Time</button>
-            </form>
-            {timeErrors && (
-              <p className='error-message'>Invalid Time</p>
-            )}
-          </div>
-
-          <div className="track-container">
-            <h2>Comments</h2>
-            <ul>
-              {comments.map((comment, index) => (
-                <Comment key={index} comment={comment} author={author} track={track} />
-              ))}
-            </ul>
-
-            {showCommentForm ? (
-              <div>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                  <h3>Create Comment</h3>
-                  {newCommentError ? (
-                    <p className='error-message'>Comment cannot be empty</p>
-                  ) : null}
-                  <label id="create-comment-form">Description
-                    <input
-                      type="text"
-                      value={newComment}
-                      name="newComment"
-                      onChange={(e) => { setNewComment(e.target.value) }}
-                    />
-                  </label>
-                  <input className="comment-btns" type="submit" value={`Add Comment`} />
-                </form>
-                <button className="track-btns" onClick={() => setShowCommentForm(false)}>Hide Comment Form</button>
-              </div>
-            ) : (
-              <button className="track-btns" onClick={() => setShowCommentForm(true)}>Show Comment Form</button>
-            )}
-          </div>
-
+            )
+          }
+        </div >
+      )}
+      {!track && (
+        <div className='no-track'>
+          <h1 className='title-text-go'>No track found: 404</h1>
         </div>
-        {
-          track && (
-
-            <div className='ts-right-container'>
-              <div className='ts-map'>
-                {/* MAP COMPONENT GOES HERE */}
-                <MapTrack track={track} />
-
-              </div>
-            </div>
-          )
-        }
-      </div >
-
+      )}
     </>
 
   );

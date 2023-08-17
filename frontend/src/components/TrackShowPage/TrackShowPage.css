@@ -182,7 +182,18 @@
 
 }
 
-
+.no-track{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
+    font-size: 60px;
+    width: 100vw;
+}
+.no-track :first-child{
+    text-align: center;
+    margin: 0px;
+}
 
 
 /* .comment-btns {
