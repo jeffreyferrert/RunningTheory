@@ -20,7 +20,7 @@ const receiveUserTracks = tracks => ({
 
 const receiveNewTrack = track => ({
   type: RECEIVE_NEW_TRACK,
-  track
+  track: track
 });
 
 const receiveErrors = errors => ({
