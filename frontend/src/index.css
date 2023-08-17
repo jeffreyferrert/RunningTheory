@@ -14,3 +14,7 @@ form > .errors {
     border: 0px;
 
   }
+
+  .error-message{
+    color: red
+  }

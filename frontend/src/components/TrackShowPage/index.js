@@ -17,6 +17,7 @@ function TrackShowPage() {
   const { trackId } = useParams()
   const author = useSelector(state => state.session.user);
   const [newComment, setNewComment] = useState('')
+  const [newCommentError, setNewCommentError] = useState(false)
   const [showCommentForm, setShowCommentForm] = useState(false)
   const comments = useSelector(state => Object.values(state.comments.all))
   const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
@@ -32,12 +33,17 @@ function TrackShowPage() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch(composeComment({ description: newComment, author: author, track: track }))
-    setShowCommentForm(false)
-    setNewComment("")
-    setTimeout(() => {
-      dispatch(fetchComments());
-    }, 100);
+    if (!newComment) {
+      setNewCommentError(true)
+    } else {
+      dispatch(composeComment({ description: newComment, author: author, track: track }))
+      setShowCommentForm(false)
+      setNewCommentError(false)
+      setNewComment("")
+      setTimeout(() => {
+        dispatch(fetchComments());
+      }, 100);
+    }
   }
 
   function handleTimeSubmit(e) {
@@ -117,7 +123,10 @@ function TrackShowPage() {
               <div>
                 <form onSubmit={(e) => handleSubmit(e)}>
                   <h3>Create Comment</h3>
-                  <label>Description
+                  {newCommentError ? (
+                  <p className='error-message'>Comment cannot be empty</p>
+                  ) : null}
+                  <label id="create-comment-form">Description
                     <input
                       type="text"
                       value={newComment}
