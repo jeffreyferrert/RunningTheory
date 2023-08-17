@@ -65,7 +65,7 @@ function TrackShowPage() {
       setTimeErrors(false);
 
     } catch (error) {
-      if (error.response && error.response.status === 400) {
+      if (times.status === 400) {
         console.log('ya got me')
         // const validationErrors = error.
         setTimeErrors(true);
