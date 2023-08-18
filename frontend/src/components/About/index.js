@@ -84,7 +84,7 @@ function AboutUs() {
                         <div id='extender-container-signin'>
                                 <div id='icons'>
                                     <div className='symbol'><a href='https://github.com/Joshk57'><i className="fa-brands fa-github fa-2xl" style={{fontSize: '3em', color: "#000000"}}></i></a></div>
-                                    <div id='linked'className='symbol'> <a href=''><i className="fa-brands fa-linkedin fa-2xl" style={{fontSize: '3em', color: "#0a66c2"}}></i></a></div>
+                                    <div id='linked'className='symbol'> <a href='https://www.linkedin.com/in/joshua-kim-jk/'><i className="fa-brands fa-linkedin fa-2xl" style={{fontSize: '3em', color: "#0a66c2"}}></i></a></div>
                                     </div>
                                 </div>
                            </div>
