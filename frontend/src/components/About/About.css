@@ -4,8 +4,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
-    gap: 100px;
+    position: relative;
+    bottom: 60px;
+    /* height: 120%; */
+    gap: 50px;
+    transform: scale(0.80);
 
 }
 
@@ -25,12 +28,11 @@
     
     text-align: center;
     padding: 35px;
-    width: 70vw;
+    width: 100vw;
     font-size: 23px;
-    border-radius: 20px;
     background-color: #f0f0f0;
-    position: relative;
-    bottom: 20px;
+    border-radius: 30px;
+
 
 }
 
@@ -46,9 +48,9 @@
 
     display: flex;
     flex-direction: row;
-    position: relative;
+    height: 100%;
     gap: 50px;
-    bottom: 30px;
+    /* bottom: 30px; */
 
 }
 
@@ -299,6 +301,7 @@
     border-right: 2px solid lightgray;
     z-index: -1;
     padding-bottom: 5px;
+    margin: 0px;
 
 }
 
@@ -312,8 +315,8 @@
 
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    position: relative;
-    bottom: 4px;
+    position: absolute;
+    /* bottom: 4px; */
     left: 8px;
     width: 147px;
     height: 50px;
@@ -321,7 +324,7 @@
     padding-top: 15px;
     padding-right: 10px;
     padding-left: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     z-index: -1;
@@ -331,6 +334,8 @@
 }
 
 #both-cont{
+    
+    position:absolute;
     z-index: 999;
 }
 
@@ -471,7 +476,7 @@
 #track-cont{
 
     position: relative;
-    bottom: 5px;
+    /* bottom: 5px; */
     right: 4px;
     display: flex;
     justify-content: center;
