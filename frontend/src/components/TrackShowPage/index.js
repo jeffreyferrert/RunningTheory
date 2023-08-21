@@ -63,22 +63,7 @@ function TrackShowPage() {
     setTime("");
     dispatch(clearTimeErrors());
     dispatch(fetchTimes())
-    // try {
-    //   await dispatch(fetchTimes());
-    //   setTimeErrors(false);
-
-    // } catch (error) {
-    //   console.log("hitting catch")
-    //   if (error.times) {
-    //     const errorMessage = error.response.data.message;
-    //     console.log('ya got me')
-    //     // const validationErrors = error.
-    //     setTimeErrors(true);
-    //   }
-    // }
   }
-
-
 
   return (
     <>
@@ -173,7 +158,6 @@ function TrackShowPage() {
 
               <div className='ts-right-container'>
                 <div className='ts-map'>
-                  {/* MAP COMPONENT GOES HERE */}
                   <MapTrack track={track} />
 
                 </div>

@@ -16,7 +16,7 @@
 .li-form-container {
   padding: 24px;
   padding-top: 15px;
-  height: 320px;
+  /* height: 320px; */
   width: 300px;
   background-color: white;
   border-radius: 7px;
@@ -40,6 +40,7 @@ label input {
   font-size: 15px;
   padding: 8px 9px;
   width: 92%;
+  margin-bottom: 5px;
 }
 
 .li-login {
@@ -53,7 +54,7 @@ label input {
   cursor: pointer;
   white-space: nowrap;
   text-decoration: none;
-  margin:  2px 0 10px 0;
+  margin:  5px 0;
   width: 100%;
   font-weight: bold;
 }
@@ -129,4 +130,12 @@ label input {
 
 .su-signup:hover {
   background-color: #F7BE56;
+}
+
+.errors {
+  color: red;
+}
+
+h3 {
+  margin: 10px auto;
 }

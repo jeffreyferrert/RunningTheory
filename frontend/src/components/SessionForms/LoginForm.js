@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session"
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import './SessionForm.css';
-import { login } from '../../store/session';
-// import { login, clearSessionErrors } from '../../store/session';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const error = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState([]);
+
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [loginError, setLoginError] = useState("");
 
   useEffect(() => {
     return () => {
@@ -21,38 +21,42 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
-    return dispatch(sessionActions.login({ email, password }))
-      .catch(async (res) => {
-        let data;
-        try {
-          data = await res.clone().json();
-        } catch {
-          data = await res.text();
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
+    let errors = false;
+
+    if (!email) {
+      setEmailError("Email is required");
+      errors = true;
+    } else {
+      setEmailError("");
+    }
+    if (!password) {
+      setPasswordError("Password is required");
+      errors = true;
+    } else {
+      setPasswordError("");
+    }
+    if (!errors) {
+      dispatch(sessionActions.login({ email, password })).then(() => {
       });
+    } else if (emailError) {
+      setLoginError("User credentials are incorrect");
+    }
   };
 
   const demoUser = (e) => {
     e.preventDefault();
-    dispatch(login({ email: "demo@gmail.com", password: "password" }))
+    dispatch(sessionActions.login({ email: "demo@gmail.com", password: "password" }))
   }
 
   return (
     <>
       <div className="li-main-container">
-
         <div className="li-form-container">
 
-          <form onSubmit={handleSubmit} >
+          <form onSubmit={handleSubmit} noValidate="novalidate">
             <h3>Access your account</h3>
 
-            <ul>
-              {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
+            {loginError && <div className="errors">{loginError}</div>}
 
             <label>
               Email
@@ -64,7 +68,7 @@ function LoginForm() {
               />
             </label>
 
-            <div className="errors">{error?.email}</div>
+            {emailError && <div className="errors">{emailError}</div>}
 
             <label>
               Password
@@ -76,12 +80,13 @@ function LoginForm() {
               />
             </label>
 
-            <div className="errors">{error?.password}</div>
+            {passwordError && <div className="errors">{passwordError}</div>}
 
             <button type="submit" className="li-login">Log In</button>
           </form>
 
           <button onClick={demoUser} className="li-login">Demo User</button>
+
         </div>
 
         <div className="redirect-su">

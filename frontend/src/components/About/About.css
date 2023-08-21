@@ -12,7 +12,9 @@
     margin-top: 30px;
 }
 
-
+button {
+    border: none;
+}
 
 #title{
     display: flex;

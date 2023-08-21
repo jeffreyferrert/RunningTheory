@@ -14,9 +14,13 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const error = useSelector(state => state.errors.session)
   const sessionUser = useSelector(state => state.session.user)
-  const [errors, setErrors] = useState([]);
+
+
+  const [emailError, setEmailError] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -28,31 +32,46 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
-    return dispatch(sessionActions.signup({ username: username, email: email, password: password }))
-      .catch(async (res) => {
-        let data;
-        try {
-          data = await res.clone().json();
-        } catch {
-          data = await res.text();
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
-      });
+
+    let errors = false;
+
+    if (!email) {
+      setEmailError("Email is required");
+      errors = true;
+    } else {
+      setEmailError(null);
+    }
+    if (!username) {
+      setUsernameError("Username is required");
+      errors = true;
+    } else {
+      setUsernameError(null);
+    }
+    if (!password) {
+      setPasswordError("Password is required");
+      errors = true;
+    } else {
+      setPasswordError(null);
+    }
+    if (password !== confirmPassword) {
+      setConfirmPasswordError("Passwords do not match");
+      errors = true;
+    } else {
+      setConfirmPasswordError(null);
+    }
+
+    if (!errors) {
+      dispatch(sessionActions.signup({ username: username, email: email, password: password }))
+    }
+
   };
 
   return (
     <>
       <div className="su-main-container">
-
         <div className="right-panel">
-          <ul>
-            {errors.map(error => <li key={error}>{error}</li>)}
-          </ul>
 
-          <form onSubmit={handleSubmit} className="su-form">
+          <form onSubmit={handleSubmit} className="su-form" noValidate="novalidate">
             <h3>Create your account</h3>
             <div className="su-form-container">
 
@@ -66,7 +85,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              <div className="error-message">{error?.username}</div>
+              {usernameError && <div className="errors">{usernameError}</div>}
 
               <label>
                 Email
@@ -78,7 +97,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              <div className="error-message">{error?.email}</div>
+              {emailError && <div className="errors">{emailError}</div>}
 
               <label>
                 Password
@@ -90,7 +109,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              <div className="error-message">{error?.password}</div>
+              {passwordError && <div className="errors">{passwordError}</div>}
 
               <label>
                 Confirm Password
@@ -102,7 +121,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              <div className="error-message">{error?.password}</div>
+              {confirmPasswordError && <div className="errors">{confirmPasswordError}</div>}
 
               <button type="submit" className="su-signup">Sign Up</button>
             </div>
