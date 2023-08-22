@@ -14,13 +14,9 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const error = useSelector(state => state.errors.session)
   const sessionUser = useSelector(state => state.session.user)
-
-
-  const [emailError, setEmailError] = useState(false);
-  const [usernameError, setUsernameError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     return () => {
@@ -32,46 +28,31 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    let errors = false;
-
-    if (!email) {
-      setEmailError("Email is required");
-      errors = true;
-    } else {
-      setEmailError(null);
-    }
-    if (!username) {
-      setUsernameError("Username is required");
-      errors = true;
-    } else {
-      setUsernameError(null);
-    }
-    if (!password) {
-      setPasswordError("Password is required");
-      errors = true;
-    } else {
-      setPasswordError(null);
-    }
-    if (password !== confirmPassword) {
-      setConfirmPasswordError("Passwords do not match");
-      errors = true;
-    } else {
-      setConfirmPasswordError(null);
-    }
-
-    if (!errors) {
-      dispatch(sessionActions.signup({ username: username, email: email, password: password }))
-    }
-
+    setErrors([]);
+    return dispatch(sessionActions.signup({ username: username, email: email, password: password }))
+      .catch(async (res) => {
+        let data;
+        try {
+          data = await res.clone().json();
+        } catch {
+          data = await res.text();
+        }
+        if (data?.errors) setErrors(data.errors);
+        else if (data) setErrors([data]);
+        else setErrors([res.statusText]);
+      });
   };
 
   return (
     <>
       <div className="su-main-container">
-        <div className="right-panel">
 
-          <form onSubmit={handleSubmit} className="su-form" noValidate="novalidate">
+        <div className="right-panel">
+          <ul>
+            {errors.map(error => <li key={error}>{error}</li>)}
+          </ul>
+
+          <form onSubmit={handleSubmit} className="su-form" noValidate>
             <h3>Create your account</h3>
             <div className="su-form-container">
 
@@ -85,7 +66,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              {usernameError && <div className="errors">{usernameError}</div>}
+              <div className="errors">{error?.username}</div>
 
               <label>
                 Email
@@ -97,7 +78,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              {emailError && <div className="errors">{emailError}</div>}
+              <div className="errors">{error?.email}</div>
 
               <label>
                 Password
@@ -109,7 +90,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              {passwordError && <div className="errors">{passwordError}</div>}
+              <div className="errors">{error?.password}</div>
 
               <label>
                 Confirm Password
@@ -121,7 +102,7 @@ const SignUpForm = () => {
                 />
               </label>
 
-              {confirmPasswordError && <div className="errors">{confirmPasswordError}</div>}
+              <div className="errors">{error?.password}</div>
 
               <button type="submit" className="su-signup">Sign Up</button>
             </div>
