@@ -103,7 +103,7 @@ const MapTrackForm = ({ track, onBicycleDistanceChange }) => {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={startAddress}
+      center={startLatLng}
       zoom={2.7}
       onLoad={onLoad}
       onUnmount={onUnmount}
