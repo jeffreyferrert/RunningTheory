@@ -8,96 +8,96 @@ export const RECEIVE_COMMENT_ERRORS = "comments/RECEIVE_COMMENT_ERRORS";
 export const CLEAR_COMMENT_ERRORS = "comments/CLEAR_COMMENT_ERRORS";
 
 const receiveComments = comments => ({
-    type: RECEIVE_COMMENTS,
-    comments
-  });
-  
-  const receiveNewComment = comment => ({
-    type: RECEIVE_NEW_COMMENT,
-    comment
-  });
+  type: RECEIVE_COMMENTS,
+  comments
+});
 
-  const removeComment = commentId => ({
-    type: DELETE_COMMENT,
-    commentId
-  }); 
-  
-  const receiveErrors = errors => ({
-    type: RECEIVE_COMMENT_ERRORS,
-    errors
-  });
-  
-  export const clearTrackErrors = errors => ({
-      type: CLEAR_COMMENT_ERRORS,
-      errors
-  });
+const receiveNewComment = comment => ({
+  type: RECEIVE_NEW_COMMENT,
+  comment
+});
 
-  export const getComment = (commentId) => state => {
-    if(state.comments && state.comments[commentId]) {
-        return state.comments[commentId]
-    } else {
-        return null
+const removeComment = commentId => ({
+  type: DELETE_COMMENT,
+  commentId
+});
+
+const receiveErrors = errors => ({
+  type: RECEIVE_COMMENT_ERRORS,
+  errors
+});
+
+export const clearTrackErrors = errors => ({
+  type: CLEAR_COMMENT_ERRORS,
+  errors
+});
+
+export const getComment = (commentId) => state => {
+  if (state.comments && state.comments[commentId]) {
+    return state.comments[commentId]
+  } else {
+    return null
+  }
+}
+
+export const fetchComments = () => async dispatch => {
+  try {
+    const res = await jwtFetch('/api/comments');
+    const comments = await res.json();
+    dispatch(receiveComments(comments));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      dispatch(receiveErrors(resBody.errors));
     }
   }
-
-  export const fetchComments = () => async dispatch => {
-    try {
-      const res = await jwtFetch ('/api/comments');
-      const comments = await res.json();
-      dispatch(receiveComments(comments));
-    } catch (err) {
-      const resBody = await err.json();
-      if (resBody.statusCode === 400) {
-        dispatch(receiveErrors(resBody.errors));
-      }
-    }
-  };
-
-  export const composeComment = data => async dispatch => {
-    try {
-      const res = await jwtFetch('/api/comments', {
-        method: 'POST',
-        body: JSON.stringify(data)
-      });
-      const comment = await res.json();
-      dispatch(receiveNewComment(comment));
-    } catch(err) {
-      const resBody = await err.json();
-      if (resBody.statusCode === 400) {
-        return dispatch(receiveErrors(resBody.errors));
-      }
-    }
-  };
-
-  export const editComment = (commentId, data) => async dispatch => {
-    try {
-      const res = await jwtFetch(`/api/comments/${commentId}`, {
-        method: 'PATCH',
-        body: JSON.stringify(data)
-      });
-      const comment = await res.json();
-      dispatch(receiveNewComment(comment));
-    } catch(err) {
-      const resBody = await err.json();
-      if (resBody.statusCode === 400) {
-        return dispatch(receiveErrors(resBody.errors));
-      }
-    }
-  };
-  
-  export const deleteComment = (commentId) => async (dispatch) => {
-    const res = await jwtFetch(`/api/comments/${commentId}`, {
-        method: 'DELETE'
-    });
-    if (res.ok) {
-        dispatch(removeComment(commentId));
-    }
 };
 
-  const nullErrors = null;
+export const composeComment = data => async dispatch => {
+  try {
+    const res = await jwtFetch('/api/comments', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+    const comment = await res.json();
+    dispatch(receiveNewComment(comment));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
+export const editComment = (commentId, data) => async dispatch => {
+  try {
+    const res = await jwtFetch(`/api/comments/${commentId}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data)
+    });
+    const comment = await res.json();
+    dispatch(receiveNewComment(comment));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
+export const deleteComment = (commentId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/comments/${commentId}`, {
+    method: 'DELETE'
+  });
+  if (res.ok) {
+    dispatch(removeComment(commentId));
+  }
+};
+
+const nullErrors = null;
 
 export const commentErrorsReducer = (state = nullErrors, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case RECEIVE_COMMENT_ERRORS:
       return action.errors;
     case RECEIVE_NEW_COMMENT:
@@ -108,19 +108,20 @@ export const commentErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
-const commentsReducer = (state = {all: {}}, action) => {
-    let newState = state
-    switch(action.type) {
-        case RECEIVE_COMMENTS:
-            return { ...newState, all: action.comments}
-        case RECEIVE_NEW_COMMENT:
-          newState[action.comment.id] = action.comment;
-          return newState;
-        case RECEIVE_NEW_TRACK:
-            newState = { ...newState, ...action.tracks}
-        default:
-             return state
-    }
+const commentsReducer = (state = { all: {} }, action) => {
+  let newState = state
+  switch (action.type) {
+    case RECEIVE_COMMENTS:
+      return { ...newState, all: action.comments }
+    case RECEIVE_NEW_COMMENT:
+      newState[action.comment.id] = action.comment;
+      return newState;
+    case RECEIVE_NEW_TRACK:
+      newState = { ...newState, ...action.tracks }
+      return newState;
+    default:
+      return state;
+  }
 }
 
 export default commentsReducer

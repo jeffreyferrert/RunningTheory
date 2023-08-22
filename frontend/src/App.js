@@ -11,6 +11,7 @@ import SignupForm from './components/SessionForms/SignupForm';
 import Tracks from './components/Tracks/Tracks';
 import Profile from './components/Profile/Profile';
 import TrackCompose from './components/Tracks/TrackCompose';
+import TrackComposeEdit from './components/Tracks/TrackComposeEdit';
 import TrackShowPage from './components/TrackShowPage';
 
 import { getCurrentUser } from './store/session';
@@ -35,6 +36,7 @@ function App() {
         <Route exact path="/tracks" component={Tracks} />
         <ProtectedRoute exact path="/tracks/new" component={TrackCompose} />
         <ProtectedRoute exact path="/tracks/:trackId" component={TrackShowPage}/>
+        <ProtectedRoute exact path="/tracks/:trackId/edit" component={TrackComposeEdit}/>
         <ProtectedRoute exact path="/profile" component={Profile} />
         <Route exact path="/about" component={AboutUs}/>
       </Switch>

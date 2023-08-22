@@ -2,13 +2,14 @@ import React from 'react';
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTracks } from '../../store/tracks';
+import { deleteTrack, fetchTracks } from '../../store/tracks';
 import { fetchComments, composeComment } from '../../store/comments';
 import { fetchTimes, composeTime, clearTimeErrors } from '../../store/times.js';
 import "./TrackShowPage.css"
 import MapTrack from '../Map/MapTrack';
 import Comment from './Comment';
 import Time from './Time';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -24,6 +25,7 @@ function TrackShowPage() {
   const times = useSelector(state => Object.values(state.times.all)).filter(time => time.track._id === trackId)
   const sliceTimeErrors = useSelector(state => state.errors.times);
   const [time, setTime] = useState("")
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchTracks())
@@ -65,6 +67,11 @@ function TrackShowPage() {
     dispatch(fetchTimes())
   }
 
+  function handleDelete(e) {
+    dispatch(deleteTrack(track._id))
+    history.push("/tracks");
+  }
+
   return (
     <>
       {track && (
@@ -75,8 +82,24 @@ function TrackShowPage() {
               <>
 
                 <h1>{track.name}</h1>
+
+                {track.author._id === author._id && (
+                  <div className='editdelete'>
+                    <button>
+                      <Link to={`/tracks/${track._id}/edit`}>
+                        <span>Edit</span>
+                      </Link>
+                    </button>
+
+                    <button onClick={handleDelete}>
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                )}
+
                 <div className="track-container">
                   <h2>General Info</h2>
+
                   <div className="track-general-info">
                     <span>Starting Line:</span> {track.startAddress}
                     <br />
