@@ -1,4 +1,4 @@
-Running Thoery is a competitive fitness site that aims to engage the user through a weekly event. Users are able to navigate the site to find local "tracks" that are running paths created by other users. These paths are mapped and saved so that other users can follow the exact track on a map and post their time after completion. Other users can engage the user created tracks by leaving comments. From these user created tracks, the ones with highest engagement are selected for the weekly event which is displayed for one week at the top of the tracks show page. Users who attend this even can post official times validated by other attendees, these offical times are placed on the leaderboard which is ranked by fastest times. A user also has a show page dedicated to their created tracks and times they have posted for each track.
+Running Thoery is a competitive fitness site that aims to engage the user through a weekly event. Users are able to navigate the site to find local "tracks" that are running paths created by other users. These paths are mapped and saved so that other users can follow the exact track on a map and post their time after completion. Other users can engage with the user created tracks by leaving comments. From these user created tracks, the ones with highest engagement are selected for the weekly event which is displayed for one week at the top of the tracks show page. Users who attend this even can post official times validated by other attendees, these offical times are placed on the leaderboard which is ranked by fastest times. A user also has a show page dedicated to their created tracks and times they have posted for each track.
 
 
 
@@ -10,7 +10,7 @@ Running Thoery is a competitive fitness site that aims to engage the user throug
 
 ## In Running Theory, users will be able to:
 
-### Navigate the site for different tracks.
+### Navigate the site looking for different tracks.
 
 
 ![!Tracks-Index](frontend/public/track-index.png)
