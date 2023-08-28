@@ -1,4 +1,3 @@
-
 .link {
   text-decoration: none;
   color: inherit;
@@ -16,22 +15,24 @@
   margin: 0;
   padding: 0;
   background-color: #F7BE56;
+  display: flex;
 }
 
 .ribbon {
   writing-mode: vertical-rl;
   font-size: 20px;
   font-weight: bold;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding: 40px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px; 
+  max-height: 100%; 
+  overflow: hidden; 
 }
 
 .e-l-sec {
   border: 1px solid orange;
   writing-mode: vertical-lr;
-
 }
 
 .e-up-section {
@@ -73,7 +74,6 @@
   display: flex;
   flex-direction: column;
   font-weight: bold;
-
 }
 
 .e-low-section li span {
@@ -81,6 +81,8 @@
   font-size: 14px;
 }
 
-.e-r-c{
-  border-bottom: 0px;
+.e-r-c {
+  border-bottom: 0;
+  display: flex;
+  flex-direction: column;
 }
