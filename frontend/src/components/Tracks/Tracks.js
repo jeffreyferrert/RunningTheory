@@ -39,7 +39,6 @@ function Tracks() {
               <NavLink to="/tracks/new" className="tmc-topbar-login">Create Track</NavLink>
             </div>
             <EventBox track={event[0].track} />
-            {/* If there are no tracks, display a div that says there are no tracks */}
             {tracks.length === 0 ? (
               <div className='notracks-container'>
                 <h3 className='notracks'>No tracks found with that name</h3>
