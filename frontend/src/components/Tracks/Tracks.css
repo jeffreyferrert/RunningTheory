@@ -12,6 +12,18 @@
     justify-content: end;
 }
 
+.notracks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .notracks {
+    margin-bottom: 10px;
+  }
+
 .tmc-topbar-login {
     color: white;
     font-size: 17px;

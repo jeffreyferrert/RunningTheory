@@ -21,7 +21,7 @@ function Tracks() {
     return () => dispatch(clearTrackErrors());
   }, [dispatch])
 
-  if (tracks.length === 0) return <div>There are no Tracks</div>;
+  if (tracks.length === 0) return <h3 className='notracks'>There are no Tracks</h3>;
 
   if (searchQuery) {
     tracks = tracks.filter(function (track) {
@@ -39,10 +39,16 @@ function Tracks() {
               <NavLink to="/tracks/new" className="tmc-topbar-login">Create Track</NavLink>
             </div>
             <EventBox track={event[0].track} />
-
-            {tracks.map(track => (
-              <TrackBox key={track._id} track={track} />
-            ))}
+            {tracks.length === 0 ? (
+              <div className='notracks-container'>
+                <h3 className='notracks'>No tracks found with that name</h3>
+                <NavLink to="/tracks/new" className="tmc-topbar-login">Make one?</NavLink>
+              </div>
+            ) : (
+              tracks.map(track => (
+                <TrackBox key={track._id} track={track} />
+              ))
+            )}
           </div>
 
           <div id='the-main-map' className="map">
