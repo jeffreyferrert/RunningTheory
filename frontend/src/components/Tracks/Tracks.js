@@ -32,6 +32,7 @@ function Tracks() {
 
   return (
     <>
+      {console.log(tracks)}
       {tracks && (
         <div className="tracks-main-container">
           <div className="trackbox">
@@ -39,7 +40,7 @@ function Tracks() {
               <NavLink to="/tracks/new" className="tmc-topbar-login">Create Track</NavLink>
             </div>
             <EventBox track={event[0].track} />
-
+            {/* if tracks.length = 0, make a div that says there is not tracks*/}
             {tracks.map(track => (
               <TrackBox key={track._id} track={track} />
             ))}
