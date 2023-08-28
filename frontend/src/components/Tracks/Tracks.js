@@ -40,19 +40,23 @@ function Tracks() {
               <NavLink to="/tracks/new" className="tmc-topbar-login">Create Track</NavLink>
             </div>
             <EventBox track={event[0].track} />
-            {/* if tracks.length = 0, make a div that says there is not tracks*/}
-            {tracks.map(track => (
-              <TrackBox key={track._id} track={track} />
-            ))}
+            {/* If there are no tracks, display a div that says there are no tracks */}
+            {tracks.length === 0 ? (
+              <div>There are no tracks</div>
+            ) : (
+              tracks.map(track => (
+                <TrackBox key={track._id} track={track} />
+              ))
+            )}
           </div>
-
+  
           <div id='the-main-map' className="map">
             <MapTracks tracks={tracks} />
           </div>
         </div>
       )}
     </>
-  );
+  );  
 }
 
 export default Tracks;
